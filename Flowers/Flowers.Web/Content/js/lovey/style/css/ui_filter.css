@@ -1,0 +1,48 @@
+﻿/* --------------
+
+	   ui_filter.css:过滤器
+	   author: xiangxu@wisedu.com
+
+ ------------ */
+
+/* 高级组件-过滤器
+----------------------------------------------------------------------------------------------------*/
+.ui_filter {
+
+}
+.ui_filter span{
+	display:block;
+	float:left;
+	width:100px;
+	margin:5px 0 0 5px;
+	font-size:13px;
+	color:#333;
+}
+.ui_filter .ui_list_h{
+	margin-left:100px;
+	display: block;
+}
+.ui_filter .ui_list_h li{
+	margin:0 10px 5px 0;
+	white-space:nowrap;
+}
+.ui_filter .ui_list_h li a{
+	display:block;
+	padding:2px 5px;
+	font-size:13px;
+	text-decoration:none;
+}
+.ui_filter .ui_list_h li a:hover{
+	background:#ff6600;
+	color:#fff;
+}
+.ui_filter .ui_list_h li a.active{
+	background:#ff6600;
+	color:#fff;	
+}
+.ui_filter .ui_btn{
+	vertical-align:top\9;/*修复IE下按钮和input高度不一致的问题*/
+}
+.ui_table .ui_filter{
+	margin-top:5px;
+}

@@ -1,0 +1,31 @@
+/* CSS Document */
+
+html, body { margin:0; padding:0;font-size:12px; color:#999999; height:100%; width:100%; font-family:Geneva, Arial, Helvetica, sans-serif, "ËÎÌו"; background:#005ae4; }
+img{ border:0; vertical-align:middle;}
+a{text-decoration:none;cursor:pointer;color:#ffffff; }
+a:hover {text-decoration:none; color:#0059e1; }
+input { outline:0; }
+ul,ol,li{list-style-type:none;} 
+
+.top{ width:100%; height:30px; background:#000000;}
+.top_zi{ width:120px; height:30px;line-height:30px; float:right; margin-right:25px; text-align:right;}
+.top span{ margin:0 6px; color:#ffffff; line-height:30px; }
+.bottom{ height:100%; width:100%; background:url(../images/bgt.jpg) no-repeat center top;}
+.login{ width:623px; height:403px; margin:0 auto; padding-top:169px;}
+.login_d{width:623px; height:373px; background:url(../images/di.png) no-repeat; padding-top:33px;}
+.login_d_a{ width:458px; height:38px; float:left; padding-left:132px;  }
+.login_d_b{ width:458px; height:38px; float:left; padding-left:132px; margin-top:20px;  }
+.login_d_c{ width:458px; height:38px; float:left; padding-left:132px; margin-top:20px;  }
+.login_d_d{ width:435px; height:60px; float:left; padding-left:104px; margin-top:22px;  }
+.inputs{ color:#0c4b90; width:406px; height:38px;line-height:35px; font-size:14px; padding-left:50px;  vertical-align: bottom; border:1px solid #908f8d; background:#ffffff url(../images/as.jpg) no-repeat;}
+.inputsb{ color:#0c4b90; width:406px; height:38px;line-height:35px; font-size:14px; padding-left:50px;  vertical-align: bottom; border:1px solid #908f8d;background:#ffffff url(../images/ab.jpg) no-repeat;}
+.inputss{ color:#0c4b90; background:#ffffff; width:250px; height:35px;line-height:35px; font-size:14px; vertical-align: bottom;border:1px solid #908f8d;}
+
+.bottomxt{ height:100%; width:100%; background:url(../images/bgts.jpg) no-repeat center top;}
+.anniu{ width:450px; height:204px;  margin:0 auto; padding-top:230px;} 
+.anniu_a{ width:201px; height:204px; float:left; margin-right:7px;}
+.anniu_b{ width:201px; height:204px; float:right; }
+
+
+
+.clear{ clear:both; font-size:0px;height:0px;margin: 0;}

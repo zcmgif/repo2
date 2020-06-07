@@ -1,0 +1,284 @@
+﻿@{
+    Layout = "~/Views/Layout/_LayoutFlowerShop.cshtml";
+    ViewBag.Title = "结账";
+}
+
+<style>
+    #xiugai, #newdizhi {
+        color: #000;
+        display: block;
+        height: 30px;
+        width: 90px;
+        text-align: center;
+        line-height: 30px;
+        background-color: #e7e7e7;
+        border-radius: 5px;
+        margin: 45px;
+    }
+    #templatemo_main_wrapper
+    {
+        min-height:550px;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        var orderid;
+        orderid =@ViewBag.orderid;
+        var uid;
+        uid =@ViewBag.UId;
+        getDizhi(uid);
+        GetGoods();
+        var dizhi;
+        $("[name='check']").each(function (i) {
+            $(this).click(function () {
+                if (this.checked == true) {
+                    dizhi = $(this).attr("id");
+
+                }
+                else {
+                    str.replace(dizhi, "");
+                }
+            });
+        });
+
+        $("[name='delete1']").each(function (i) {
+            $(this).click(function () {
+                var adressid = $(this).attr("id").replace(/[^0-9]/ig, "");
+                //alert(adressid);
+                $.ajax({
+                    type: "POST",
+                    url: "/FlowerShop/dateadressVail?adressid=" + adressid,
+                    dataType: "json",
+                    beforeSend: function () {
+                    },
+                    success: function (strjson) {
+                        if (strjson.status == 1) {
+                            alert("删除成功！");
+                            location.href = "/FlowerShop/checkout?orderid=" + orderid;
+                        } else {
+                            alert(strjson.msg);
+                            clearform();
+                        }
+                        return false;
+                    }
+                })
+            });
+        });
+      
+        $("#dingdan").click(function () {
+            //alert($("#terms").attr("checked"));
+            if ($("#terms").attr("checked") == true) {
+                if (dizhi == null) {
+                    alert("请选择地址！");
+                    return false;
+                }
+                else {
+                    var Fukuan = document.getElementById("Fukuan");
+                    var Fukuanindex = Fukuan.selectedIndex;
+                    var Fukuantexts = Fukuan.options[Fukuanindex].text;
+                    if (window.confirm("确定使用" + Fukuantexts+"付款？")) {
+                        $.ajax({
+                            type: "POST",
+                            url: "/FlowerShop/UpdateOrderVail",
+                            data: { "orderid": orderid, "dizhi": dizhi },
+                            dataType: "json",
+                            beforeSend: function () {
+                            },
+                            success: function (strjson) {
+                                if (strjson.status == 1) {
+                                    alert("交易成功！请到订单中查看");
+                                    location.href = "/FlowerShop/index";
+                                } else {
+                                    alert(strjson.msg);
+                                    clearform();
+                                }
+                                return false;
+                            }
+                        })
+                    }
+                    else {
+                        return false;
+                    }
+                }
+            }
+            else
+                {
+                    alert("请选择同意使用条款！");
+                    return false;
+                }
+           });
+
+        $("#addadress").click(function () {
+            location.href = "/FlowerShop/AddAdress?orederid=" + orderid;
+        });
+    })
+    function getDizhi(uid) {
+        $.ajax({
+            type: "get",
+            url: "/FlowerShop/GetdizhiVail",
+            data: {"uid": uid },
+            dataType: "json",
+            async: false,
+            beforeSend: function () {
+            },
+            success: function (data) {
+                //alert(data);
+                $("#shoptable").append(data);
+            },
+            error: function (mag) {
+                $("#shoptable").append("无法获得数据！");
+            }
+        })
+    }
+    function GetGoods() {
+        $.ajax({
+            url: "/FlowerShop/LuckyVail",
+            type: 'GET',
+            dataType: 'json',
+            async: false,
+            success: function (data) {
+                $("#content_Lucky").append(data);
+            },
+            error: function (mag) {
+                $("#content_Lucky").append("无法获得数据！");
+            }
+        });
+    }
+    function getnum(_url) {
+        var url = _url; //转向网页的地址;
+        var name = "加入购物车";                        //网页名称，可为空;
+        var iWidth = 500;                          //弹出窗口的宽度;
+        var iHeight = 200;                       //弹出窗口的高度;
+        //获得窗口的垂直位置
+        var iTop = (window.screen.availHeight - 30 - iHeight) / 2;
+        //获得窗口的水平位置
+        var iLeft = (window.screen.availWidth - 10 - iWidth) / 2;
+        var params = 'width=' + iWidth
+            + ',height=' + iHeight
+            + ',top=' + iTop
+            + ',left=' + iLeft
+            + ',channelmode=yes'//是否使用剧院模式显示窗口。默认为 no
+            + ',directories=yes'//是否添加目录按钮。默认为 yes
+            + ',fullscreen=no' //是否使用全屏模式显示浏览器
+            + ',location=no'//是否显示地址字段。默认是 yes
+            + ',menubar=no'//是否显示菜单栏。默认是 yes
+            + ',resizable=no'//窗口是否可调节尺寸。默认是 yes
+            + ',scrollbars=yes'//是否显示滚动条。默认是 yes
+            + ',status=yes'//是否添加状态栏。默认是 yes
+            + ',titlebar=yes'//默认是 yes
+            + ',toolbar=no'//默认是 yes
+            ;
+        window.open(url, name, params);
+    }
+
+    function uppwd(orederid) {
+        //string url = "/FlowerShop/AddAdress?orederid=" + orederid;
+        //string title = "增加地址";
+        top.$.ligerDialog.open({
+            className: 'dialog_style02',
+            height: 330,
+            width: 400,
+            title: "增加地址",
+            url: '/FlowerShop/AddAdress?orederid=' + orederid,
+            dialogWaiting: true,
+            buttons: [
+                {
+                    text: '关闭',
+                    onclick: close
+                }]
+        });
+
+        function close(button, dg) {
+            top.$.ligerDialog.close();
+        }
+
+    }
+
+</script>
+<div id="templatemo_wrapper_sp">
+    <div id="templatemo_header_wsp">
+        <div id="templatemo_header" class="header_subpage">
+            <div id="site_title"><a href="#" rel="nofollow">Flower Shop</a></div>
+            <div id="templatemo_menu" class="ddsmoothmenu">
+                <ul>
+                    <li>@Html.ActionLink("首页", "index", "FlowerShop")</li>
+                    <li>@Html.ActionLink("店铺", "About", "FlowerShop")</li>
+                    <li>
+                        @Html.ActionLink("论坛", "faqs", "FlowerShop")
+                        <ul>
+                            <li>@Html.ActionLink("查看论坛", "showForum", "FlowerShop")</li>
+                            <li>@Html.ActionLink("发布日志", "sendForum", "FlowerShop")</li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("发现新事物", "contact", "FlowerShop")</li>
+                    <li>@Html.ActionLink("购物车", "shoppingCart", "FlowerShop")</li>
+                    <li>
+                        @Html.ActionLink("我的", "products", "FlowerShop")
+                        <ul>
+                            <li>@Html.ActionLink("订单查看", "products", "FlowerShop")</li>
+                            <li>@Html.ActionLink("完善信息", "UserImprovement", "Home")</li>
+                            <li><a href="javascript:;" onclick="upEdit('/Home/UserEdit')">修改密码</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <br style="clear: left" />
+            </div>
+
+        </div> <!-- END of header -->
+    </div> <!-- END of header wrapper -->
+    <div id="templatemo_main_wrapper">
+        <div id="templatemo_main">
+            <div id="sidebar" class="left">
+                <div class="sidebar_box">
+                    <span class="bottom"></span>
+                    <h3>Daily Lucky Flowers</h3>
+                    <div class="content special" id="content_Lucky">
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="content" class="right">
+                <h2>Checkout</h2>
+
+                <h3>详细地址</h3>
+                <div class="">
+                    <table id="shoptable" width="100%" border="0" cellpadding="5" cellspacing="0"></table>
+                    <div>
+                        <input type="button" id="addadress" value="增加地址" />
+                    </div>
+                </div>
+
+                <div class="cleaner h40"></div>
+
+                <h3>支付途径:
+                      <select id="Fukuan">
+                          <option>网银</option>
+                          <option>支付宝</option>
+                          <option>银行卡</option>
+                      </select>
+                </h3>
+                <h4>总计: <strong>￥@ViewBag.zj</strong></h4>
+                <p>
+                    <input type="checkbox" id="terms" checked />
+                    我已经阅读并接受了 <a href="#">使用条款</a>.
+                </p>
+                <input id="dingdan"  type="button" value="确认付款" style="margin-bottom:20px;width:100px;height:30px; margin-left:200px;" />
+                <div class="blank_box">
+                    <a href="#"><img src="~/Content/FlowerShop/images/free_shipping.jpg" alt="Free Shipping" /></a>
+                </div>
+
+            </div>
+
+            <div class="cleaner"></div>
+        </div> <!-- END of main -->
+    </div> <!-- END of main wrapper -->
+
+    <div id="templatemo_footer_wrapper">
+        <div id="templatemo_footer">
+            <p class="p1">我的花草世界--爱尚花坊 @DateTime.Now</p>
+        </div> <!-- END of footer -->
+    </div> <!-- END of footer wrapper -->
+</div>
+

@@ -1,0 +1,46 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{margin:0;padding:0; width:100%; font-size:12px; font-family: "微软雅黑"; }
+body,html{height: 100%; }
+input { outline:0;}
+
+
+
+
+
+
+/*----------------------------------------------------------登录《1/2》---------------------------------------------------------------*/
+#outer {height: 100%; overflow: hidden; position: relative; width: 100%; background:url(../images/bg.jpg) center; }
+#outer[id] {display: table; position: static;}
+#middle {position: absolute; top: 50%;text-align:center;} /* for explorer only*/
+#middle[id] {display: table-cell; vertical-align: middle; position: static;}
+#inner {position: relative; top: -50%;width:966px;margin: 0 auto; height:270px; background:url(../images/gydb.png) no-repeat;}/*for explorer only */
+
+/*-------------登录-------------*/
+.dlzi{ height:25px; width:331px; margin:0 auto; margin-top:7px; background:url(../images/dssd.png) no-repeat;}
+.dlk{height:28px; width:447px; padding:36px 39px 32px 73px; margin:0 auto; margin-top:29px; background:url(../images/dlk.png) no-repeat;}
+.yiying{height:59px; width:809px; margin:0 auto;  background:url(../images/touying.png) no-repeat;}
+.input { border:0px; color:#0c4b90; background-image:url(../images/kd.png); width:145px; height:26px;line-height:26px; padding-left:10px; font-size:14px; margin-top:0;  }
+.login{ background: url(../images/dl.png) no-repeat;width:68px;height:32px; display: block; }
+.login:hover{ background: url(../images/dl.png) no-repeat 0 -32px;}
+
+/*-------------系统-------------*/
+
+.hyzi{ height:17px; width:243px; margin:0 auto; margin-top:10px; background:url(../images/hyn.png) no-repeat;}
+.niu{ height:167px; width:274px; margin:0 auto; margin-top:30px; background:url(../images/xian.png) no-repeat center 10px;}
+.niu_left{ height:137px; width:109px; float:left;}
+.niu_right{ height:137px; width:109px; float:right;}
+.one{ background: url(../images/niu.png) no-repeat;width:109px;height:137px; display: block; }
+.one:hover{ background: url(../images/niu.png) no-repeat 0 -137px;}
+.two{ background: url(../images/niu.png) no-repeat -109px 0; width:109px;height:137px; display: block; }
+.two:hover{ background: url(../images/niu.png) no-repeat -109px -137px;}
+
+
+
+
+/*----------------------------------------------------------登录《1/2》end---------------------------------------------------------------*/
+
+/*-------------公用-------------*/
+.clear{clear:both;  font-size:0; overflow:hidden; height:0;}
+

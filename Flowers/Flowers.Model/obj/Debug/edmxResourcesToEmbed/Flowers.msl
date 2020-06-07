@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FlowersModelStoreContainer" CdmEntityContainer="FlowersEntities">
+    <EntitySetMapping Name="FLb">
+      <EntityTypeMapping TypeName="FlowersModel.FLb">
+        <MappingFragment StoreEntitySet="FLb">
+          <ScalarProperty Name="FLId" ColumnName="FLId" />
+          <ScalarProperty Name="flname" ColumnName="flname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Forum">
+      <EntityTypeMapping TypeName="FlowersModel.Forum">
+        <MappingFragment StoreEntitySet="Forum">
+          <ScalarProperty Name="FId" ColumnName="FId" />
+          <ScalarProperty Name="UId" ColumnName="UId" />
+          <ScalarProperty Name="messageText" ColumnName="messageText" />
+          <ScalarProperty Name="fbtime" ColumnName="fbtime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Goods">
+      <EntityTypeMapping TypeName="FlowersModel.Goods">
+        <MappingFragment StoreEntitySet="Goods">
+          <ScalarProperty Name="bigImgUrl" ColumnName="bigImgUrl" />
+          <ScalarProperty Name="GId" ColumnName="GId" />
+          <ScalarProperty Name="Gpicture" ColumnName="Gpicture" />
+          <ScalarProperty Name="Gname" ColumnName="Gname" />
+          <ScalarProperty Name="GOprice" ColumnName="GOprice" />
+          <ScalarProperty Name="Gprice" ColumnName="Gprice" />
+          <ScalarProperty Name="GFree" ColumnName="GFree" />
+          <ScalarProperty Name="Gintroduce" ColumnName="Gintroduce" />
+          <ScalarProperty Name="Gnumber" ColumnName="Gnumber" />
+          <ScalarProperty Name="GpNum" ColumnName="GpNum" />
+          <ScalarProperty Name="SId" ColumnName="SId" />
+          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MenuPage">
+      <EntityTypeMapping TypeName="FlowersModel.MenuPage">
+        <MappingFragment StoreEntitySet="MenuPage">
+          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+          <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+          <ScalarProperty Name="MenuType" ColumnName="MenuType" />
+          <ScalarProperty Name="MenuURL" ColumnName="MenuURL" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="RootID" ColumnName="RootID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Order">
+      <EntityTypeMapping TypeName="FlowersModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="dizhi" ColumnName="dizhi" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="orderId" ColumnName="orderId" />
+          <ScalarProperty Name="UId" ColumnName="UId" />
+          <ScalarProperty Name="Onum" ColumnName="Onum" />
+          <ScalarProperty Name="Oprice" ColumnName="Oprice" />
+          <ScalarProperty Name="createTime" ColumnName="createTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrDetailId">
+      <EntityTypeMapping TypeName="FlowersModel.OrDetailId">
+        <MappingFragment StoreEntitySet="OrDetailId">
+          <ScalarProperty Name="GId" ColumnName="GId" />
+          <ScalarProperty Name="orDetailId1" ColumnName="orDetailId" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="num" ColumnName="num" />
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="createTime" ColumnName="createTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PLb">
+      <EntityTypeMapping TypeName="FlowersModel.PLb">
+        <MappingFragment StoreEntitySet="PLb">
+          <ScalarProperty Name="PId" ColumnName="PId" />
+          <ScalarProperty Name="FId" ColumnName="FId" />
+          <ScalarProperty Name="plnr" ColumnName="plnr" />
+          <ScalarProperty Name="UId" ColumnName="UId" />
+          <ScalarProperty Name="Pltime" ColumnName="Pltime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Role">
+      <EntityTypeMapping TypeName="FlowersModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+          <ScalarProperty Name="roleName" ColumnName="roleName" />
+          <ScalarProperty Name="createTime" ColumnName="createTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="S_City">
+      <EntityTypeMapping TypeName="FlowersModel.S_City">
+        <MappingFragment StoreEntitySet="S_City">
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+          <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="S_District">
+      <EntityTypeMapping TypeName="FlowersModel.S_District">
+        <MappingFragment StoreEntitySet="S_District">
+          <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+          <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="S_Province">
+      <EntityTypeMapping TypeName="FlowersModel.S_Province">
+        <MappingFragment StoreEntitySet="S_Province">
+          <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+          <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Shop">
+      <EntityTypeMapping TypeName="FlowersModel.Shop">
+        <MappingFragment StoreEntitySet="Shop">
+          <ScalarProperty Name="SId" ColumnName="SId" />
+          <ScalarProperty Name="Sname" ColumnName="Sname" />
+          <ScalarProperty Name="Sintroduce" ColumnName="Sintroduce" />
+          <ScalarProperty Name="SURL" ColumnName="SURL" />
+          <ScalarProperty Name="UId" ColumnName="UId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="FlowersModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="truename" ColumnName="truename" />
+          <ScalarProperty Name="UId" ColumnName="UId" />
+          <ScalarProperty Name="Uname" ColumnName="Uname" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="Pwd" ColumnName="Pwd" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="ImgUrl" ColumnName="ImgUrl" />
+          <ScalarProperty Name="bankCard" ColumnName="bankCard" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+          <ScalarProperty Name="createTime" ColumnName="createTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ngoods">
+      <EntityTypeMapping TypeName="FlowersModel.Ngoods">
+        <MappingFragment StoreEntitySet="Ngoods">
+          <ScalarProperty Name="NId" ColumnName="NId" />
+          <ScalarProperty Name="Nimg" ColumnName="Nimg" />
+          <ScalarProperty Name="NJS" ColumnName="NJS" />
+          <ScalarProperty Name="Nname" ColumnName="Nname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VAdress">
+      <EntityTypeMapping TypeName="FlowersModel.VAdress">
+        <MappingFragment StoreEntitySet="VAdress">
+          <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+          <ScalarProperty Name="ProvinceName" ColumnName="ProvinceName" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+          <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+          <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VEmpRoLe">
+      <EntityTypeMapping TypeName="FlowersModel.VEmpRoLe">
+        <MappingFragment StoreEntitySet="VEmpRoLe">
+          <ScalarProperty Name="UId" ColumnName="UId" />
+          <ScalarProperty Name="Uname" ColumnName="Uname" />
+          <ScalarProperty Name="Pwd" ColumnName="Pwd" />
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+          <ScalarProperty Name="roleName" ColumnName="roleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VOrdel">
+      <EntityTypeMapping TypeName="FlowersModel.VOrdel">
+        <MappingFragment StoreEntitySet="VOrdel">
+          <ScalarProperty Name="Gname" ColumnName="Gname" />
+          <ScalarProperty Name="Expr7" ColumnName="Expr7" />
+          <ScalarProperty Name="Expr6" ColumnName="Expr6" />
+          <ScalarProperty Name="Expr5" ColumnName="Expr5" />
+          <ScalarProperty Name="Expr4" ColumnName="Expr4" />
+          <ScalarProperty Name="Gpicture" ColumnName="Gpicture" />
+          <ScalarProperty Name="Gprice" ColumnName="Gprice" />
+          <ScalarProperty Name="Gintroduce" ColumnName="Gintroduce" />
+          <ScalarProperty Name="Gnumber" ColumnName="Gnumber" />
+          <ScalarProperty Name="GpNum" ColumnName="GpNum" />
+          <ScalarProperty Name="Uname" ColumnName="Uname" />
+          <ScalarProperty Name="bankCard" ColumnName="bankCard" />
+          <ScalarProperty Name="UId" ColumnName="UId" />
+          <ScalarProperty Name="SId" ColumnName="SId" />
+          <ScalarProperty Name="Expr2" ColumnName="Expr2" />
+          <ScalarProperty Name="Sname" ColumnName="Sname" />
+          <ScalarProperty Name="Expr3" ColumnName="Expr3" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dizhi">
+      <EntityTypeMapping TypeName="FlowersModel.dizhi">
+        <MappingFragment StoreEntitySet="dizhi">
+          <ScalarProperty Name="newname" ColumnName="newname" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="adress" ColumnName="adress" />
+          <ScalarProperty Name="uid" ColumnName="uid" />
+          <ScalarProperty Name="adressid" ColumnName="adressid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orderminxi">
+      <EntityTypeMapping TypeName="FlowersModel.Orderminxi">
+        <MappingFragment StoreEntitySet="Orderminxi">
+          <ScalarProperty Name="isget" ColumnName="isget" />
+          <ScalarProperty Name="orderid" ColumnName="orderid" />
+          <ScalarProperty Name="sprice" ColumnName="sprice" />
+          <ScalarProperty Name="snum" ColumnName="snum" />
+          <ScalarProperty Name="sid" ColumnName="sid" />
+          <ScalarProperty Name="minxiid" ColumnName="minxiid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Splb">
+      <EntityTypeMapping TypeName="FlowersModel.Splb">
+        <MappingFragment StoreEntitySet="Splb">
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="pltime" ColumnName="pltime" />
+          <ScalarProperty Name="gid" ColumnName="gid" />
+          <ScalarProperty Name="uid" ColumnName="uid" />
+          <ScalarProperty Name="neirong" ColumnName="neirong" />
+          <ScalarProperty Name="splid" ColumnName="splid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VshopCar">
+      <EntityTypeMapping TypeName="FlowersModel.VshopCar">
+        <MappingFragment StoreEntitySet="VshopCar">
+          <ScalarProperty Name="SId" ColumnName="SId" />
+          <ScalarProperty Name="Gnumber" ColumnName="Gnumber" />
+          <ScalarProperty Name="Gintroduce" ColumnName="Gintroduce" />
+          <ScalarProperty Name="Gname" ColumnName="Gname" />
+          <ScalarProperty Name="Gpicture" ColumnName="Gpicture" />
+          <ScalarProperty Name="UId" ColumnName="UId" />
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="num" ColumnName="num" />
+          <ScalarProperty Name="GId" ColumnName="GId" />
+          <ScalarProperty Name="orDetailId" ColumnName="orDetailId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vsplb">
+      <EntityTypeMapping TypeName="FlowersModel.Vsplb">
+        <MappingFragment StoreEntitySet="Vsplb">
+          <ScalarProperty Name="bigImgUrl1" ColumnName="bigImgUrl" />
+          <ScalarProperty Name="ImgUrl" ColumnName="ImgUrl" />
+          <ScalarProperty Name="Uname" ColumnName="Uname" />
+          <ScalarProperty Name="pltime" ColumnName="pltime" />
+          <ScalarProperty Name="neirong" ColumnName="neirong" />
+          <ScalarProperty Name="Gnumber" ColumnName="Gnumber" />
+          <ScalarProperty Name="Gintroduce" ColumnName="Gintroduce" />
+          <ScalarProperty Name="Gprice" ColumnName="Gprice" />
+          <ScalarProperty Name="Gname" ColumnName="Gname" />
+          <ScalarProperty Name="Gpicture" ColumnName="Gpicture" />
+          <ScalarProperty Name="GId" ColumnName="GId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VOderminxi">
+      <EntityTypeMapping TypeName="FlowersModel.VOderminxi">
+        <MappingFragment StoreEntitySet="VOderminxi">
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="Gname" ColumnName="Gname" />
+          <ScalarProperty Name="Gpicture" ColumnName="Gpicture" />
+          <ScalarProperty Name="isget" ColumnName="isget" />
+          <ScalarProperty Name="UId" ColumnName="UId" />
+          <ScalarProperty Name="orderid" ColumnName="orderid" />
+          <ScalarProperty Name="sprice" ColumnName="sprice" />
+          <ScalarProperty Name="snum" ColumnName="snum" />
+          <ScalarProperty Name="sid" ColumnName="sid" />
+          <ScalarProperty Name="minxiid" ColumnName="minxiid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VURser">
+      <EntityTypeMapping TypeName="FlowersModel.VURser">
+        <MappingFragment StoreEntitySet="VURser">
+          <ScalarProperty Name="roleName" ColumnName="roleName" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="truename" ColumnName="truename" />
+          <ScalarProperty Name="UId" ColumnName="UId" />
+          <ScalarProperty Name="Uname" ColumnName="Uname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VForum">
+      <EntityTypeMapping TypeName="FlowersModel.VForum">
+        <MappingFragment StoreEntitySet="VForum">
+          <ScalarProperty Name="UId" ColumnName="UId" />
+          <ScalarProperty Name="ImgUrl" ColumnName="ImgUrl" />
+          <ScalarProperty Name="fbtime" ColumnName="fbtime" />
+          <ScalarProperty Name="messageText" ColumnName="messageText" />
+          <ScalarProperty Name="FId" ColumnName="FId" />
+          <ScalarProperty Name="Uname" ColumnName="Uname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VPLForum">
+      <EntityTypeMapping TypeName="FlowersModel.VPLForum">
+        <MappingFragment StoreEntitySet="VPLForum">
+          <ScalarProperty Name="ImgUrl" ColumnName="ImgUrl" />
+          <ScalarProperty Name="Uname" ColumnName="Uname" />
+          <ScalarProperty Name="Pltime" ColumnName="Pltime" />
+          <ScalarProperty Name="UId" ColumnName="UId" />
+          <ScalarProperty Name="plnr" ColumnName="plnr" />
+          <ScalarProperty Name="PId" ColumnName="PId" />
+          <ScalarProperty Name="FId" ColumnName="FId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VUShop">
+      <EntityTypeMapping TypeName="FlowersModel.VUShop">
+        <MappingFragment StoreEntitySet="VUShop">
+          <ScalarProperty Name="Sintroduce" ColumnName="Sintroduce" />
+          <ScalarProperty Name="SId" ColumnName="SId" />
+          <ScalarProperty Name="Uname" ColumnName="Uname" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Sname" ColumnName="Sname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VOrderSminxi">
+      <EntityTypeMapping TypeName="FlowersModel.VOrderSminxi">
+        <MappingFragment StoreEntitySet="VOrderSminxi">
+          <ScalarProperty Name="SId" ColumnName="SId" />
+          <ScalarProperty Name="Gnumber" ColumnName="Gnumber" />
+          <ScalarProperty Name="Gname" ColumnName="Gname" />
+          <ScalarProperty Name="sprice" ColumnName="sprice" />
+          <ScalarProperty Name="snum" ColumnName="snum" />
+          <ScalarProperty Name="minxiid" ColumnName="minxiid" />
+          <ScalarProperty Name="gid" ColumnName="gid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,119 @@
+﻿@{
+    Layout = "~/Views/Layout/_LayoutFlowerShop.cshtml";
+    ViewBag.Title = "评论日志";
+}
+<style type="text/css">
+    #templatemo_main_wrapper {
+        padding-bottom: 50px;
+    }
+
+    #templatemo_main form textarea {
+        width: 100%;
+        height: 350px;
+        background: #395015;
+        border: 1px solid #5d7c29;
+        margin-bottom: 10px;
+        padding: 10px;
+        color: #FFFFFF;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 18px;
+    }
+
+    #submit, #reset {
+        width: 150px;
+        height: 50px;
+        font-size: 20px;
+        margin-left: 50px;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        var fid=@ViewBag.fid;
+        $("#submit").click(function () {
+            if (window.confirm("确定发表评论？")) {
+                var text = $("#message").val();
+                //alert(text);
+                $.ajax({
+                    type: "POST",
+                    url: "/FlowerShop/AddplFroum",
+                    data: { "fid": fid, "text": text },
+                    dataType: "json",
+                    beforeSend: function () {
+                    },
+                    success: function (strjson) {
+                        if (strjson.status == 1) {
+                            alert("评论成功！请到论坛中查看");
+                            location.href = "/FlowerShop/faqs";
+                        } else {
+                            alert(strjson.msg);
+                            clearform();
+                        }
+                        return false;
+                    }
+                })
+            } else {
+                return false;
+            }
+           
+        });
+    })
+
+</script>
+
+<div id="templatemo_wrapper_sp">
+    <div id="templatemo_header_wsp">
+        <div id="templatemo_header" class="header_subpage">
+            <div id="site_title"><a href="#" rel="nofollow">Flower Shop</a></div>
+            <div id="templatemo_menu" class="ddsmoothmenu">
+                <ul>
+                    <li>@Html.ActionLink("首页", "index", "FlowerShop")</li>
+                    <li>@Html.ActionLink("店铺", "About", "FlowerShop")</li>
+                    <li>
+                        @Html.ActionLink("论坛", "faqs", "FlowerShop")
+                        <ul>
+                            <li>@Html.ActionLink("查看论坛", "showForum", "FlowerShop")</li>
+                            <li>@Html.ActionLink("发布日志", "sendForum", "FlowerShop")</li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("发现新事物", "contact", "FlowerShop")</li>
+                    <li>@Html.ActionLink("购物车", "shoppingCart", "FlowerShop")</li>
+                    <li>
+                        @Html.ActionLink("我的", "products", "FlowerShop")
+                        <ul>
+                            <li>@Html.ActionLink("订单查看", "products", "FlowerShop")</li>
+                            <li>@Html.ActionLink("完善信息", "UserImprovement", "Home")</li>
+                            <li><a href="javascript:;" onclick="upEdit('/Home/UserEdit')">修改密码</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <br style="clear: left" />
+            </div>
+
+
+        </div> <!-- END of header -->
+    </div> <!-- END of header wrapper -->
+    <div id="templatemo_main_wrapper">
+        <div id="templatemo_main">
+            <h2>发表评论</h2>
+            <form>
+                @*<div><img src="~/Content/FlowerShop/images/login.png" /><input id="File1" type="file" value="选择上传图片" /></div>*@
+                <div>
+                    <h3><label for="message">Message:</label></h3>
+                    <textarea id="message" name="message" rows="0" cols="0" class="required"></textarea>
+                    <div class="cleaner h10"></div>
+                    <input type="button" class="submit_btn left" name="submit" id="submit" value="发送" />
+                    <input type="reset" class="submit_btn submit_right" name="reset" id="reset" value="重置" />
+                </div>
+            </form>
+
+        </div> <!-- END of main -->
+        <div class="cleaner"></div>
+    </div> <!-- END of main wrapper -->
+
+    <div id="templatemo_footer_wrapper">
+        <div id="templatemo_footer">
+            <p class="p1">我的花草世界--爱尚花坊 @DateTime.Now</p>
+        </div> <!-- END of footer -->
+    </div> <!-- END of footer wrapper -->
+</div>

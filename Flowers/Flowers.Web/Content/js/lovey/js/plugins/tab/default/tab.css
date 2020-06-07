@@ -1,0 +1,1187 @@
+﻿/* -----------------------
+   * 默认tab *
+* ----------------------- */
+.l-tab{
+	width:100%;
+}
+.l-tab-links {
+	position:relative;
+	height:30px;
+	width:100%;
+	overflow:hidden;
+	background:url(images/maintab_bg.gif) repeat-x bottom;
+}
+.l-tab-links .maintab_left a:hover{
+	text-decoration:none;
+}
+/*.l-tab-links{width:100%;position:absolute;height:30px;top:-26px;z-index:999;overflow:hidden;}*/
+.l-tab-links-left {
+	position:absolute;
+	top:1px;
+	left:0;
+	width:17px;
+	height:23px;
+	overflow:hidden;
+	background:url(images/tabs-tools.gif) 0px 0px;
+	z-index:13;
+	cursor:pointer;
+}
+.l-tab-links-right {
+	position:absolute;
+	top:1px;
+	right:0;
+	width:17px;
+	height:23px;
+	overflow:hidden;
+	background:url(images/tabs-tools.gif) -51px 0px;
+	z-index:13;
+	cursor:pointer;
+}
+.l-tab-links-left-over {
+	background-position:-17px 0px;
+}
+.l-tab-links-right-over {
+	background-position:-68px 0px;
+}
+.l-tab-links-left-invalid {
+	background-position:-34px 0px;
+}
+.l-tab-links-right-invalid {
+	background-position:-85px 0px;
+}
+.l-tab-links ul {
+	list-style:none;
+	margin:0 0 0 10px;
+	padding:0;
+	width:auto;
+	height:30px;
+	overflow:hidden;
+	position:absolute;
+	top:0;
+	left:0;
+}
+.l-tab-links li {
+	float:left;
+	margin:0;
+	padding:0;
+	margin-left:2px;
+	height: 29px;
+	line-height:29px;
+	cursor:pointer;
+	position:relative;
+	overflow:hidden;
+	border:none;
+}
+.l-tab-links li.l-selected {
+	height:30px;
+	line-height:30px;
+	color:#FFF
+}
+.l-tab-links li a {
+	display:block;
+	margin-left:16px;
+	margin-right:37px;
+}
+.l-tab-links li.l-selected a {
+	color:#fff;
+}
+.l-tab-links .maintab_left a {
+	vertical-align:middle;
+	color:#000;
+	height:29px;
+	line-height:29px;
+	display:inline-block;
+	margin:0 8px 0 20px;
+}
+.l-tab-links .maintab_left img {
+	vertical-align:middle;
+	margin:0 -15px 0 5px;
+	display:inline-block;
+}
+.l-tab-links .maintab_left {
+	height:29px;
+	float:left;
+	background:url(images/maintab_left.gif) no-repeat left;
+	vertical-align:middle;
+}
+.l-tab-links .maintab_right {
+	height:29px;
+	float:left;
+	width:23px;
+	background:url(images/maintab_right.gif) no-repeat bottom;
+}
+.l-tab-links .l-selected .maintab_left a {
+	vertical-align:middle;
+	color:#fff;
+	height:30px;
+	line-height:30px;
+	display:inline-block;
+	margin:0 8px 0 20px;
+}
+.l-tab-links .l-selected .maintab_left img {
+	vertical-align:middle;
+	margin:0 -15px 0 5px;
+	display:inline-block;
+}
+.l-tab-links .l-selected .maintab_left {
+	height:30px;
+	float:left;
+	background:url(images/maintab_left_selected.gif) no-repeat left;
+	vertical-align:middle;
+}
+.l-tab-links .l-selected .maintab_right {
+	height:30px;
+	float:left;
+	width:23px;
+	background:url(images/maintab_right_selected.gif) no-repeat bottom;
+}
+.l-tab-links .l-selected .l-tab-links-item-left {
+	position:absolute;
+	top:0;
+	left:0;
+	width:4px;
+	height:30px;
+	background:url(images/maintab_left_selected.gif) no-repeat !important
+}
+.l-tab-links .l-selected .l-tab-links-item-right {
+	position:absolute;
+	top:0;
+	right:0;
+	width:7px;
+	height:30px;
+	background:url(images/maintab_right_selected.gif) no-repeat !important
+}
+.l-tab-links .l-tab-links-item-left {
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:29px;
+	background:url(images/maintab_left.gif) no-repeat left;
+	float:left
+}
+.l-tab-links .l-tab-links-item-right {
+	position:absolute;
+	top:0;
+	right:0;
+	width:24px;
+	height:29px;
+	background:url(images/maintab_right.gif) no-repeat;
+	float:left
+}
+.l-tab-links .l-tab-links-item-close {
+	width:11px;
+	height:11px;
+	overflow:hidden;
+	position:absolute;
+	top:4px;
+	right:6px;
+	z-index:12;
+	background:url(images/icon-close.gif);
+	cursor:pointer;
+}
+.l-tab-links .l-tab-links-item-close-over {
+	background:url(images/icon-close-over.gif);
+}
+.l-tab-links .l-selected .l-tab-links-item-close {
+	width:11px;
+	height:11px;
+	overflow:hidden;
+	position:absolute;
+	top:4px;
+	right:6px;
+	z-index:12;
+	background:url(images/icon-selected-close.gif);
+	cursor:pointer;
+}
+.l-tab-links .l-selected .l-tab-links-item-close-over {
+	background:url(images/icon-close-over.gif);
+}
+.l-tab-content {
+	background: #6B91DD;
+	margin:0 auto;
+	padding:0;
+	border:none;
+	width:100%;
+/*	background:#6b91dd;*/
+}
+.l-tab-content-item {
+	width:100%;
+}
+
+.l-tab-content-item iframe {
+	width:100%;
+	/*height:100%;*/
+	border:none;
+	background:#fff;
+    margin:6px 0 0 5px;
+	display:inline;
+}
+/* -----------------------
+   * 页面里面的tab *
+* ----------------------- */
+.tab_normal .l-tab-links {
+	position:relative;
+	height:2px;
+	width:100%;
+	overflow:hidden;
+	border-bottom:1px solid #e5e2e2;
+	background:none;
+}
+.tab_normal {
+	float:none !important;
+	position:relative;
+}
+.tab_normal .l-tab-links ul {
+	list-style:none;
+	margin:0;
+	padding:0;
+	width:auto;
+	height:26px;
+	overflow:hidden;
+	position:absolute;
+	top:0;
+	left:0;
+}
+.tab_normal .l-tab-links li {
+	float:left;
+	padding:0;
+	margin-right:5px;
+	height: 29px;
+	line-height:29px;
+	cursor:pointer;
+	position:relative;
+	overflow:hidden;
+	border:none;
+	margin-left:0 !important
+}
+.tab_normal .l-tab-links .l-selected .maintab_left a {
+	vertical-align:middle;
+	color:#000;
+	height:26px;
+	display:inline-block;
+	line-height:26px !important;
+	margin:0 6px 0 10px;
+}
+.tab_normal .l-tab-links li.l-selected a {
+	color:#000;
+}
+.tab_normal .l-tab-links .maintab_left {
+	height:26px;
+	float:left;
+	background:url(images/tab_left.gif) no-repeat left;
+	vertical-align:middle;
+}
+.tab_normal .l-tab-links .maintab_left a {
+	color:#666;
+}
+.tab_normal .l-tab-links .l-selected .maintab_left {
+	height:26px;
+	float:left;
+	background:url(images/tab_left_selected.gif) no-repeat left;
+	vertical-align:middle;
+}
+.tab_normal .l-tab-links .maintab_right {
+	height:26px;
+	float:left;
+	width:2px;
+	background:url(images/tab_right.gif) no-repeat bottom;
+}
+.tab_normal .l-tab-links .l-selected .maintab_right {
+	height:26px;
+	float:left;
+	width:2px;
+	background:url(images/tab_right_selected.gif) no-repeat bottom;
+}
+.tab_normal .l-tab-links .l-selected .l-tab-links-item-left {
+	position:absolute;
+	top:0;
+	left:0;
+	width:4px;
+	height:30px;
+	background:url(images/tab_left_selected.gif) no-repeat !important
+}
+.tab_normal .l-tab-links {
+	position:static !important;
+	height:26px;
+}
+.tab_normal .l-tab-content {
+	background:none !important;
+	padding-top:8px;
+	position: relative;
+}
+.tab_normal .l-tab-links .maintab_left a {
+	margin:0 6px 0 10px;
+}
+
+
+
+/* -----------------------
+   * tab_style01 *
+* ----------------------- */
+.tab_style01 .l-tab-links {
+	position:relative !important;
+	height:2px;
+	width:100%;
+	overflow:hidden;
+	background:none;
+}
+.tab_style01 {
+	float:none !important
+}
+.tab_style01 .l-tab-links ul {
+	list-style:none;
+	margin:0;
+	padding:0;
+	height:24px;
+	overflow:hidden;
+	position:absolute;
+	top:0;
+	left:0;
+}
+.tab_style01 .l-tab-links li {
+	float:left;
+	padding:0;
+	margin-right:5px;
+	height: 24px;
+	line-height:24px;
+	cursor:pointer;
+	position:relative;
+	overflow:hidden;
+	border:none;
+	margin-left:0 !important;
+}
+.tab_style01 .l-tab-links .l-selected .maintab_left a {
+	vertical-align:middle;
+	color:#fff;
+	height:24px;
+	display:inline-block;
+	line-height:18px !important;
+	background:url(images/nav-current.gif) bottom no-repeat;
+	padding:0 15px 0 15px
+}
+.tab_style01 .l-tab-links li.l-selected a {
+	color:#000;
+}
+.tab_style01 .l-tab-links .maintab_left {
+	height:32px;
+	float:left;
+	background:none;
+	vertical-align:middle;
+}
+.tab_style01 .l-tab-links .maintab_left a {
+	color:#555;
+	font-size:12px;
+}
+.tab_style01 .l-tab-links .l-selected .maintab_left {
+	height:32px;
+	float:left;
+	background:none;
+	vertical-align:middle;
+}
+.tab_style01 .l-tab-links .maintab_right {
+	height:32px;
+	float:left;
+	width:0;
+	background:none;
+}
+.tab_style01 .l-tab-links .l-selected .maintab_right {
+	height:32px;
+	float:left;
+	width:0;
+	background:none;
+}
+.tab_style01 .l-tab-links .l-selected .l-tab-links-item-left {
+	position:absolute;
+	top:0;
+	left:0;
+	width:4px;
+	height:32px;
+	background:url(images/tab_left_selected.gif) no-repeat !important
+}
+.tab_style01 .l-tab-links {
+	height:32px;
+}
+.tab_style01 .l-tab-content {
+	background:none !important;
+}
+.tab_style01 .l-tab-links .maintab_left a {
+	line-height:26px;
+	height:32px;
+	padding:0 15px 0 15px;
+	margin:0;
+}
+
+/* -----------------------
+   * tab_style02*
+* ----------------------- */
+.tab_style02 .l-tab-links {
+    position:relative !important;
+    height:2px;
+    width:100%;
+    overflow:hidden;
+    background:none;
+}
+.tab_style02 {
+    float:none !important
+}
+.tab_style02 .l-tab-links ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+    height:26px;
+    overflow:hidden;
+    position:absolute;
+    top:0;
+    left:0;
+}
+.tab_style02 .l-tab-links li {
+    float:left;
+    padding:0;
+    margin-right:5px;
+    height:26px;
+    line-height:26px;
+    cursor:pointer;
+    position:relative;
+    overflow:hidden;
+    border:none;
+    margin-left:0 !important;
+}
+.tab_style02 .l-tab-links .l-selected .maintab_left a {
+    vertical-align:middle;
+    color:#f27835;
+    height:23px;
+    display:inline-block;
+    line-height:18px !important;
+    border-radius:2px 2px 0 0
+}
+.tab_style02 .l-tab-links li.l-selected a {
+    color:#000;
+}
+.tab_style02 .l-tab-links .maintab_left {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-bottom: 3px solid #c7c7c7;
+    border-left: 0 none;
+    float: left;
+    height: 23px;
+    vertical-align: middle;
+}
+.tab_style02 .l-tab-links .maintab_left a {
+    color:#555;
+    font-size:12px;
+}
+.tab_style02 .l-tab-links .l-selected .maintab_left {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-bottom: 3px solid #f27835;
+    border-left: 0 none;
+    float: left;
+    height: 23px;
+    vertical-align: middle;
+}
+.tab_style02 .l-tab-links .maintab_right {
+    height:32px;
+    float:left;
+    width:0;
+    background:none;
+}
+.tab_style02 .l-tab-links .l-selected .maintab_right {
+    height:26px;
+    float:left;
+    width:0;
+    background:none;
+}
+.tab_style02 .l-tab-links .l-selected .l-tab-links-item-left {
+    position:absolute;
+    top:0;
+    left:0;
+    width:4px;
+    height:32px;
+    border-bottom: 3px solid #f27835;
+
+}
+.tab_style02 .l-tab-links {
+    height:26px;
+}
+.tab_style02 .l-tab-content {
+    background:none !important;
+    margin-top:10px;
+}
+.tab_style02 .l-tab-links .maintab_left a {
+    line-height:18px;
+    height:23px;
+    margin: 0 10px;
+    border-radius:2px 2px 0 0;
+
+}
+
+
+/* -----------------------
+   * tab_style03*
+* ----------------------- */
+.tab_style03 .l-tab-links {
+	position:relative !important;
+	height:2px;
+	width:100%;
+	overflow:hidden;
+	background:none;
+}
+.tab_style03 {
+	float:none !important
+}
+.tab_style03 .l-tab-links ul {
+	list-style:none;
+	margin:0;
+	padding:0;
+	height:26px;
+	overflow:hidden;
+	position:absolute;
+	top:0;
+	left:0;
+}
+.tab_style03 .l-tab-links li {
+	float:left;
+	padding:0;
+	margin-right:5px;
+	height:26px;
+	line-height:26px;
+	cursor:pointer;
+	position:relative;
+	overflow:hidden;
+	border:none;
+	margin-left:0 !important;
+}
+.tab_style03 .l-tab-links .l-selected .maintab_left a {
+	vertical-align:middle;
+	color:#000;
+	font-weight:bold;
+	height:26px;
+	display:inline-block;
+	line-height:26px !important;
+	background:#fff;
+	padding:0 15px 0 15px;
+	border:1px solid #e9e9e9;
+	border-radius:2px 2px 0 0
+}
+.tab_style03 .l-tab-links li.l-selected a {
+	color: #000;
+}
+.tab_style03 .l-tab-links .maintab_left {
+	height:32px;
+	float:left;
+	background:none;
+	vertical-align:middle;
+}
+.tab_style03 .l-tab-links .maintab_left a {
+	color:#555;
+	font-size:12px;
+}
+.tab_style03 .l-tab-links .l-selected .maintab_left {
+	height:26px;
+	float:left;
+	background:none;
+	vertical-align:middle;
+}
+.tab_style03 .l-tab-links .maintab_right {
+	height:32px;
+	float:left;
+	width:0;
+	background:none;
+}
+.tab_style03 .l-tab-links .l-selected .maintab_right {
+	height:26px;
+	float:left;
+	width:0;
+	background:none;
+}
+.tab_style03 .l-tab-links .l-selected .l-tab-links-item-left {
+	position:absolute;
+	top:0;
+	left:0;
+	width:4px;
+	height:32px;
+	background:url(images/tab_left_selected.gif) no-repeat !important
+}
+.tab_style03 .l-tab-links {
+	height:26px;
+	border-bottom:1px solid #f0f0f0
+}
+.tab_style03 .l-tab-content {
+	background:none !important;
+	margin-top:10px;
+}
+.tab_style03 .l-tab-links .maintab_left a {
+	line-height:26px;
+	height:26px;
+	padding:0 15px 0 15px;
+	margin:0;
+	border:1px solid #e9e9e9;
+	border-radius:2px 2px 0 0;
+	background:#F5F5F5
+}
+
+/* -----------------------
+   * tab_style04*
+* ----------------------- */
+.tab_style04 .l-tab-links {
+    position:relative !important;
+    height:2px;
+    width:100%;
+    overflow:hidden;
+    background:none;
+}
+.tab_style04 {
+    float:none !important
+}
+.tab_style04 .l-tab-links ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+    height:23px;
+    overflow:hidden;
+    position:absolute;
+    top:0;
+    left:0;
+}
+.tab_style04 .l-tab-links li {
+    float:left;
+    padding:0;
+    margin-right:5px;
+    height: 23px;
+    line-height:23px;
+    cursor:pointer;
+    position:relative;
+    overflow:hidden;
+    border:none;
+    margin-left:0 !important;
+}
+.tab_style04 .l-tab-links .l-selected .maintab_left a {
+    vertical-align:middle;
+    color:#fff;
+    height:23px;
+    display:inline-block;
+    line-height:23px !important;
+    background:#0088cc;
+    padding:0 15px 0 15px
+}
+.tab_style04 .l-tab-links li.l-selected a {
+    color:#000;
+}
+.tab_style04 .l-tab-links .maintab_left {
+    height:23px;
+    float:left;
+    background:none;
+    vertical-align:middle;
+}
+.tab_style04 .l-tab-links .maintab_left a {
+    color:#555;
+    font-size:12px;
+}
+.tab_style04 .l-tab-links .l-selected .maintab_left {
+    height:23px;
+    float:left;
+    background:none;
+    vertical-align:middle;
+}
+.tab_style04 .l-tab-links .maintab_right {
+    height:23px;
+    float:left;
+    width:0;
+    background:none;
+}
+.tab_style04 .l-tab-links .l-selected .maintab_right {
+    height:23px;
+    float:left;
+    width:0;
+    background:none;
+}
+
+.tab_style04 .l-tab-links .l-selected .l-tab-links-item-left {
+     position:absolute;
+     top:0;
+     left:0;
+     width:4px;
+     height:30px;
+     background:url(images/tab_left_selected.gif) no-repeat !important
+ }
+.tab_style04 .l-tab-links {
+    height:23px;
+}
+.tab_style04 .l-tab-content {
+    background:none !important;
+}
+.tab_style04 .l-tab-links .maintab_left a {
+    line-height:23px;
+    height:23px;
+    padding:0 15px 0 15px;
+    margin:0;
+}
+
+/* -----------------------
+   * tab_style05 *
+* ----------------------- */
+.tab_style05 .l-tab-links {
+    position:static !important;
+    _position:relative;
+    height:24px;
+    width:100%;
+    overflow:hidden;
+    border-bottom:1px solid #a9bce6;
+    background:#f2f2f2;
+}
+.tab_style05 {
+    float:none !important;
+    border-top:1px solid #A9BCE6 !important;
+    position: relative ;
+    _position: static ;
+}
+.tab_style05 .l-tab-links ul {
+    list-style:none;
+    width:100%;
+    height:26px;
+    overflow:hidden;
+    position:absolute;
+    top:0;
+    left:0;
+    margin:0 !important;
+    background:url(images/tab_module_bg.gif) repeat-x;
+    border-left:1px solid #A9BCE6;
+    border-right:1px solid #A9BCE6;
+}
+.tab_style05 .l-tab-links li {
+    float:left;
+    padding:0;
+    cursor:pointer;
+    position:relative;
+    overflow:hidden;
+    border:none;
+    margin-left:0 !important
+}
+.tab_style05 .l-tab-links .l-selected .maintab_left a {
+    vertical-align:middle;
+    color:#000;
+    height:22px;
+    display:inline-block;
+    line-height:22px !important;
+    font-weight:bold;
+}
+.tab_style05 .l-tab-links li.l-selected a {
+    color:#000;
+}
+.tab_style05 .l-tab-links .maintab_left {
+    height:24px;
+    float:left;
+    background:#f2f2f2;
+    vertical-align:middle;
+    border-left:1px solid #fff;
+    border-right:1px solid #a9bce6;
+    background:url(images/tab_module_bg.gif) repeat-x
+}
+.tab_style05 .l-tab-links .maintab_left a {
+    color:#666;
+}
+.tab_style05 .l-tab-links .l-selected .maintab_left {
+    height:23px;
+    float:left;
+    background:#fff;
+    vertical-align:middle;
+    border-top:2px solid #fed944;
+    border-left:0;
+}
+.tab_style05 .l-tab-links .maintab_right {
+    height:24px;
+    float:left;
+    width:0;
+    background:#f2f2f2;
+    background:url(images/tab_module_bg.gif) repeat-x
+}
+.tab_style05 .l-tab-links .l-selected .maintab_right {
+    height:26px;
+    float:left;
+    width:0;
+    background:#fff;
+}
+.tab_style05 .l-tab-links .l-selected .l-tab-links-item-left {
+    position:absolute;
+    top:0;
+    left:0;
+    width:4px;
+    height:30px;
+    background:url(images/tab_left_selected.gif) no-repeat !important
+}
+.tab_style05 .l-tab-links {
+    position:static !important;
+    height:24px;
+}
+.tab_style05 .l-tab-content {
+    background:none !important;
+}
+.tab_style05 .l-tab-links .maintab_left a {
+    margin:0 10px 0 14px;
+    height:24px;
+    line-height:24px;
+    color:#7080a0;
+}
+.tab_style05 .l-tab-links li.l-selected {
+}
+/**begin 解决IE6下选人组件中tab选项卡展现不了的问题 **/
+.tab_style05 .l-tab-links ul {
+    _position: static !important;
+}
+
+
+/* -----------------------
+   * tab_style06 *
+* ----------------------- */
+.tab_style06 .l-tab-links {
+    position:relative;
+    height:2px;
+    width:100%;
+    overflow:hidden;
+    border-bottom:1px solid #e5e2e2;
+    background:none;
+}
+.tab_style06 {
+    float:none !important;
+    position:relative;
+}
+.tab_style06 .l-tab-links ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+    width:auto;
+    height:26px;
+    overflow:hidden;
+    position:absolute;
+    top:0;
+    left:0;
+}
+.tab_style06 .l-tab-links li {
+    float:left;
+    padding:0;
+    margin-right:5px;
+    height: 26px;
+    line-height:26px;
+    cursor:pointer;
+    position:relative;
+    overflow:hidden;
+    border:none;
+    margin-left:0 !important
+}
+.tab_style06 .l-tab-links .l-selected .maintab_left a {
+    vertical-align:middle;
+    color:#000;
+    height:26px;
+    display:inline-block;
+    line-height:26px !important
+}
+.tab_style06 .l-tab-links li.l-selected a {
+    color:#000;
+}
+.tab_style06 .l-tab-links .maintab_left {
+    height:26px;
+    float:left;
+    background:url(images/tab_left.gif) no-repeat left;
+    vertical-align:middle;
+}
+.tab_style06 .l-tab-links .maintab_left a {
+    color:#666;
+}
+.tab_style06 .l-tab-links .l-selected .maintab_left {
+    height:26px;
+    float:left;
+    background:url(images/tab_left_selected.gif) no-repeat left;
+    vertical-align:middle;
+}
+.tab_style06 .l-tab-links .maintab_right {
+    height:26px;
+    float:left;
+    width:2px;
+    background:url(images/tab_right.gif) no-repeat bottom;
+}
+.tab_style06 .l-tab-links .l-selected .maintab_right {
+    height:26px;
+    float:left;
+    width:2px;
+    background:url(images/tab_right_selected.gif) no-repeat bottom;
+}
+.tab_style06 .l-tab-links .l-selected .l-tab-links-item-left {
+    position:absolute;
+    top:0;
+    left:0;
+    width:4px;
+    height:30px;
+    background:url(images/tab_left_selected.gif) no-repeat !important
+}
+.tab_style06 .l-tab-links {
+    position:static !important;
+    height:26px;
+}
+.tab_style06 .l-tab-content {
+    background:none !important;
+    padding-top:8px;
+}
+.tab_style06 .l-tab-links .maintab_left a {
+    margin:0 8px 0 12px;
+    height:26px;
+    line-height: 26px;
+}
+
+/* -----------------------
+   * tab_style07 *
+* ----------------------- */
+.tab_style07 .l-tab-links ul{
+    margin: 0;
+}
+.tab_style07 .l-tab-links .maintab_left{
+    background:url(images/style07/maintab_left.gif) no-repeat left;
+    height:30px;
+}
+.tab_style07 .l-tab-links .maintab_right {
+    height:30px;
+    background:url(images/style07/maintab_right.gif) no-repeat bottom;
+    width: 10px;
+}
+.tab_style07  .l-tab-links .maintab_left a{
+    color: #fff;
+}
+.tab_style07 .l-tab-links .maintab_left a{
+    margin: 0 15px 0 20px;
+}
+.tab_style07 .l-tab-links .l-selected .maintab_right{
+    background:url("images/style07/maintab_right_selected.gif") no-repeat center bottom;
+    width:10px;
+}
+.tab_style07 .l-tab-links .l-selected .maintab_left{
+    background:url(images/style07/maintab_left_selected.gif) no-repeat left;
+    height:30px;
+    float:left;
+    vertical-align:middle;
+}
+.tab_style07 .l-tab-links .l-selected .maintab_left a{
+    color: #555;
+}
+.tab_style07 .l-tab-links .l-selected .l-tab-links-item-close{
+    background: url(images/style07/icon-selected-close.gif) no-repeat;
+}
+.tab_style07 .l-tab-links .l-tab-links-item-close{
+    background: url(images/style07/icon-close.gif) no-repeat;
+}
+/* -----------------------
+   * tab_style08 *
+* ----------------------- */
+.tab_style08 .l-tab-links {
+    position:static !important;
+    _position:relative;
+    height:37px;
+    width:100%;
+    overflow:hidden;
+    border: none;
+    background:#f2f2f2;
+}
+.tab_style08 {
+    float:none !important;
+    border: none;
+    position: relative ;
+    _position: static ;
+}
+.tab_style08 .l-tab-links ul {
+    list-style:none;
+    width:100%;
+    height:37px;
+    overflow:hidden;
+    position:absolute;
+    top:0;
+    left:0;
+    margin:0 !important;
+    background:url(images/style08/tab_module_bg10.gif) repeat-x;
+    border: none;
+}
+.tab_style08 .l-tab-links li {
+    float:left;
+    padding:0;
+    cursor:pointer;
+    position:relative;
+    overflow:hidden;
+    border:none;
+    height:37px;
+    margin-left:0 !important
+}
+.tab_style08 .l-tab-links .l-selected .maintab_left a {
+    vertical-align:middle;
+    height:37px;
+    display:inline-block;
+    line-height:31px !important;
+    font-weight:normal;
+    color:#333;
+}
+.tab_style08 .l-tab-links li.l-selected a {
+    color:#000;
+}
+.tab_style08 .l-tab-links .maintab_left {
+    height:37px;
+    float:left;
+    background:none;
+    vertical-align:middle;
+    border:none;
+}
+.tab_style08 .l-tab-links .maintab_left a {
+    color:#666;
+}
+.tab_style08 .l-tab-links .l-selected .maintab_left {
+    float:left;
+    background:url(images/style08/tab_module_bg_over.gif) repeat-x;
+    vertical-align:middle;
+    border-left:0;
+    margin-top: 3px;
+    border-right: 1px solid #dedede;
+    height:34px;
+}
+.tab_style08 .l-tab-links .maintab_right {
+    height:37px;
+    float:left;
+    width:0;
+    background:#f2f2f2 url(images/style08/tab_module_bg.gif) repeat-x;
+}
+.tab_style08 .l-tab-links .l-selected .maintab_right {
+    height:37px;
+    float:left;
+    width:0;
+    background:#fff;
+}
+.tab_style08 .l-tab-links .l-selected .l-tab-links-item-left {
+    position:absolute;
+    top:0;
+    left:0;
+    width:4px;
+    height:37px;
+    background:url(images/tab_left_selected.gif) no-repeat !important;
+}
+.tab_style08 .l-tab-links {
+    position:static !important;
+    height:37px;
+    margin-bottom:15px;
+}
+.tab_style08 .l-tab-content {
+    background:none !important;
+}
+.tab_style08 .l-tab-links .maintab_left a {
+    height:37px;
+    line-height:37px;
+    color:#828282;
+    font-size: 13px;
+    margin: 0 20px 0 20px;
+}
+.tab_style08 .l-tab-links li.l-selected {
+    height:37px;
+    line-height: 37px;
+}
+.tab_style08 .tab_r h3{
+    font-size: 13px;
+    color:#ef0000;
+}
+
+
+.tab_style09 .l-tab-links {
+    position:static !important;
+    _position:relative;
+    height:27px;
+    width:100%;
+    overflow:hidden;
+    background:#f2f2f2;
+}
+.tab_style09 {
+    float:none !important;
+    position: relative ;
+    _position: static ;
+}
+.tab_style09 .l-tab-links ul {
+    list-style:none;
+    width:100%;
+    height:27px;
+    overflow:hidden;
+    position:absolute;
+    top:0;
+    left:0;
+    border-bottom:1px solid #c4c4c4;
+    margin:0px !important;
+    background:url(images/tab_module_bg1.gif) repeat-x;
+}
+.tab_style09 .l-tab-links li {
+    float:left;
+    padding:0;
+    cursor:pointer;
+    position:relative;
+    overflow:hidden;
+    border:none;
+    height:27px;
+    margin-left:0px !important
+}
+.tab_style09 .l-tab-links .l-selected .maintab_left a {
+    vertical-align:middle;
+    height:25px;
+    display:inline-block;
+    line-height:25px !important;
+    font-weight:bold;
+    color:#010101;
+    font-size: 14px;
+}
+.tab_style09 .l-tab-links li.l-selected a {
+    color:#000;
+}
+.tab_style09 .l-tab-links .maintab_left {
+    height:27px;
+    float:left;
+    background:#f2f2f2;
+    vertical-align:middle;
+    border-left:1px solid #fff;
+    border-right:1px solid #c4c4c4;
+    background:url(images/tab_module_bg1.gif) repeat-x
+}
+.tab_style09 .l-tab-links .maintab_left a {
+    color:#666;
+}
+.tab_style09 .l-tab-links .l-selected .maintab_left {
+    height:27px;
+    float:left;
+    background:#fff;
+    vertical-align:middle;
+    border-top:2px solid #fed944;
+    border-left:0px;
+}
+.tab_style09 .l-tab-links .maintab_right {
+    height:27px;
+    float:left;
+    width:0px;
+    background:#f2f2f2;
+    background:url(images/tab_module_bg1.gif) repeat-x
+}
+.tab_style09 .l-tab-links .l-selected .maintab_right {
+    height:27px;
+    float:left;
+    width:0px;
+    background:#fff;
+}
+.tab_style09 .l-tab-links .l-selected .l-tab-links-item-left {
+    position:absolute;
+    top:0;
+    left:0;
+    width:4px;
+    height:27px;
+    background:url(images/tab_left_selected.gif) no-repeat !important
+}
+.tab_style09 .l-tab-links {
+    position:static !important;
+    height:27px;
+}
+.tab_style09 .l-tab-content {
+    background:none !important;
+}
+.tab_style09 .l-tab-links .maintab_left a {
+    margin:0 8px 0 8px;
+    height:27px;
+    line-height:27px;
+    color:#010101;
+    font-size: 14px;
+}
+.tab_style09 .l-tab-links li.l-selected {
+}

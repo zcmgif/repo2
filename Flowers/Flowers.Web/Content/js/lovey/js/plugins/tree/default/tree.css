@@ -1,0 +1,218 @@
+﻿/* --------------
+   *   tree  *
+* ------------ */
+.l-tree {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+    display: block;
+    background: white;
+}
+
+.l-tree-loading {
+    position: absolute;
+    z-index: 91000;
+    top: 40%;
+    left: 50%;
+    overflow: hidden;
+    background: url("images/loading.gif") no-repeat 0px 0px;
+    width: 24px;
+    height: 24px;
+    display: none;
+}
+
+.l-tree a, .l-tree span {
+    color: #333;
+    height: 22px;
+    line-height: 22px;
+    text-decoration: none;
+    display: inline-block;
+    *display: inline;
+    zoom:1;
+    white-space: nowrap;
+    *margin-bottom: 4px;
+
+}
+
+.l-tree ul, .l-tree li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.l-tree li {
+    clear: both;
+    display: block;
+    cursor: pointer;
+
+}
+
+.l-tree li .l-body {
+    height:22px;
+    line-height:22px;
+    white-space: nowrap;
+    word-break: keep-all;
+
+    /*_padding-bottom:-4px;*/
+}
+
+.l-tree .l-box {
+    width: 22px;
+    height: 22px;
+    overflow: hidden;
+    float: left;
+    *float:inherit;
+    background: url('images/tree.gif');
+    background-position: -22px -220px;
+    display: inline-block;
+    *display: inline;
+    zoom:1;
+}
+.l-tree-noline .l-box {
+	background:url(images/tree-noline.gif);
+}
+.l-tree .l-expandable-close {
+	background-position:0 -44px;
+}
+.l-tree .l-first .l-expandable-close {
+	background-position:0 -22px;
+}
+.l-tree .l-last .l-expandable-close {
+	background-position:0 -66px;
+}
+.l-tree .l-onlychild .l-expandable-close {
+	background-position:0 0;
+}
+.l-tree .l-expandable-open {
+	background-position:0 -132px;
+}
+.l-tree .l-first .l-expandable-open {
+	background-position:0 -110px;
+}
+.l-tree .l-last .l-expandable-open {
+	background-position:0 -154px;
+}
+.l-tree .l-onlychild .l-expandable-open {
+	background-position:0 -88px;
+}
+.l-tree .l-over {
+	background:#fef0a9
+}
+.l-tree .l-selected {
+	background:url(images/treeitembg.gif) repeat-x  left center #fef0a9;
+	border-right:1px solid #f7cb54;
+}
+.l-tree .l-selected .l-box {
+}
+.l-tree .l-line {
+	background-position:0 -176px;
+}
+.l-tree .l-note {
+	background-position:0 -198px;
+}
+.l-tree .l-note {
+	background-position:0 -198px;
+}
+.l-tree .l-note-last {
+	background-position:0 -220px;
+}
+.l-tree .l-checkbox-unchecked {
+	background-position:-22px 0;
+}
+.l-tree .l-checkbox-checked {
+	background-position:-22px -22px;
+}
+.l-tree .l-checkbox-incomplete {
+	background-position:-22px -44px;
+}
+.l-tree .l-over .l-checkbox-unchecked {
+	background-position:-44px 0;
+}
+.l-tree .l-over .l-checkbox-checked {
+	background-position:-44px -22px;
+}
+.l-tree .l-over .l-checkbox-incomplete {
+	background-position:-44px -44px;
+}
+.l-children {
+	width:auto !important;
+}
+.l-tree .l-tree-icon-folder {
+	background-position:-22px -88px;
+}
+.l-tree .l-tree-icon-folder-open {
+	background-position:-44px -88px;
+}
+.l-tree .l-tree-icon-leaf {
+	background-position:-22px -110px;
+}
+.l-tree .l-tree-icon-folder-invented {
+    background-position: -24px -154px;
+}
+
+.l-tree .l-tree-icon-folder-open-invented {
+    background-position: -24px -154px;
+}
+
+.l-tree .l-tree-icon-leaf-invented {
+    background-position: -24px -176px;
+}
+.l-tree .l-tree-icon-folder-d {
+	background-position:-66px -88px;
+}
+.l-tree .l-tree-icon-folder-h {
+	background-position:-87px -88px;
+}
+.l-tree .l-tree-icon-folder-dh {
+	background-position:-108px -88px;
+}
+.l-tree .l-tree-icon-folder-invented-d {
+    background-position: -45px -154px;
+}
+
+.l-tree .l-tree-icon-folder-invented-h {
+    background-position: -67px -154px;
+}
+
+.l-tree .l-tree-icon-folder-invented-dh {
+    background-position: -89px -154px;
+}
+.l-tree .l-tree-icon-folder-open-d {
+	background-position:-22px -132px;
+}
+.l-tree .l-tree-icon-folder-open-h {
+	background-position:-44px -132px;
+}
+.l-tree .l-tree-icon-folder-open-dh {
+	background-position:-66px -132px;
+}
+.l-tree .l-tree-icon-folder-open-invented-d {
+    background-position: -43px -154px;
+}
+
+.l-tree .l-tree-icon-folder-open-invented-h {
+    background-position: -65px -154px;
+}
+
+.l-tree .l-tree-icon-folder-open-invented-dh {
+    background-position: -87px -154px;
+}
+.l-tree .l-tree-icon-leaf-d {
+	background-position:-43px -110px;
+}
+.l-tree .l-tree-icon-leaf-h {
+	background-position:-65px -110px;
+}
+.l-tree .l-tree-icon-leaf-dh {
+	background-position:-86px -110px;
+}
+.l-tree .l-tree-icon-leaf-invented-d {
+    background-position: -43px -176px;
+}
+.l-tree .l-tree-icon-leaf-invented-h {
+    background-position: -65px -176px;
+}
+.l-tree .l-tree-icon-leaf-invented-dh {
+    background-position: -87px -176px;
+}

@@ -1,0 +1,189 @@
+﻿@{
+    Layout = "~/Views/Layout/_LayoutFlowerShop.cshtml";
+    ViewBag.Title = "订单明细表";
+}
+<style type="text/css">
+    #templatemo_main th {
+        font-size:18px;
+    }
+    #templatemo_main td {
+        font-size: 14px;
+    }
+    input{
+        cursor:pointer;
+    }
+    .minxi {
+        background: no-repeat;
+        color: #fbbc05;
+        border:0px;
+    }
+    #templatemo_main_wrapper {
+        min-height: 550px;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        var uid;
+        uid =@ViewBag.UId;
+        getgoods(uid);//加载商品
+
+        $('[name="delecar"]').click(function () {
+            var id = $(this).attr("id");
+            var minxiid = id.replace(/[^0-9]/ig,"");
+            alert("是否确认已取货物？");
+            $(this).val("已取货");
+            $(this).attr("disabled", "disabled");
+            $.ajax({
+                type: "POST",
+                url: "/FlowerShop/UpminxiVail?minxiid=" + minxiid,
+                dataType: "json",
+                beforeSend: function () {
+                },
+                success: function (strjson) {
+                    if (strjson.status == 1) {
+                        location.href = "/FlowerShop/products";
+                    } else {
+                        alert(strjson.msg);
+                        clearform();
+                    }
+                    return false;
+                }
+            })
+        });
+        $('[name="delete"]').click(function () {
+            var minxiid = $(this).attr("id");
+            var quhuo = $(this).parents('tr').find('td:eq(5)').find('input').attr("id");
+            if (quhuo == undefined) {
+                alert("确认删除此商品订单？");
+                $.ajax({
+                    type: "POST",
+                    url: "/FlowerShop/DeleteminxiVail?minxiid=" + minxiid,
+                    dataType: "json",
+                    beforeSend: function () {
+                    },
+                    success: function (strjson) {
+                        if (strjson.status == 1) {
+                            alert("删除成功！");
+                            location.href = "/FlowerShop/products";
+
+                        } else {
+                            alert(strjson.msg);
+                            clearform();
+                        }
+                        return false;
+                    }
+                })
+            }
+            else {
+                alert("未取货不能删除！！！");
+                return false;
+            }
+        });
+        $('[name="quhuo"]').click(function () {
+            var id = $(this).attr("id");
+            var gid = id.replace(/[^0-9]/ig, "");
+            //alert(gid);
+            location.href = "/FlowerShop/plgoods?gid=" + gid;
+        });
+        $("#allcheck").click(function () {
+            var check = $("[name='check']");
+            for (var i = 0; i < check.length; i++) {
+                if (check[i].type == "checkbox") {
+                    check[i].checked = true;
+                    str += $(this).attr("id");
+                    str += ",";
+                }
+                else {
+                    check[i].checked = false;
+                }
+            }
+        });
+        $("#delecheck").click(function () {
+            var check = $("[name='check']");
+            for (var i = 0; i < check.length; i++) {
+                if (check[i].type == "checkbox") {
+                    check[i].checked = false;
+                }
+                else {
+                    check[i].checked = false;
+                }
+            }
+        });
+        $("#fancheck").click(function () {
+            var check = $("[name='check']");
+            for (var i = 0; i < check.length; i++) {
+                if (check[i].checked == false) {
+                    check[i].checked = true;
+                }
+                else {
+                    check[i].checked = false;
+                }
+            }
+        });
+    })
+    function getgoods(uid) {
+        $.ajax({
+            url: "/FlowerShop/GetminVail?uid=" + uid,
+            type: 'GET',
+            dataType: 'json',
+            async: false,
+            success: function (data) {
+                //alert(data);
+                $("#shoptable").append(data);
+            },
+            error: function (mag) {
+                $("#shoptable").append("无法获得数据！");
+            }
+        });
+    }
+</script>
+
+
+<div id="templatemo_wrapper_sp">
+    <div id="templatemo_header_wsp">
+        <div id="templatemo_header" class="header_subpage">
+            <div id="site_title"><a href="#" rel="nofollow">Flower Shop</a></div>
+            <div id="templatemo_menu" class="ddsmoothmenu">
+                <ul>
+                    <li>@Html.ActionLink("首页", "index", "FlowerShop")</li>
+                    <li>@Html.ActionLink("店铺", "About", "FlowerShop")</li>
+                    <li>
+                        @Html.ActionLink("论坛", "faqs", "FlowerShop")
+                        <ul>
+                            <li>@Html.ActionLink("查看论坛", "showForum", "FlowerShop")</li>
+                            <li>@Html.ActionLink("发布日志", "sendForum", "FlowerShop")</li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("发现新事物", "contact", "FlowerShop")</li>
+                    <li>@Html.ActionLink("购物车", "shoppingCart", "FlowerShop")</li>
+                    <li>
+                        @*<a href="#" class="selected">我的</a>*@
+                        @Html.ActionLink("我的", "", "FlowerShop",new { @class = "selected" })
+                        <ul>
+                            <li>@Html.ActionLink("订单查看", "products", "FlowerShop")</li>
+                            <li>@Html.ActionLink("完善信息", "UserImprovement", "Home")</li>
+                            <li><a href="javascript:;" onclick="upEdit('/Home/UserEdit')">修改密码</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                        <br style="clear: left" />
+</div>
+
+        </div> <!-- END of header -->
+    </div> <!-- END of header wrapper -->
+    <div id="templatemo_main_wrapper" >
+        <div id="templatemo_main">
+            <h2>Order</h2>
+            <table id="shoptable" width="100%" border="0" cellpadding="5" cellspacing="0">
+                
+            </table>
+            <div class="cleaner"></div>
+        </div> <!-- END of main -->
+    </div> <!-- END of main wrapper -->
+
+    <div id="templatemo_footer_wrapper">
+        <div id="templatemo_footer">
+            <p class="p1">我的花草世界--爱尚花坊 @DateTime.Now</p>
+        </div> <!-- END of footer -->
+    </div> <!-- END of footer wrapper -->
+</div>

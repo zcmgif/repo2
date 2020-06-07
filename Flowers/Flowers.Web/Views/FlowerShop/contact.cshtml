@@ -1,0 +1,246 @@
+﻿@{
+    Layout = "~/Views/Layout/_LayoutFlowerShop.cshtml";
+    ViewBag.Title = "发现新事物";
+}
+<script type="text/javascript" src="~/Script/js/jquery-1.8.2.min.js"></script>
+<style type="text/css">
+    .Friendship {
+        text-align: left;
+        font-size: 16px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #acb80be0;
+    }
+
+    .new_img img {
+        width: 300px;
+        height: 300px;
+    }
+
+    #templatemo_main_wrapper {
+        min-height: 550px;
+    }
+
+    .acimg {
+        width: 250px;
+        height: 250px;
+        border: 1px solid #ff000096;
+        margin-bottom: 75px;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        var Imgurl = "";
+        GetGoods();
+
+
+        var picString = "";
+        $("#picAjax").change(function (e) {
+            var file = e.delegateTarget.files[0];
+            if (file.type == 'image/jpeg' || file.type == 'image/png') {
+                $("#uploadInfo").text("格式正确");
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function (ret) {
+                    picString = reader.result;
+                    //alert(picString);
+                    //预览图片
+                    $("#selImg").attr({ "src": picString });
+                }
+            }
+            else {
+                $("#uploadInfo").text("请上传jpg或png格式的图片！");
+            }
+        });
+
+        $("#submitPic").click(function () {
+
+            if (picString != "") {
+                $.ajax({
+                    type: "POST",
+                    url: "/FlowerShop/SavePicture",
+                    data: { "picString": picString },
+                    dataType: "json",
+                    beforeSend: function () {
+                    },
+                    success: function (strjson) {
+                        if (strjson.status == 1) {
+                            $("#uploadInfo").text("上传成功");
+                            Imgurl = strjson.msg;
+                        } else {
+                            alert(strjson.msg);
+                            clearform();
+                        }
+                        return false;
+                    }
+                })
+            }
+        });
+
+
+        $("#submit").click(function () {
+            if (window.confirm("是否上传发现的新事物？？")) {
+                var input_field = $("#input_field").val();
+                var messagetext = $("#message").val();
+                $.ajax({
+                    type: "POST",
+                    url: "/FlowerShop/AddnewGoods",
+                    dataType: "json",
+                    data: { "Imgurl": Imgurl, "input_field": input_field, "messagetext": messagetext },
+                    beforeSend: function () {
+                    },
+                    success: function (strjson) {
+                        if (strjson.status == 1) {
+                            alert("添加成功！");
+                            location.href = "/FlowerShop/index";
+                        } else {
+                            alert(strjson.msg);
+                            clearform();
+                        }
+                        return false;
+                    }
+                })
+            } else {
+                return false;
+            }
+        });
+    })
+    function GetGoods() {
+        $.ajax({
+            url: "/FlowerShop/LuckyVail",
+            type: 'GET',
+            dataType: 'json',
+            async: false,
+            success: function (data) {
+                $("#content_Lucky").append(data);
+            },
+            error: function (mag) {
+                $("#content_Lucky").append("无法获得数据！");
+            }
+        });
+    }
+    function getnum(_url) {
+        var url = _url; //转向网页的地址;
+        var name = "加入购物车";                        //网页名称，可为空;
+        var iWidth = 500;                          //弹出窗口的宽度;
+        var iHeight = 200;                       //弹出窗口的高度;
+        //获得窗口的垂直位置
+        var iTop = (window.screen.availHeight - 30 - iHeight) / 2;
+        //获得窗口的水平位置
+        var iLeft = (window.screen.availWidth - 10 - iWidth) / 2;
+        var params = 'width=' + iWidth
+            + ',height=' + iHeight
+            + ',top=' + iTop
+            + ',left=' + iLeft
+            + ',channelmode=yes'//是否使用剧院模式显示窗口。默认为 no
+            + ',directories=yes'//是否添加目录按钮。默认为 yes
+            + ',fullscreen=no' //是否使用全屏模式显示浏览器
+            + ',location=no'//是否显示地址字段。默认是 yes
+            + ',menubar=no'//是否显示菜单栏。默认是 yes
+            + ',resizable=no'//窗口是否可调节尺寸。默认是 yes
+            + ',scrollbars=yes'//是否显示滚动条。默认是 yes
+            + ',status=yes'//是否添加状态栏。默认是 yes
+            + ',titlebar=yes'//默认是 yes
+            + ',toolbar=no'//默认是 yes
+            ;
+        window.open(url, name, params);
+    }
+</script>
+<div id="templatemo_wrapper_sp">
+    <div id="templatemo_header_wsp">
+        <div id="templatemo_header" class="header_subpage">
+            <div id="site_title"><a href="#" rel="nofollow">Flower Shop</a></div>
+            <div id="templatemo_menu" class="ddsmoothmenu">
+                <ul>
+                    <li>@Html.ActionLink("首页", "index", "FlowerShop")</li>
+                    <li>@Html.ActionLink("店铺", "About", "FlowerShop")</li>
+                    <li>
+                        @Html.ActionLink("论坛", "faqs", "FlowerShop")
+                        <ul>
+                            <li>@Html.ActionLink("查看论坛", "showForum", "FlowerShop")</li>
+                            <li>@Html.ActionLink("发布日志", "sendForum", "FlowerShop")</li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("发现新事物", "contact", "FlowerShop", new { @class = "selected" })</li>
+                    <li>@Html.ActionLink("购物车", "shoppingCart", "FlowerShop")</li>
+                    <li>
+                        @Html.ActionLink("我的", "products", "FlowerShop")
+                        <ul>
+                            <li>@Html.ActionLink("订单查看", "products", "FlowerShop")</li>
+                            <li>@Html.ActionLink("完善信息", "UserImprovement", "Home")</li>
+                            <li><a href="javascript:;" onclick="upEdit('/Home/UserEdit')">修改密码</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <br style="clear: left" />
+            </div>
+
+        </div> <!-- END of header -->
+    </div> <!-- END of header wrapper -->
+    <div id="templatemo_main_wrapper">
+        <div id="templatemo_main">
+            <div id="sidebar" class="left">
+                <div class="sidebar_box">
+                    <span class="bottom"></span>
+                    <h3>Daily Lucky Flowers</h3>
+                    <div class="content special" id="content_Lucky">
+
+                    </div>
+                </div>
+                <div class="sidebar_box">
+                    <span class="bottom"></span>
+                    <h3>Friendship Tip</h3>
+                    <div class="content special">
+                        <p class="Friendship">
+                            &nbsp;&nbsp;花草泛指可供观赏的花和草，常见的如金边麦冬草、菊花、金娃娃萱草、月季、玫瑰、兰花、木槿和绿萝。春秋天气不冷不热，正是大家出去旅游的好时期，当然也是各种花草展现欣欣向荣生命力的时候。
+                            美好的物品总有人想要拥有，于是摘花现象屡见不鲜。但是，好看的事物并不一定总是美好的，有些花朵就像蘑菇一样，越是好看越是有毒，提醒大家千万不能碰触。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="content" class="right">
+                <h2>New Flower</h2>
+                <div class="cleaner h20"></div>
+                <div id="contact_form">
+                    <div class="col new_img">
+
+                        <div class="acimg">
+                            <img id="selImg" src="" alt="" /><br />
+                        </div>
+
+                        <input type="button" id="submitPic" class="customButton" value="上传" />
+                        <input type="file" id="picAjax" width="150px;" class="customButton" />
+                        <span id="uploadInfo"></span>
+
+                        @*<img src="~/Content/FlowerShop/product/03.jpg" /><input id="File1" type="file" value="提交图片路径" />*@
+                        <label for="name">新事物的名称:</label>
+                        <input name="name" type="text" class="input_field" id="name" />
+                        <div class="cleaner h10"></div>
+                    </div>
+                    <div class="col col23 no_margin_right">
+                        <label for="message">简介:</label>
+                        <textarea id="message" name="message" rows="0" cols="0" class="required" style="width:554px;height:295px;"></textarea>
+                        <div class="cleaner h10"></div>
+                        <input type="button" class="submit_btn left" name="submit" id="submit" value="提交" />
+                        <input type="reset" class="submit_btn submit_right" name="reset" id="reset" value="重写" />
+                    </div>
+
+
+                </div>
+                <div class="cleaner h40"></div>
+                <div class="blank_box">
+                    <a href="javascript:;"><img src="~/Content/FlowerShop/images/free_shipping.jpg" alt="Free Shipping" /></a>
+                </div>
+                <div class="cleaner"></div>
+            </div>
+            <div class="cleaner"></div>
+        </div> <!-- END of main -->
+    </div> <!-- END of main wrapper -->
+
+    <div id="templatemo_footer_wrapper">
+        <div id="templatemo_footer">
+            <p class="p1">我的花草世界--爱尚花坊 @DateTime.Now</p>
+        </div> <!-- END of footer -->
+    </div> <!-- END of footer wrapper -->
+</div>

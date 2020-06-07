@@ -1,0 +1,65 @@
+﻿/* --------------
+
+	   ui_select.css: 多维过滤
+	   author: ywwei@wisedu.com
+
+ ------------ */
+.ui_select{
+    border:#ddd 1px solid;
+    padding: 0 10px;
+}
+.ui_select dl{
+    display: block;
+    width: 100%;
+    line-height:24px;
+    height:24px;
+    border-bottom: #eee 1px dashed;
+    zoom:1;
+    position: relative;
+}
+/*.ui_select dl:after{*/
+    /*content: "";*/
+    /*clear: both;*/
+    /*display: block;*/
+    /*height: 0;*/
+    /*overflow: hidden;*/
+/*}*/
+
+.ui_select dt{
+    float:left
+}
+.ui_select dd{
+    float: left;
+    display: inline;
+}
+.ui_select a{
+    display: inline-block;
+    height: 24px;
+    line-height: 24px;
+    padding: 0 5px;
+}
+.ui_select a:hover{
+    color:#f60;
+    background-color: #ffe8d9;
+    text-decoration: none;
+}
+.ui_select .selected,
+.ui_select .selected:hover{
+    color:#fff;
+    background-color: #f60;
+}
+.ui_select .ui_select_result dt{
+    font-weight: bold;
+}
+.ui_select .ui_select_result{
+    border-bottom: none;
+}
+.ui_select .ui_select_result a{
+    padding-right: 20px;
+    color:#fff;
+    background: #f60 url("../images/common/select/close.gif") right -11px no-repeat;
+}
+.ui_select .ui_select_result a:hover{
+    background-position: right 8px;
+}
+.no_select{color:#999}

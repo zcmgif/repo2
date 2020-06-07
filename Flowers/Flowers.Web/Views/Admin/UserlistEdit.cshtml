@@ -1,0 +1,335 @@
+﻿@model Flowers.Model.Users
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <!--lovey核心css-->
+    <link rel="stylesheet" href="/Content/js/lovey/style/css/lovey.css?__V=1387455242901"
+          type="text/css" />
+    <!--OA自定义样式-->
+    <link rel="stylesheet" href="/Content/custom_style/custom.css?__V=1387455242901"
+          type="text/css" />
+    <link rel="stylesheet" href="/Content/custom_style/custom_oa.css?__V=1387455242901"
+          type="text/css" />
+    <!-- 暂时将jquery放在head中，因为jsp标签使用了 $(document).ready -->
+    <!--jquery核心js文件-->
+    <script type="text/javascript" src="/Content/js/lovey/js/jquery.min.js?__V=1387455242901"></script>
+    <style type="text/css">
+        html {
+            overflow: hidden;
+            min-width: 1024px;
+        }
+    </style>
+    <!-- 暂时将jquery放在head中，因为jsp标签使用了 $(document).ready -->
+    <!--jquery核心js文件-->
+    <script type="text/javascript" src="/Content/js/lovey/js/jquery.min.js?__V=1387455242901"></script>
+    <!--懒加载核心js文件-->
+    <script type="text/javascript" src="/Content/js/lovey/js/easyloader.js?__V=1387455242901">
+    </script>
+    <!-- 加载公用的js -->
+    <script type="text/javascript" src="/Content/js/oa/base/commfunction_jquery.js?__V=1378462010000">
+    </script>
+    <script type="text/javascript">
+        //判断当前页面是否被Iframe集成
+        easyloader.isIframe = (window != top);
+        //校验组件
+        easyloader.hideFormError = true;
+        //启用SNS风格，动态程序在高层页面全局设定
+        easyloader.dialogCssName = "dialog_style02";
+        easyloader.URI = "";
+        easyloader.allowClose = false; //success对话框,去除关闭按钮
+        var isIe6 = navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion.split(";")[1].replace(/[ ]/g, "") == "MSIE6.0";
+        var isShowQueryArea = false;  //查询区域默认为展开
+
+        //刷新制定tab
+        function refresh() {
+            navtab.reload(navtab.getSelectedTabItemID());
+        }
+
+        $(document).ready(function () {
+            using("dialog", function () { });
+
+            $(window).unbind("focus").bind("focus", function () {
+                var tabElement = top.$("#content_right");
+                var navtab = tabElement.ligerGetTabManager();
+                var tabid = navtab.getSelectedTabItemID();
+                storeCurrentModuleId(tabid);
+            })
+        });
+
+        function storeCurrentModuleId(tabid) {
+            if (tabid == "-1") {
+                setCookie("currentModuleId", "");
+            } else {
+                setCookie("currentModuleId", tabid);
+            }
+        }
+
+        function setCookie(name, value) {
+            var exdate = new Date();
+            exdate.setDate(exdate.getDate() + 30);
+            document.cookie = name + "=" + value + ";expires=" + exdate.toGMTString() + ";path=/";
+        }
+    </script>
+</head>
+<body>
+    <div id="breadcrumb" class="ui_nav_breadcrumb_style02 fixed_top">
+        <ul>
+            <li><a href="javascript:goIndex()" class="homepage"></a></li>
+            <li><span class="divider"></span>
+              <li class="active">基础管理 </li>
+            </li>
+            <li><span class="divider"></span>
+            <li class="active">系统安全管理 </li>
+            </li>
+            <li><span class="divider"></span>
+            <li class="active">用户编辑</li>
+            </li>
+        </ul>
+        <ul class=" top_toolbar pull_right">
+            <li id="back_button" class="hidden"><a href="javascript:back();" class="back">返回</a></li>
+            <li><a href="javascript:reload();" class="refresh">刷新</a></li>
+            <li id="fav_button" class="hidden">
+                <a href="javascript:void(0);" onclick="fav(this);"
+                   class="collect">收藏</a>
+            </li>
+            <li id="unFav_button" class="hidden">
+                <a href="javascript:void(0);" onclick="unFav(this);"
+                   class="collect">取消收藏</a>
+            </li>
+            <li><a href="javascript:removetab();" class="close">关闭</a></li>
+        </ul>
+    </div>
+    <script>
+        var tabElement = top.$("#content_right");
+        var navtab = tabElement.ligerGetTabManager();
+        var tabid = navtab.getSelectedTabItemID();
+        var liElement = top.$("li[tabid=" + tabid + "]", top.$(".l-tab-links"));
+
+        var taskbarElement = top.$("#taskbar");
+        var taskbar = taskbarElement.loveyGetTaskBarManager();
+
+        taskbarElement.unbind("unFavComplete").bind("unFavComplete", function (event, taskid) {
+            if (taskid != tabid) {
+                return;
+            }
+            toggleFavButton(false);
+        })
+
+        taskbarElement.unbind("favComplete").bind("favComplete", function (event, taskid) {
+            if (taskid != tabid) {
+                return;
+            }
+            toggleFavButton(true);
+        })
+
+        function goIndex() {
+            navtab.selectTabItem("-1");
+        }
+
+        //返回列表页面
+        function back() {
+            var historyUrl = liElement.attr("url");
+            window.location.href = historyUrl;
+        }
+
+        //刷新当前选中的tab
+        function reload() {
+            window.location.reload(true);
+        }
+
+        function removetab() {
+            navtab.removeTabItem(navtab.getSelectedTabItemID());
+            //当tab关闭后，只留有首页tab时，自动刷新
+            if (navtab != null && navtab.getTabItemCount() == 1) {
+                navtab.reload(-1);
+            }
+        }
+
+        //收藏当前选中的TAB
+        function fav() {
+            taskbar.addTaskBar({
+                taskid: liElement.attr("tabid"),
+                url: liElement.attr("url"),
+                title: liElement.attr("title"),
+                icon: liElement.attr("menupic")
+            });
+        }
+
+        //取消收藏的tab
+        function unFav(clickObj) {
+            taskbar.removeTaskBar(navtab.getSelectedTabItemID());
+        }
+
+        function needShowBackButton() {
+            var tabUrl = liElement.attr("url");
+            var currentUrl = window.location.href;
+
+            if (tabUrl.indexOf("?") > -1) {
+                tabUrl = tabUrl.substring(0, tabUrl.indexOf("?"));
+            }
+
+            if (currentUrl.indexOf("?") > -1) {
+                currentUrl = currentUrl.substring(0, currentUrl.indexOf("?"));
+            }
+
+            if (currentUrl.indexOf(tabUrl) == -1) {
+                return true;
+            }
+
+            return false;
+        }
+
+        $(document).ready(function () {
+            //动态控制返回按钮
+            if (needShowBackButton()) {
+                $("#back_button").removeClass("hidden");
+            }
+
+            //动态控制收藏和取消收藏
+            $.ajax({
+                dataType: "json",
+                url: "/module/isCollect.do?pkId=" + liElement.attr("tabid") + "&v=" + new Date().getTime(),
+                success: function (data) {
+                    toggleFavButton(data.isCollect);
+                }
+            })
+        })
+
+        function toggleFavButton(isFav) {
+            if (isFav) {
+                $("#fav_button").hide();
+                $("#unFav_button").show();
+            } else {
+                $("#fav_button").show();
+                $("#unFav_button").hide();
+            }
+        }
+    </script>
+    <div class="p15 mt20" id="content">
+        <div class="ui_container_fluid" id="mainDiv">
+            <form class="ui_form" id="AddOrUpdateForm" method="post">
+                <table class="ui_table ui_table_bordered ui_table_condensed ui_form_style02" width="100%">
+                    <tr>
+                        <th style="width: 10%">
+                            <span style="color: red">*</span>用户名：
+                        </th>
+                        <td style="width: 40%">
+                            @Model.Uname
+                        </td>
+                        <th style="width: 10%">
+                            <span style="color: red">*</span>用户角色：
+                        </th>
+                        <td style="width: 40%">
+                            @Html.DropDownListFor(m => m.roleId, ViewData["itemsrole"] as IEnumerable<SelectListItem>)
+                        </td>
+                    </tr>
+            
+                  
+                    <tr>
+                        <th>
+                            电子邮箱：
+                        </th>
+                        <td>
+                            <input id="EMail" name="EMail" value="@Model.Email" style="width: 97%;" class="input_large" />
+                        </td>
+                        <th>
+                            图片地址：
+                        </th>
+                        <td colspan="5">
+                            <input id="UrlImg" name="Mobile" value="@Model.ImgUrl" style="width: 97%;" class="input_large validate[required,length[1,300]" />
+                        </td>
+                    </tr>
+                </table>
+                <div class="ui_form_actions " style="text-align:center;display:@Request["display"]">
+                    <button id="saveAction" type="button" onclick="saveCommonAction();" class="ui_btn" />
+                    保存</button>&nbsp;&nbsp;
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript">
+
+        var contextPath = "";
+
+        $(document).ready(function () {
+            using(["validationengine", "select", "iframe"], function () {
+                // 校验
+                $("#AddOrUpdateForm").validationEngine({
+                });
+
+            });
+        });
+        function StoreSelect(ids, names) {
+            $('#StoreIdList').val(ids);
+            $('#StoreNameList').val(names);
+
+        }
+        function selectCommon(url, title) {
+
+            $.ligerDialog.open({
+                className: 'dialog_style02',
+                height: 490,
+                width: 400,
+                title: title,
+                url: '' + url,
+                dialogWaiting: true,
+                buttons: [{ text: '关闭', onclick: close}]
+            });
+        }
+        function close(button, dg) {
+            $.ligerDialog.close();
+        }
+
+        //保存
+        function saveCommonAction() {
+            // 校验表单
+            var flag = $.validationEngine.doValidate("#AddOrUpdateForm");
+            if (!flag)
+                return;
+
+            $('#AddOrUpdateForm').ajaxSubmit({
+                type: 'POST',
+                url: '/Admin/UserlistSave?id=@Model.UId',
+                dataType: "json",
+                contentType: "application/x-www-form-urlencoded; charset=utf-8",
+                success: function (_o) {
+                    if (_o.status == '3') {
+                        $.ligerDialog.warn('两次输入密码不一样！', '提示', function () {
+                            return;
+                        });
+                    }
+                    else if (_o.status == '2') {
+                        $.ligerDialog.warn('用户已存在！', '提示', function () {
+                            return;
+                        });
+                    }
+                    else if (_o.status == '1') {
+
+                        $.ligerDialog.success('用户保存成功！', '提示', function () {
+
+                            window.location.href = '/Admin/UserList';
+                        });
+                    }
+                    else {
+
+                        $.ligerDialog.warn('保存失败！', '提示', function () {
+                            return;
+                        });
+                    }
+
+                },
+                error: function () {
+                    $.ligerDialog.warn('保存失败！', '提示', function () {
+                        return;
+                    });
+                }
+            });
+
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,518 @@
+﻿html {
+    font: 81.25% arial, helvetica, sans-serif;
+    background: white;
+    color: #333;
+    line-height: 1;
+    direction: ltr;
+}
+html, body {
+    position: absolute;
+    height: 100%;
+    min-width: 100%;
+}
+html, body, div, h1, h2, h3, h4, h5, h6, p, img, dl, dt, dd, ol, ul, li, table,
+tr, td, form, object, embed, article,
+aside, canvas, command, details, fieldset, figcaption, figure, footer, header,
+hgroup, legend, mark, menu, meter, nav, output, progress, section, summary, time, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+    color: #222;
+    font-size: 1.54em;
+    font-weight: normal;
+    line-height: 24px;
+    margin: 0 0 .46em;
+}
+ul {
+    list-style: none;
+    line-height: 17px;
+    margin: 0 0 1em;
+}
+li {
+    margin: 0 0 .5em;
+}
+p {
+
+    line-height: 17px;
+    margin: 0 0 1em;
+}
+.clearfix::after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: '.';
+    clear: both;
+    height: 0;
+}
+.button {
+    display: inline-block;
+    min-width: 46px;
+    text-align: center;
+    color: #444;
+    font-size: 11px;
+    font-weight: bold;
+    height: 27px;
+    padding: 0 8px;
+    line-height: 27px;
+    border: 1px solid gainsboro;
+    background-color: whiteSmoke;
+    cursor: default;
+}
+.button-red {
+    border: 1px solid transparent;
+    color: white;
+    text-transform: uppercase;
+    background-color: #D14836;
+}
+input, button, select, textarea{
+    font-family: inherit;
+    font-size: inherit;
+}
+.main input[type="email"],.main input[type="number"],.main input[type="password"],.main input[type="text"]{
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    -moz-box-sizing: border-box;
+    display: inline-block;
+    height: 29px;
+    margin: 0;
+    padding: 0 8px;
+    background: white;
+    border: 1px solid #D9D9D9;
+    border-top: 1px solid silver;
+    box-sizing: border-box;
+    border-radius: 1px;
+    font-size: 17px
+}
+.main input[type="email"]:focus, .main input[type="password"]:focus,.main input[type="text"]:focus{
+    outline: none;
+    border: 1px solid #4D90FE;
+}
+.button-submit {
+    border: 1px solid #3079ED;
+    color: white;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+    background-color: #4D90FE;
+}
+a {
+    color: #15C;
+    text-decoration: none;
+    cursor: pointer;
+}
+p {
+    line-height: 17px;
+    margin: 0 0 1em;
+}
+strong {
+    color: #222;
+}
+.wrapper {
+    position: relative;
+    min-height: 100%;
+}
+.header{
+    height: 71px;
+    background: whiteSmoke;
+    overflow: hidden;
+    min-width: 100%;
+}
+.header-content{
+    padding: 0 44px;
+}
+.header-info{
+    float: right;
+    margin: 30px 30px 0 0;
+    font-size: 14px;
+    background: whiteSmoke
+}
+.header .logo {
+    margin: 10px 0 0;
+    float: left;
+}
+.header .signin-button, .header .signup-button {
+    margin: 22px 0 0;
+    float: right;
+}
+.header .signup-button a {
+    position: relative;
+    top: -1px;
+    margin: 0 0 0 1em;
+}
+
+.content {
+    padding: 0 44px;
+}
+.main {
+    width: auto;
+    max-width: 1000px;
+    min-width: 780px;
+    margin: 0 auto;
+    padding-top: 23px;
+    padding-bottom: 100px;
+}
+
+.sign-in {
+    width: 335px;
+    float: right;
+}
+
+.signin-box, .accountchooser-box {
+    margin: 12px 0 0;
+    padding: 20px 25px 15px;
+    background: whiteSmoke;
+    border: 1px solid #E5E5E5;
+}
+.signin-box h2 {
+    font-size: 16px;
+    line-height: 17px;
+    height: 16px;
+    margin: 0 0 1.2em;
+    position: relative;
+}
+.signin-box h2 strong {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: -6px;
+    height: 23px;
+    width: 100px;
+    background: transparent url(../images/logo-small.png) no-repeat;
+}
+.signin-box ul {
+    margin: 0;
+}
+.signin-box div {
+    margin: 0 0 1.5em;
+}
+.signin-box label {
+    display: block;
+}
+.signin-box .email-label, .signin-box .passwd-label {
+    font-weight: bold;
+    margin: 0 0 .5em;
+    display: block;
+}
+.signin-box input[type="text"], .signin-box input[type="password"] {
+    width: 100%;
+    font-weight: 700;
+    padding-top:3px;
+    height: 29px;
+    font-size: 17px;
+    direction: ltr;
+}
+.signin-box div {
+    margin: 0 0 1.5em;
+}
+.signin-box .email-label, .signin-box .passwd-label {
+    font-weight: bold;
+    margin: 0 0 .5em;
+    display: block;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.product-info {
+    margin: 0 385px 0 0;
+}
+.product-headers {
+    margin: 0 0 1.5em;
+}
+.redtext {
+    color: #DD4B39;
+}
+.product-headers h1 {
+    font-size: 25px;
+    margin: 0 !important;
+}
+.product-loginTip h1{
+    font-size: 19px;
+    margin: 0 !important;
+}
+
+.features {
+    overflow: hidden;
+    margin: 1em 0 0;
+}
+
+.features li {
+    margin: 3px 0 2em;
+}
+.features img {
+    float: left;
+    margin: -3px 0 0;
+}
+.features p {
+    margin: 0 0 0 68px;
+}
+.features .title {
+    font-size: 16px;
+    margin-bottom: .3em;
+}
+button.g-button, input[type="submit"].g-button {
+    height: 29px;
+    line-height: 29px;
+    vertical-align: bottom;
+    margin: 0;
+}
+
+.signin-box input[type="submit"] {
+    margin: 0 1.5em 1.2em 0;
+    height: 32px;
+    font-size: 13px;
+}
+.signin-box label.remember {
+    display: inline-block;
+    vertical-align: top;
+    margin: 9px 0 0;
+}
+.main input[type="checkbox"]:checked::after {
+    display: block;
+    position: absolute;
+}
+.main input[type="checkbox"], input[type="radio"] {
+    width: 13px;
+    height: 13px;
+    margin: 0;
+    vertical-align: middle;
+    cursor: pointer;
+    box-sizing: content-box;
+    position: relative;
+}
+.main input[type="checkbox"]:checked, input[type="radio"]:checked {
+    background: white;
+}
+.signin-box .remember-label {
+    font-weight: normal;
+    color: #666;
+    line-height: 0;
+    padding: 0 0 0 .4em;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.footer-bar {
+    position: absolute;
+    bottom: 0;
+    height: 35px;
+    width: 100%;
+    border-top: 1px solid #EBEBEB;
+    overflow: hidden;
+}
+.footer {
+    padding-top: 9px;
+    font-size: .85em;
+    white-space: nowrap;
+    line-height: 0;
+}
+.footer ul {
+    color: #999;
+    float: left;
+    max-width: 80%;
+}
+.footer ul li {
+    display: inline;
+    padding: 0 1.5em 0 0;
+}
+.errors {border:1px dotted #d21033;padding: 5px 5px; color:#d21033;}
+.captcha-box {
+    overflow: hidden;
+    border: 1px solid #E5E5E5;
+    background: white;
+    margin: 0 0 1.5em;
+    padding: 1em 1em ;
+}
+.captcha-box .captcha-msg {
+    position: relative;
+    margin: .5em 0 0;
+    display: block;
+    color: #999;
+    line-height: 17px;
+    padding-right: 2em;
+}
+.captcha-box .captcha-img {
+    text-align: center;
+    margin: 0 0 1em;
+}
+.captcha-box .captcha-label {
+    font-weight: bold;
+    margin: 0 0 .5em;
+    display: block;
+}
+.captcha-box .captcha-label a{
+    font-weight:500;
+    cursor: pointer
+}
+
+.hidden{
+    display: none;
+}
+.main input[type="checkbox"].form-error,
+.main input[type="email"].form-error,
+.main input[type="number"].form-error,
+.main input[type="password"].form-error,
+.main input[type="text"].form-error{
+    border: 1px solid #DD4B39;
+}
+.errormsg {
+    margin: .5em 10px 0;
+    color: #DD4B39;
+    line-height: 17px;
+}
+.main-title {
+    background: #DD4B39;
+    color: #ffffff;
+    margin: 0 auto;
+    width: 750px;
+    min-width: 755px;
+    height: 35px;
+    font-size: 14px;
+}
+.main-title-text{
+    padding: 10px 0 5px 5px;
+}
+.main-table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    padding-bottom: 100px;
+    min-width: 750px;
+    width: 755px;
+}
+
+.main-table caption {
+    text-align: left;
+    padding: 10px;
+}
+
+.main-table th {
+    color: #000000;
+    font-weight: normal;
+    border: 1px #e5e5e5 solid;
+    text-align: right;
+    padding: 5px 15px 5px 10px;
+    white-space: nowrap;
+    vertical-align: top;
+}
+.main-table th span.tip{
+    color: red;
+    padding: 2px 2px;
+}
+.main-table-title caption {
+    text-align: left;
+    padding: 10px;
+}
+
+
+
+.main-table td {
+    border: 1px #e5e5e5 solid;
+    vertical-align: middle;
+    color: #848484;
+    text-align: left;
+    padding: 5px 10px;
+}
+
+.main-table ul {
+    list-style: square inside;
+}
+
+.main-table li {
+    margin: 0 10px;
+    padding: 2px;
+}
+.main-table input[type="text"],.main-table input[type="password"]{
+    height: 25px;
+    font-size: 12px;
+    width: 400px;
+}
+.explanation-msg {
+    margin: 5px;
+    font-size: 11px;
+}
+span.error {
+    background: url(../images/tip-bg.png) no-repeat left #FFF2F2;
+    border:solid 1px #FF8080;
+    line-height: 18px;
+    padding: 3px 10px 3px 23px;
+    margin-left: 10px;
+    color: #000000;
+}
+
+.getBackPassword{
+    margin: 0 auto;
+    min-width: 753px;
+    width: 753px;
+    background: whiteSmoke;
+    border: 1px solid #E5E5E5;
+}
+.getBackPassword .byAnswer,.byEmail{
+    margin: 10px 10px;
+}
+
+.byAnswer a:hover, .byEmail a:hover{
+    text-decoration: underline;
+}
+
+div.getPassword{
+    margin: 10px 10px;
+}
+
+div.getPassword div{
+    padding-top: 7px;
+    padding-bottom: 3px;
+}
+.warningMsg {
+    text-align: left;
+    margin: 10px 10px;
+    padding: 3px 9px 3px 23px;
+    background: #F9EDBE url( ../images/ok.gif ) no-repeat 4px 3px;
+    line-height:30px;
+    border:solid 1px #F0C36D;
+    font-size: 14px;
+    font-weight: 800
+}
+
+.generateTip{
+    background: url("../images/msg_bg.png") no-repeat 3px -145px;
+    padding-left: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.pagination-info {
+    margin-top: 5px;
+    margin-left:-2px;
+    line-height: 130%;
+}
+
+.pagination-info span {
+    display: block;
+    float: left;
+    padding: 2px 6px;
+}
+
+.pagination-info a, .pagination-info div, .pagination-info span {
+    display: block;
+    float: left;
+    border: 1px #E5E5E5 solid;
+    padding: 2px 6px;
+    margin: 0 2px;
+    color: #054A91;
+}
+
+.pagination-info div {
+    font-weight: bold;
+    color: #ffffff;
+    background: #4D90FE;
+}
+
+.pagination-info a:hover {
+    background: #4D90FE;
+    color: #E5E5E5;
+}
+

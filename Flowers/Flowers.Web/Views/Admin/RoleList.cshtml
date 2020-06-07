@@ -1,0 +1,175 @@
+﻿@{
+    ViewBag.Title = "RoleList";
+    Layout = "~/Views/Layout/_LayoutAdminPage.cshtml";
+}
+@section Head{
+    <link href="/css/themes/default/easyui.css" rel="stylesheet" type="text/css" />
+    <link href="/css/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jquery.easyui-1.3.6.min.js" type="text/javascript"></script>
+    <script src="/Scripts/easyui-lang-zh_CN.js" type="text/javascript"></script>
+
+
+}
+
+<!-------------------------------详细信息展示表格----------------------------------->
+</div>
+<table id="dg" title="角色列表" class="easyui-datagrid" style="" url="/Admin/GetRoleList"
+       toolbar="#toolbar" pagination="true" rownumbers="true" fitcolumns="true" singleselect="true">
+    <thead>
+        <tr>
+            <th field="roleId">
+                角色编号
+            </th>
+            <th field="roleName" width="50">
+                角色名称
+            </th>
+            @*<th field="Remark" width="50">
+                描述
+            </th>*@
+            <th field="createtime" width="50" formatter="timeTransformation">
+                添加时间
+            </th>
+            @*<th field="UpdateDate" width="50" formatter="timeTransformation">
+                修改时间
+            </th>*@
+            @*   <th field="StatusName" width="50">
+                    状态
+                </th>*@
+            @* <th field="RoleID" formatter="editurl" width="50">
+                    操作
+                </th>*@
+        </tr>
+    </thead>
+</table>
+<div id="toolbar" style="padding-bottom: 5px;">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-add" plain="true"
+       onclick="add_fun()">添加</a><span class="datagrid-btn-separator"></span><a href="javascript:void(0)"
+                                                                                class="easyui-linkbutton" iconcls="icon-edit" plain="true" onclick="edit_fun()">修改</a>
+    @* <span class="datagrid-btn-separator"></span>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-remove" plain="true" onclick="del_fun()">删除</a>*@
+
+</div>
+<div id="dlg" class="easyui-dialog" style=" width : 500px; height: 440px; padding: 10px 20px"
+     closed="true" buttons="#dlg-buttons">
+    <div class="ftitle">
+        角色信息
+    </div>
+    <form id="fm" method="post" novalidate>
+        <input id="RoleID" name="RoleID" type="hidden" />
+        <div class="fitem">
+            <label>
+                角色名称:
+            </label>
+            <input id="RoleName" name="RoleName" class="easyui-validatebox" required="true">
+        </div>
+        @*<div class="fitem">
+                <label>
+                    状态:</label>
+                <select id="Status" name="Status">
+                    <option value="1">可用</option>
+                    <option value="0">禁用</option>
+                </select>
+            </div>*@
+        <div class="fitem">
+            <label>
+                备注:
+            </label>
+            <textarea style="display: inline-block;" id="Remark" name="Remark" cols="40" rows="5" class="easyui-validatebox" required="true"></textarea>
+        </div>
+        <div class="fitem">
+            <label>
+                状态:
+            </label>
+            <input id="Radio1" name="Status" type="radio" value="1" class="easyui-validatebox" required="true" />正常
+            <input id="Radio2" name="Status" type="radio" value="0" class="easyui-validatebox" required="true" />锁定
+        </div>
+    </form>
+</div>
+<div id="dlg-buttons">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-ok" onclick="saveUser()">
+        保存
+    </a> <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-cancel"
+            onclick="javascript:$('#dlg').dialog('close')">取消</a>
+</div>
+<script type="text/javascript">
+    var url;
+    function search() {
+        $('#dg').datagrid('load', {
+            KeyWord: '' + $("#KeyWord").val() + ''
+        });
+    }
+    function editurl(value, rec, index) {
+        var href = '';
+        href += "[<a href='#' onclick=\"SetRoleRight('" + rec.UserID + "','" + rec.UserName + "')\">";
+        href += "分配权限</a>]";
+        return href;
+    }
+    function SetRoleRight(UserID, UserName) {
+        //        alert(UserName);
+    }
+    function add_fun() {
+        $('#dlg').dialog('open').dialog('setTitle', '添加');
+        $('#fm').form('clear');
+    }
+    function edit_fun() {
+        var row = $('#dg').datagrid('getSelected');
+        if (row) {
+
+            $('#dlg').dialog('open').dialog('setTitle', '修改');
+            $('#fm').form('load', row);
+            $("#Sex").val(row.Sex == true ? "1" : "0");
+        } else {
+            $.messager.alert("提示", "请选择你要修改的数据")
+        }
+    }
+    function saveUser() {
+        $.ajax({
+            type: "POST",
+            url: "/admin/right/SaveRole",
+            dataType: "json",
+            data: $('#fm').serializeArray(), //serializeArray  serialize
+            beforeSend: function () {
+                return $('#fm').form('validate'); $('#dg').datagrid('reload');
+            },
+            success: function (data) {
+                if (data.status == "1") {
+                    $('#dlg').dialog('close'); $('#dg').datagrid('reload');
+                }
+                else {
+                    $.messager.show({
+                        title: 'Error',
+                        msg: data.msg
+                    });
+                }
+            }
+        });
+        return false;
+    }
+    function del_fun() {
+        var row = $('#dg').datagrid('getSelected');
+        if (row) {
+            $.messager.confirm('提示', '您确实要删除该数据吗?', function (r) {
+                if (r) {
+
+
+                    $.post('/admin/right/DelRole', { id: row.RoleID }, function (result) {
+                        if (result.status == 1) {
+                            $('#dg').datagrid('reload');    // reload the user data
+                        } else {
+                            $.messager.show({    // show error message
+                                title: 'Error',
+                                msg: result.msg
+                            });
+                        }
+                    }, 'json');
+                }
+            });
+        }
+        else {
+            $.messager.alert("提示", "请选择你要删除的数据")
+        }
+    }
+</script>
+
+
+

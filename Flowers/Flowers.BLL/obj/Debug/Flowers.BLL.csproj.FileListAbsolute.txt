@@ -1,0 +1,15 @@
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.BLL\bin\Debug\Flowers.BLL.dll
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.BLL\bin\Debug\Flowers.BLL.pdb
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.BLL\bin\Debug\Flowers.Model.dll
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.BLL\bin\Debug\EntityFramework.dll
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.BLL\bin\Debug\Flowers.Model.pdb
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.BLL\bin\Debug\Flowers.Model.dll.config
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.BLL\bin\Debug\EntityFramework.xml
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.BLL\bin\Debug\zh-Hans\EntityFramework.resources.dll
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.BLL\obj\Debug\Flowers.BLL.csprojAssemblyReference.cache
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.BLL\obj\Debug\Flowers.BLL.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.BLL\obj\Debug\Flowers.BLL.csproj.CopyComplete
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.BLL\obj\Debug\Flowers.BLL.dll
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.BLL\obj\Debug\Flowers.BLL.pdb
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.BLL\bin\Debug\Flowers.DAL.dll
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.BLL\bin\Debug\Flowers.DAL.pdb

@@ -1,0 +1,136 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>修改密码</title>
+
+    <script type="text/javascript" src="~/Script/js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="~/Content/FlowerShop/js/jquery.min.js"></script>
+    <style>
+        .ed_table tr td input {
+            height: 38px;
+            border-radius: 3px;
+        }
+
+        #saveAction, #resave {
+            width: 40%;
+            line-height: 31px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-top: 20px;
+            background: #b5d0d2;
+        }
+
+        #content {
+            padding-top: 53px;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            var uid=@ViewBag.UId;
+            $("#resave").click(function () {
+                window.close();
+            });
+            var old=@ViewBag.pwd;
+            $("#saveAction").click(function () {
+                var oldpw = $("#OldPw").val();
+                var newPw = $("#newPw").val();
+                var ReplyPw = $("#ReplyPw").val();
+                if (oldpw == "") {
+                    alert("旧密码不能为空"); $("#OldPw").focus();
+                    return false;
+                }
+                if (newPw == "") {
+                    alert("密码不能为空"); $("#newPw").focus();
+                    return false;
+                }
+                if (ReplyPw == "") {
+                    alert("输入重复密码！"); $("#ReplyPw").focus();
+                    return false;
+                }
+                if (oldpw != old) {
+                    alert("旧密码输入不正确！");
+                    $("#OldPw").focus();
+                    return false;
+                }
+                if (newPw != ReplyPw) {
+                    alert("密码与上面的不同！请重新输入！");
+                    $("#ReplyPw").val() = ""; $("#ReplyPw").focus();
+                }
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/UpdatePw",
+                    data: { "uid": uid, "newPw": newPw },
+                    dataType: "json",
+                    beforeSend: function () {
+                    },
+                    success: function (strjson) {
+                        if (strjson.status == 1) {
+                            alert("更改成功！");
+                            window.close();
+
+                        } else {
+                            alert(strjson.msg);
+                            clearform();
+                        }
+                        return false;
+                    }
+                })
+            });
+        })
+    </script>
+</head>
+<body style="background:#dadada;">
+    <div id="content">
+        <div id="mainDiv" class="p15 ui_container_fluid pr5 pb5 ">
+            <table class="ed_table" style="width: 100%;font-size: bigger">
+                <tr>
+                    <th align="right" style="width: 30%">
+                        用户名
+                    </th>
+                    <td>
+                        <input id="Username" type="text" disabled width="70%" value="@ViewBag.uname" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <th align="right" style="width: 30%">
+                        旧密码<span style="color: red">*</span>
+                    </th>
+                    <td>
+                        <input id="OldPw" type="password" width="70%" />
+                    </td>
+                </tr>
+                <tr>
+                    <th align="right" style="width: 30%">
+                        新密码<span style="color: red">*</span>
+                    </th>
+                    <td>
+                        <input id="newPw" type="password" width="70%" />
+                    </td>
+                </tr>
+                <tr>
+                    <th align="right" style="width: 30%">
+                        确认密码<span style="color: red">*</span>
+                    </th>
+                    <td>
+                        <input id="ReplyPw" type="password" width="70%" />
+                    </td>
+                </tr>
+
+            </table>
+            <div style="text-align:center">
+                <button id="saveAction" type="button" class="ui_btn" />
+                修改密码</button>&nbsp;&nbsp;
+                <button id="resave" type="button" class="ui_btn" />
+                取消</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

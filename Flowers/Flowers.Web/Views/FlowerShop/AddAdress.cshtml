@@ -1,0 +1,255 @@
+﻿@{
+    Layout = "~/Views/Layout/_LayoutFlowerShop.cshtml";
+    ViewBag.Title = "增加地址";
+}
+<style>
+    #Dprovince, #DCity, #DDistry {
+        height: 30px;
+        border-radius: 1px;
+    }
+
+    #templatemo_main_wrapper {
+        min-height: 550px;
+    }
+</style>
+<script>
+
+    $(function () {
+        var orderid=@ViewBag.orederid;
+        //三级联动
+        GetProvince(); //加载省份
+        //GetCity();
+        $("#Dprovince").change(function () {
+            GetCity();
+        });
+        $("#DCity").change(function () {
+            GetDistry();
+        });
+        $("#phone").blur(function () {
+            var phone = $(this).val();
+            if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(phone))) {
+                alert("不是正确的11位手机号或者市正确的7位座机号！")
+                $(this).val() = "";
+                $(this).focus();
+            }
+        });
+        
+        $("#saveAction").click(function () {
+            var str="";
+            var name = $("#newname").val();
+            var phone = $("#phone").val();   
+            var xiadress = $("#xiadress").val();
+            var province = document.getElementById("Dprovince");
+            var provinceindex = province.selectedIndex;
+            var provincetexts = province.options[provinceindex].text;
+            str += provincetexts;
+            var city = document.getElementById("DCity");
+            var cityindex = city.selectedIndex;
+            var citytexts = city.options[cityindex].text;
+            str += citytexts;
+            var distry = document.getElementById("DDistry");
+            var distryindex = distry.selectedIndex;
+            var distrytexts = distry.options[distryindex].text;
+            str += distrytexts;
+            str += xiadress;
+            //alert(str);
+            if (name != "" && phone != "" && str != "") {
+                if (window.confirm("确定添加地址？")) {
+
+                } else {
+                    return false;
+                }
+                $.ajax({
+                    type: "POST",
+                    url: "/FlowerShop/adressSave",
+                    dataType: "json",
+                    data: { "name": name, "phone": phone,"str": str },
+                    beforeSend: function () {
+                    },
+                    success: function (strjson) {
+                        if (strjson.status == 1) {
+                            alert("添加地址成功！");
+                            location.href = "/FlowerShop/checkout?orderid=" + orderid;
+                        } else if (strjson.status == 2) {
+                            alert("你已填写过该联系地址，请重新填写");
+                        }
+                        else {
+                            alert(strjson.msg);
+                            clearform();
+                        }
+                        return false;
+                    }
+                })
+            }
+            else {
+                alert("信息填写不完全，请重新填写");
+                return false;
+            }
+            
+        });
+    })
+    //加载省
+    function GetProvince() {
+        $.getJSON(
+            "/Home/GetProvincelist",
+            function (data) {
+                $.each(data, function (i, item) {
+                    $("<option></option>").val(item["ProvinceID"]).text(item["ProvinceName"]).appendTo($("#Dprovince"));
+                })
+            });
+        GetCity();
+    }
+    //加载城市
+    function GetCity() {
+        $("#DCity").empty();
+        $.getJSON(
+            "/Home/GetCitylist",
+            { pid: $("#Dprovince").val() },
+            function (data) {
+                $.each(data, function (i, item) {
+                    $("<option></option>").val(item["CityID"]).text(item["CityName"]).appendTo($("#DCity"));
+
+                })
+            });
+        GetDistry();
+    }
+    //加载镇
+    function GetDistry() {
+        $("#DDistry").empty();
+        $.getJSON(
+            "/Home/GetDistrylist",
+            { cid: $("#DCity").val() },
+            function (data) {
+                $.each(data, function (i, item) {
+                    $("<option></option>").val(item["DistrictID"]).text(item["DistrictName"]).appendTo($("#DDistry"));
+
+                })
+            });
+    }
+    
+</script>
+
+<div id="templatemo_wrapper_sp">
+    <div id="templatemo_header_wsp">
+        <div id="templatemo_header" class="header_subpage">
+            <div id="site_title"><a href="#" rel="nofollow">Flower Shop</a></div>
+            <div id="templatemo_menu" class="ddsmoothmenu">
+                <ul>
+                    <li>@Html.ActionLink("首页", "index", "FlowerShop")</li>
+                    <li>@Html.ActionLink("店铺", "About", "FlowerShop")</li>
+                    <li>
+                        @Html.ActionLink("论坛", "faqs", "FlowerShop")
+                        <ul>
+                            <li>@Html.ActionLink("查看论坛", "showForum", "FlowerShop")</li>
+                            <li>@Html.ActionLink("发布日志", "sendForum", "FlowerShop")</li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("发现新事物", "contact", "FlowerShop")</li>
+                    <li>@Html.ActionLink("购物车", "shoppingCart", "FlowerShop")</li>
+                    <li>
+                        @Html.ActionLink("我的", "products", "FlowerShop")
+                        <ul>
+                            <li>@Html.ActionLink("订单查看", "products", "FlowerShop")</li>
+                            <li>@Html.ActionLink("完善信息", "UserImprovement", "Home")</li>
+                            <li><a href="javascript:;" onclick="upEdit('/Home/UserEdit')">修改密码</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <br style="clear: left" />
+            </div>
+
+        </div> <!-- END of header -->
+    </div> <!-- END of header wrapper -->
+    <div id="templatemo_main_wrapper">
+        <div id="templatemo_main">
+            <div id="sidebar" class="left">
+                <div class="sidebar_box">
+                    <span class="bottom"></span>
+                    <h3>Daily Lucky Flowers</h3>
+                    <div class="content special">
+                        <img src="~/Content/FlowerShop/images/templatemo_image_01.jpg" alt="Flowers" />
+                        @Html.ActionLink("天真烂漫--雏菊", "shoppingCart", "FlowerShop")
+                        <p>
+                            Price:
+                            <span class="price normal_price">￥160</span>&nbsp;&nbsp;
+                            <span class="price special_price">￥100</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="content" class="right">
+                <h2>AddAddress</h2>
+
+                <h3>增加地址</h3>
+                <div style="height:300px;">
+                    <table class="" style="width: 100%; font-size: 18px">
+                        <tr style="height:50px;">
+                            <th align="right" style="width: 33%">
+                                用户名：
+                            </th>
+                            <td>
+                                <input style="width:300px;height:25px;border-radius:5px" id="newname" type="text" />
+                            </td>
+                        </tr>
+                        <tr style="height:50px;">
+                            <th align="right" style="width: 33%">
+                                电话：
+                            </th>
+                            <td>
+                                <input style="width:300px;height:25px;border-radius:5px" id="phone" type="text" />
+                            </td>
+                        </tr>
+                        <tr class="adt" style="height:50px;">
+                            <th align="right" style="width: 33%">
+                                新地址：
+                            </th>
+                            <td>
+                                <select id="Dprovince" name="Dprovince" style="width:20%;">
+                                    <option>==请选择==</option>
+                                </select>
+                                <select id="DCity" name="DCity" style="width:20%;">
+                                    <option>==请选择==</option>
+                                </select>
+                                <select id="DDistry" name="DDistry" style="width:22%;">
+                                    <option>==请选择==</option>
+                                </select>
+
+                            </td>
+                        </tr>
+                        <tr style="height:50px;">
+                            <th align="right" style="width: 33%">
+                                详细地址：
+                            </th>
+                            <td>
+                                <input style="width:300px;height:25px;border-radius:5px" id="xiadress" type="text" />
+                            </td>
+                        </tr>
+                    </table>
+                    <div style="text-align:center">
+                        <input type="button" id="saveAction" value="增加地址" />
+                        @*<button id="saveAction" type="button" />
+            增加地址</button>&nbsp;&nbsp;*@
+                    </div>
+                </div>
+                <div class="blank_box">
+                    <a href="#"><img src="~/Content/FlowerShop/images/free_shipping.jpg" alt="Free Shipping" /></a>
+                </div>
+
+            </div>
+
+            <div class="cleaner"></div>
+        </div> <!-- END of main -->
+    </div> <!-- END of main wrapper -->
+
+    <div id="templatemo_footer_wrapper">
+        <div id="templatemo_footer">
+            <p class="p1">我的花草世界--爱尚花坊 @DateTime.Now</p>
+        </div> <!-- END of footer -->
+    </div> <!-- END of footer wrapper -->
+</div>
+
+
+
+

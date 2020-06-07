@@ -1,0 +1,135 @@
+﻿@model Flowers.Model.Users
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>爱尚花坊-注册</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/Login1.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/assets/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/assets/css/supersized.css" />
+
+    <script type="text/javascript" src="~/Script/js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="~/Script/js/supersized.3.2.7.min.js"></script>
+    <script type="text/javascript" src="~/Script/js/supersized-init.js"></script>
+    <script type="text/javascript" src="~/Script/js/scripts.js"></script>
+    <script type="text/javascript" src="~/Script/js/Login.js"></script>
+
+    <script>
+        $(function () {
+            $("#btnsubmit").live('click', function () {
+                var user = $("#UserName").val();
+                var Password = $("#Password").val();
+                var repwd = $("#rpwd").val();
+                var roleId;
+                if (user == "") {
+                    alert("用户名不能为空"); $("#UserName").focus();
+                    return false;
+                }
+                if (Password == "") {
+                    alert("密码不能为空"); $("#Password").focus();
+                    return false;
+                }
+                if (repwd == "") {
+                    alert("输入重复密码！"); $("#rpwd").focus();
+                    return false;
+                }
+                if (Password != repwd) {
+                    alert("密码与上面的不同！请重新输入！");
+                    $("#rpwd").val()=""; $("#rpwd").focus();
+                }
+                if ($("#gly").prop("checked") == true) {
+                    roleId = 2;
+                }
+                else {
+                    roleId = 3;
+                }
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/RegisterVail",
+                    dataType: "json",
+                    data: { "UserName": user, "Password": Password, "roleId": roleId },
+                    beforeSend: function () {
+                    },
+                    success: function (strjson) {
+                        if (strjson.status == 1) {
+                            alert("注册成功，请登陆！");
+                            location.href = "/Home/Login";
+                        } else {
+                            alert(strjson.msg);
+                            clearform();
+                        }
+                        return false;
+                    }
+                });
+                return false;
+            });
+        });
+        function clearform() {
+            $("#UserName").val("");
+            $("#Password").val(""); $("#rpwd").val("");
+        }
+        function LoginDanDian() {
+            if ($("#cb_clause").prop("checked") == false) {
+                $("#btnsubmit").attr("disabled", true);
+            }
+            else {
+                $("#btnsubmit").attr("disabled", false);
+            }
+
+        }
+
+    </script>
+</head>
+<body>
+    <div class="page-container">
+        <form id="form1" runat="server" method="post" data-ng-options="novalidate:false">
+            <h1>用户注册</h1>
+            <p>Connect the real world and the internet world!</p>
+            <!--注册开始-->
+
+            <div id="reg_box">
+                <div class="my-group">
+                    <span class="left">姓名</span>
+                    <input type="text" id="UserName" name="UserName" data-ng-options="required:true" class="username" placeholder="请输入用户名" />
+                </div>
+                <div class="my-group">
+                    <span class="left">密码</span>
+                    <input type="password" id="Password" name="Password" class="username" data-ng-options="required:true" placeholder="请输入用密码" maxlength="14" />
+                </div>
+                <div class="my-group">
+                    <span class="left">重复密码</span>
+                    <input type="password" id="rpwd" name="rpwd" class="username" required="required" placeholder="请重复密码" maxlength="14" />
+                </div>
+                <div class="my-group">
+                    <span class="left">类型</span>
+                    <span class="sexname">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lei" checked id="gly" value="店铺商家" />店铺商家&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" name="lei" checked id="ptyh" value="普通用户" />普通用户
+                    </span>
+                </div>
+                <div class="form-actions">
+                    <p>
+                        <input id="cb_clause" type="checkbox" checked="checked" onchange="LoginDanDian()" />我已经仔细阅读并同意<a href="#" target="_blank">《服务条款》</a>中的相关事项。
+                    </p>
+                    <br />
+
+                    <button id="btnsubmit" type="submit" value="注册">注册</button>
+                    <button id="back" type="reset" value="取消">取消</button>
+
+                </div>
+            </div>
+            <div class="side_box">
+                已经注册过
+                <i class="icon-weibo">@Html.ActionLink("快速登录", "Login", "Home")</i>
+            </div>
+        </form>
+
+    </div>
+</body>
+</html>

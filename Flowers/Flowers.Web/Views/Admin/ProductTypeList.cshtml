@@ -1,0 +1,305 @@
+﻿
+
+@{
+    ViewBag.Title = "ProductBrand";
+    Layout = "~/Views/Layout/_CommonPage.cshtml";
+}
+@section Head{
+    <link href="~/css/themes/default/easyui.css" rel="stylesheet" type="text/css" />
+    <link href="/css/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jquery.easyui-1.3.6.min.js" type="text/javascript"></script>
+    <script src="/Scripts/easyui-lang-zh_CN.js" type="text/javascript"></script>
+}
+<div id="tb" data-options="region:'center',title:'',iconCls:'icon-book'" style="padding: 10px;
+    height: auto;">
+    <!-------------------------------搜索框----------------------------------->
+    <fieldset style="border-width: 2px; border-style: solid; padding-bottom: 5px; border-color: #95B8E7">
+        <legend>信息查询</legend>
+        <form id="ffSearch" method="post">
+            <div style="margin-bottom: 5px">
+                <label for="txtName">
+                    &nbsp;&nbsp;关键字：
+                </label>
+                <input type="text" id="KeyWord" name="KeyWord" style="width: 100px" />&nbsp;&nbsp;&nbsp;
+
+                <input id="Button1" type="button" value="查询" style="cursor: pointer;" class="easyui-linkbutton1"
+                       onclick="search()" />
+            </div>
+        </form>
+    </fieldset>
+    <!-------------------------------详细信息展示表格----------------------------------->
+</div>
+<div class="easyui-layout" data-options="fit:true">
+    <div data-options="region:'west',split:true">
+        <table id="dg" style="width:450px" class="easyui-treegrid" title="商品类别" style="" toolbar="#toolbar" data-options="
+                iconCls: 'icon-ok',
+                rownumbers: true,
+                animate: true,
+                collapsible: true,
+                fitColumns: true,
+                url: '/Admin/GetProductTypeList',
+                method: 'get',
+                idField: 'id',
+                treeField: 'name'
+            ">
+
+
+                <thead>
+                    <tr>
+                        <th field="MenuID">
+                            编号
+                        </th>
+                        <th field="MenuName" width="50">
+                            分类名称
+                        </th>
+
+                        @*<th data-options="field:'id'" width="50">
+                        编号
+                    </th>
+                    <th data-options="field:'code',align:'left'" width="50">
+                        编码
+                    </th>
+                    <th data-options="field:'name'" width="150">
+                        名称
+                    </th>*@
+
+                    </tr>
+                </thead>
+            </table>
+            <div id="toolbar" style="padding-bottom: 5px;">
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-add" plain="true"
+                   onclick="add_fun()">添加</a><span class="datagrid-btn-separator"></span><a href="javascript:void(0)"
+                                                                                            class="easyui-linkbutton" iconcls="icon-edit" plain="true" onclick="edit_fun()">修改</a><span class="datagrid-btn-separator"></span> <a href="javascript:void(0)" class="easyui-linkbutton"
+                                                                                                                                                                                                                                  iconcls="icon-remove" plain="true" onclick="del_fun()">删除</a>
+            </div>
+</div>
+
+</div>
+<div id="dlg" class="easyui-dialog" style="width: 480px; height: 340px; padding: 10px 20px" closed="true" buttons="#dlg-buttons">
+    <div class="ftitle">
+        产品分类
+    </div>
+    <form id="fm" method="post" novalidate>
+        <input id="id" name="id" type="hidden" />
+        <div class="fitem">
+            <label>父类:</label>
+
+            <input class="easyui-combotree" onclick="SelectChange();" id="ParentId" name="ParentId" data-options="url:'/admin/Product/GetProductComboTreeJson',method:'get',required:true" style="width: 200px;" required="true">
+        </div>
+        <div class="fitem">
+            <label>
+                编码:
+            </label>
+            <input id="codeText" name="codeText" class="easyui-validatebox" disabled>
+            <input id="code" name="code" type="hidden" />
+        </div>
+        <div class="fitem">
+            <label>
+                名称:
+            </label>
+            <input id="name" name="name" class="easyui-validatebox" required="true">
+        </div>
+    </form>
+</div>
+<div id="dlg-buttons">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-ok" onclick="saveInfo()">
+        保存
+    </a> <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-cancel"
+            onclick="javascript:$('#dlg').dialog('close')">取消</a>
+</div>
+<script type="text/javascript">
+    function search() {
+
+        $('#dg').treegrid('load', {
+            KeyWord: '' + $("#KeyWord").val() + ''
+        });
+
+    }
+    function GetCommonCode(id) {
+        $.ajax({
+            type: "POST",
+            url: "/admin/Product/GetCommonCode?id=" + id,
+            dataType: "json",
+            success: function (data) {
+                $('#code').val(data.html);
+                $("#codeText").val(data.html);
+            }
+        });
+    }
+
+    function add_fun() {
+
+        GetCommonCode(0);
+        $('#ParentId').combotree({
+            url: '/admin/Product/GetProductComboTreeJson?id=0',
+            required: true,
+            onSelect: function (node) {
+                GetCommonCode(node.id)
+            }
+        });
+        $('#dlg').dialog('open').dialog('setTitle', '添加');
+        $('#fm').form('clear');
+        var row = $('#dg').datagrid('getSelected');
+        if (row) {
+            $('#ParentId').combotree('setValue', row.id);
+        }
+
+    }
+    function edit_fun() {
+        var row = $('#dg').datagrid('getSelected');
+        if (row) {
+            $('#ParentId').combotree({
+                url: '/admin/Product/GetProductComboTreeJson?id=' + row.id,
+                required: true,
+                onSelect: function (node) {
+                    $('#ParentId').combotree('disable');
+                }
+            });
+            $('#dlg').dialog('open').dialog('setTitle', '修改');
+            $('#fm').form('load', row);
+            $("#codeText").val(row.code);
+        } else {
+            $.messager.alert("提示", "请选择你要修改的数据")
+        }
+    }
+    function saveInfo() {
+        $.ajax({
+            type: "POST",
+            url: "/admin/Product/saveInfo",
+            dataType: "json",
+            data: $('#fm').serializeArray(), //serializeArray  serialize
+            beforeSend: function () {
+                return $('#fm').form('validate');
+            },
+            success: function (data) {
+                if (data.status == "1") {
+                    $('#dlg').dialog('close');
+                    $('#dg').treegrid('reload');
+                }
+                else {
+                    $.messager.show({
+                        title: 'Error',
+                        msg: data.msg
+                    });
+                }
+            }
+        });
+        return false;
+    }
+    function del_fun() {
+        var row = $('#dg').datagrid('getSelected');
+        if (row) {
+            $.messager.confirm('提示', '您确实要删除该数据吗?', function (r) {
+                if (r) {
+                    $.post('/admin/Product/DelInfo', { id: row.id }, function (result) {
+                        if (result.status == 1) {
+                            $('#dg').treegrid('reload');    // reload the user data
+                        } else {
+                            $.messager.show({    // show error message
+                                title: 'Error',
+                                msg: result.msg
+                            });
+                        }
+                    }, 'json');
+                }
+            });
+        }
+        else {
+            $.messager.alert("提示", "请选择你要删除的数据")
+        }
+    }
+</script>
+<style>
+    .ScrollBar {
+        overflow: auto;
+        background: #fff;
+    }
+
+    .checkbuttonOk {
+        margin: 5px;
+        width: auto;
+        border: solid 3px #6699cc;
+        height: 40px;
+        background: #F7F7F7;
+        float: left;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .checktext {
+        width: 70px;
+    }
+
+    .checktext {
+        float: left;
+        width: auto;
+        padding-left: 8px;
+        line-height: 40px;
+        text-align: center;
+    }
+
+        .checktext img {
+            vertical-align: middle;
+            padding-right: 3px;
+            padding-bottom: 3px;
+        }
+
+    .checkbuttonOk .triangleOk {
+        display: block;
+        height: 25px;
+        width: 25px;
+        float: right;
+        background: url('/Images/checkicon.png');
+    }
+
+    .checkbuttonOk {
+        cursor: pointer;
+    }
+
+    .checkbuttonNo {
+        margin: 5px;
+        width: auto;
+        border: solid 3px #ccc;
+        height: 40px;
+        background: #F7F7F7;
+        float: left;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    * {
+        font-size: 9pt;
+    }
+
+    .checkbuttonNo .triangleNo {
+        display: block;
+        height: 0px;
+        width: 0px;
+        border: 12.5px solid #ccc;
+        border-color: #F7F7F7 #F7F7F7 transparent transparent;
+        border-style: solid solid dashed dashed;
+        line-height: 0px;
+        float: right;
+    }
+
+    .checkbuttonNo {
+        margin: 5px;
+        width: auto;
+        border: solid 3px #ccc;
+        height: 40px;
+        background: #F7F7F7;
+        float: left;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
+
+
+
+

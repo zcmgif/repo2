@@ -1,0 +1,385 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FlowersModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="FLb">
+    <Key>
+      <PropertyRef Name="FLId" />
+    </Key>
+    <Property Name="FLId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="flname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Forum">
+    <Key>
+      <PropertyRef Name="FId" />
+    </Key>
+    <Property Name="FId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UId" Type="Int32" Nullable="false" />
+    <Property Name="messageText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fbtime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Goods">
+    <Key>
+      <PropertyRef Name="GId" />
+    </Key>
+    <Property Name="GId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Gpicture" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Gname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GOprice" Type="Double" />
+    <Property Name="Gprice" Type="Double" />
+    <Property Name="GFree" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Gintroduce" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Gnumber" Type="Double" />
+    <Property Name="GpNum" Type="Double" />
+    <Property Name="SId" Type="Int32" />
+    <Property Name="MenuID" Type="Int32" />
+    <Property Name="bigImgUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="MenuPage">
+    <Key>
+      <PropertyRef Name="MenuID" />
+    </Key>
+    <Property Name="MenuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MenuName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MenuType" Type="Int32" />
+    <Property Name="MenuURL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+    <Property Name="RootID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="orderId" />
+    </Key>
+    <Property Name="orderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GId" Type="Int32" />
+    <Property Name="UId" Type="Int32" />
+    <Property Name="Onum" Type="Double" />
+    <Property Name="Oprice" Type="Double" />
+    <Property Name="createTime" Type="DateTime" Precision="3" />
+    <Property Name="state" Type="Int32" />
+    <Property Name="dizhi" Type="Int32" />
+  </EntityType>
+  <EntityType Name="OrDetailId">
+    <Key>
+      <PropertyRef Name="orDetailId1" />
+    </Key>
+    <Property Name="orDetailId1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SId" Type="Int32" />
+    <Property Name="price" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="num" Type="Int32" />
+    <Property Name="total" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="createTime" Type="DateTime" Precision="3" />
+    <Property Name="GId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="PLb">
+    <Key>
+      <PropertyRef Name="PId" />
+    </Key>
+    <Property Name="PId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FId" Type="Int32" />
+    <Property Name="plnr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UId" Type="Int32" />
+    <Property Name="Pltime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="roleId" />
+    </Key>
+    <Property Name="roleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="roleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="createTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="S_City">
+    <Key>
+      <PropertyRef Name="CityID" />
+    </Key>
+    <Property Name="CityID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProvinceID" Type="Int64" />
+  </EntityType>
+  <EntityType Name="S_District">
+    <Key>
+      <PropertyRef Name="DistrictID" />
+    </Key>
+    <Property Name="DistrictID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DistrictName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CityID" Type="Int64" />
+  </EntityType>
+  <EntityType Name="S_Province">
+    <Key>
+      <PropertyRef Name="ProvinceID" />
+    </Key>
+    <Property Name="ProvinceID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProvinceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Shop">
+    <Key>
+      <PropertyRef Name="SId" />
+    </Key>
+    <Property Name="SId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Sname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Sintroduce" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="SURL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UId" />
+    </Key>
+    <Property Name="UId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Uname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Sex" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Pwd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Birthday" Type="DateTime" Precision="3" />
+    <Property Name="ImgUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="bankCard" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="roleId" Type="Int32" />
+    <Property Name="createTime" Type="DateTime" Precision="3" />
+    <Property Name="truename" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Ngoods">
+    <Key>
+      <PropertyRef Name="NId" />
+    </Key>
+    <Property Name="NId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nimg" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NJS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Nname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VAdress">
+    <Key>
+      <PropertyRef Name="ProvinceID" />
+      <PropertyRef Name="CityID" />
+      <PropertyRef Name="DistrictID" />
+    </Key>
+    <Property Name="ProvinceID" Type="Int64" Nullable="false" />
+    <Property Name="ProvinceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CityID" Type="Int64" Nullable="false" />
+    <Property Name="DistrictName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DistrictID" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VEmpRoLe">
+    <Key>
+      <PropertyRef Name="UId" />
+      <PropertyRef Name="Uname" />
+      <PropertyRef Name="Pwd" />
+      <PropertyRef Name="roleId" />
+    </Key>
+    <Property Name="UId" Type="Int32" Nullable="false" />
+    <Property Name="Uname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Pwd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="roleId" Type="Int32" Nullable="false" />
+    <Property Name="roleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VOrdel">
+    <Key>
+      <PropertyRef Name="Uname" />
+      <PropertyRef Name="UId" />
+      <PropertyRef Name="orDetailId" />
+      <PropertyRef Name="Sname" />
+    </Key>
+    <Property Name="Gpicture" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Gprice" Type="Double" />
+    <Property Name="Gintroduce" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Gnumber" Type="Double" />
+    <Property Name="GpNum" Type="Double" />
+    <Property Name="Uname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="bankCard" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UId" Type="Int32" Nullable="false" />
+    <Property Name="Expr1" Type="Int32" />
+    <Property Name="orDetailId" Type="Int32" Nullable="false" />
+    <Property Name="SId" Type="Int32" Nullable="false" />
+    <Property Name="price" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="num" Type="Int32" />
+    <Property Name="total" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="createTime" Type="DateTime" Precision="3" />
+    <Property Name="Expr2" Type="Int32" Nullable="false" />
+    <Property Name="Sname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Expr3" Type="Int32" />
+    <Property Name="Expr4" Type="Int32" />
+    <Property Name="Expr5" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Expr6" Type="Int32" />
+    <Property Name="Expr7" Type="DateTime" Precision="3" />
+    <Property Name="Gname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="FlowersEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="FLb" EntityType="Self.FLb" />
+    <EntitySet Name="Forum" EntityType="Self.Forum" />
+    <EntitySet Name="Goods" EntityType="Self.Goods" />
+    <EntitySet Name="MenuPage" EntityType="Self.MenuPage" />
+    <EntitySet Name="Order" EntityType="Self.Order" />
+    <EntitySet Name="OrDetailId" EntityType="Self.OrDetailId" />
+    <EntitySet Name="PLb" EntityType="Self.PLb" />
+    <EntitySet Name="Role" EntityType="Self.Role" />
+    <EntitySet Name="S_City" EntityType="Self.S_City" />
+    <EntitySet Name="S_District" EntityType="Self.S_District" />
+    <EntitySet Name="S_Province" EntityType="Self.S_Province" />
+    <EntitySet Name="Shop" EntityType="Self.Shop" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <EntitySet Name="Ngoods" EntityType="Self.Ngoods" />
+    <EntitySet Name="VAdress" EntityType="Self.VAdress" />
+    <EntitySet Name="VEmpRoLe" EntityType="Self.VEmpRoLe" />
+    <EntitySet Name="VOrdel" EntityType="Self.VOrdel" />
+    <EntitySet Name="dizhi" EntityType="FlowersModel.dizhi" />
+    <EntitySet Name="Orderminxi" EntityType="FlowersModel.Orderminxi" />
+    <EntitySet Name="Splb" EntityType="FlowersModel.Splb" />
+    <EntitySet Name="VshopCar" EntityType="FlowersModel.VshopCar" />
+    <EntitySet Name="Vsplb" EntityType="FlowersModel.Vsplb" />
+    <EntitySet Name="VOderminxi" EntityType="FlowersModel.VOderminxi" />
+    <EntitySet Name="VURser" EntityType="FlowersModel.VURser" />
+    <EntitySet Name="VForum" EntityType="FlowersModel.VForum" />
+    <EntitySet Name="VPLForum" EntityType="FlowersModel.VPLForum" />
+    <EntitySet Name="VUShop" EntityType="FlowersModel.VUShop" />
+    <EntitySet Name="VOrderSminxi" EntityType="FlowersModel.VOrderSminxi" />
+  </EntityContainer>
+  <EntityType Name="dizhi">
+    <Key>
+      <PropertyRef Name="adressid" />
+    </Key>
+    <Property Name="adressid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="uid" Type="Int32" />
+    <Property Name="adress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="newname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Orderminxi">
+    <Key>
+      <PropertyRef Name="minxiid" />
+    </Key>
+    <Property Name="minxiid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sid" Type="Int32" />
+    <Property Name="snum" Type="Int32" />
+    <Property Name="sprice" Type="Double" />
+    <Property Name="orderid" Type="Int32" />
+    <Property Name="isget" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Splb">
+    <Key>
+      <PropertyRef Name="splid" />
+    </Key>
+    <Property Name="splid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="neirong" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="uid" Type="Int32" />
+    <Property Name="gid" Type="Int32" />
+    <Property Name="pltime" Type="DateTime" Precision="3" />
+    <Property Name="state" Type="Int32" />
+  </EntityType>
+  <EntityType Name="VshopCar">
+    <Key>
+      <PropertyRef Name="orDetailId" />
+      <PropertyRef Name="UId" />
+    </Key>
+    <Property Name="orDetailId" Type="Int32" Nullable="false" />
+    <Property Name="GId" Type="Int32" />
+    <Property Name="num" Type="Int32" />
+    <Property Name="price" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="total" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="UId" Type="Int32" Nullable="false" />
+    <Property Name="Gpicture" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Gname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Gintroduce" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Gnumber" Type="Double" />
+    <Property Name="SId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Vsplb">
+    <Key>
+      <PropertyRef Name="GId" />
+      <PropertyRef Name="Uname" />
+    </Key>
+    <Property Name="GId" Type="Int32" Nullable="false" />
+    <Property Name="Gpicture" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Gname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Gprice" Type="Double" />
+    <Property Name="Gintroduce" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Gnumber" Type="Double" />
+    <Property Name="neirong" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="pltime" Type="DateTime" Precision="3" />
+    <Property Name="Uname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ImgUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="bigImgUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="bigImgUrl1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VOderminxi">
+    <Key>
+      <PropertyRef Name="minxiid" />
+    </Key>
+    <Property Name="minxiid" Type="Int32" Nullable="false" />
+    <Property Name="sid" Type="Int32" />
+    <Property Name="snum" Type="Int32" />
+    <Property Name="sprice" Type="Double" />
+    <Property Name="orderid" Type="Int32" />
+    <Property Name="UId" Type="Int32" />
+    <Property Name="isget" Type="Int32" />
+    <Property Name="Gpicture" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Gname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="state" Type="Int32" />
+  </EntityType>
+  <EntityType Name="VURser">
+    <Key>
+      <PropertyRef Name="Uname" />
+      <PropertyRef Name="UId" />
+    </Key>
+    <Property Name="Uname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UId" Type="Int32" Nullable="false" />
+    <Property Name="truename" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sex" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="roleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VForum">
+    <Key>
+      <PropertyRef Name="Uname" />
+      <PropertyRef Name="FId" />
+      <PropertyRef Name="UId" />
+    </Key>
+    <Property Name="Uname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FId" Type="Int32" Nullable="false" />
+    <Property Name="messageText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fbtime" Type="DateTime" Precision="3" />
+    <Property Name="ImgUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VPLForum">
+    <Key>
+      <PropertyRef Name="FId" />
+      <PropertyRef Name="PId" />
+      <PropertyRef Name="Uname" />
+    </Key>
+    <Property Name="FId" Type="Int32" Nullable="false" />
+    <Property Name="PId" Type="Int32" Nullable="false" />
+    <Property Name="plnr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UId" Type="Int32" />
+    <Property Name="Pltime" Type="DateTime" Precision="3" />
+    <Property Name="Uname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ImgUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VUShop">
+    <Key>
+      <PropertyRef Name="Sname" />
+      <PropertyRef Name="Uname" />
+      <PropertyRef Name="SId" />
+    </Key>
+    <Property Name="Sname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Uname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SId" Type="Int32" Nullable="false" />
+    <Property Name="Sintroduce" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="VOrderSminxi">
+    <Key>
+      <PropertyRef Name="minxiid" />
+      <PropertyRef Name="SId" />
+    </Key>
+    <Property Name="gid" Type="Int32" />
+    <Property Name="minxiid" Type="Int32" Nullable="false" />
+    <Property Name="snum" Type="Int32" />
+    <Property Name="sprice" Type="Double" />
+    <Property Name="Gname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Gnumber" Type="Int32" />
+    <Property Name="SId" Type="Int32" Nullable="false" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,260 @@
+﻿@model Flowers.Model.Users
+@{
+    Layout = "~/Views/Layout/_LayoutFlowerShop.cshtml";
+    ViewBag.Title = "首页";
+}
+<style>
+    #sidebar .sidebar_list li:hover {
+        background-color: #47621d;
+        border-radius: 6px;
+    }
+</style>
+
+<script type="text/javascript">
+    $(function () {
+        GetGoods();//加载商品
+        $("#AddshopCar").live('click', function () {
+            var parent = $(this).parent();
+            var gid = parent.attr("id");
+            //alert(gid);
+            location.href = "/FlowerShop/productdetail?gid=" + gid;
+            return false;
+        });
+
+        $("#AddshopCars").live('click', function () {
+            var parent = $(this).parent();
+            var gid = parent.attr("id");
+            //alert(gid);
+            location.href = "/FlowerShop/Addshopcar?gid=" + gid;
+            return false;
+        });
+        $("#searchbutton").click(function () {
+            var name = $("#keyword").val();
+            GetGoods2(name);
+        });
+
+    })
+    function GetGoods() {
+        $.ajax({
+            url: "/FlowerShop/GoodsVail",
+            type: 'GET',
+            dataType: 'json',
+            async: false,
+            success: function (data) {
+                $("#content_p").append(data);
+            },
+            error: function (mag) {
+                $("#content_p").append("无法获得数据！");
+            }
+        });
+        $.ajax({
+            url: "/FlowerShop/LuckyVail",
+            type: 'GET',
+            dataType: 'json',
+            async: false,
+            success: function (data) {
+                $("#content_Lucky").append(data);
+            },
+            error: function (mag) {
+                $("#content_Lucky").append("无法获得数据！");
+            }
+        });
+        $.ajax({
+            url: "/FlowerShop/CategoriesVail",
+            type: 'GET',
+            dataType: 'json',
+            async: false,
+            success: function (data) {
+                $("#Categories_list").append(data);
+            },
+            error: function (mag) {
+                $("#Categories_list").append("无法获得数据！");
+            }
+        });
+        $.ajax({
+            url: "/FlowerShop/sliderVail",
+            type: 'GET',
+            dataType: 'json',
+            async: false,
+            success: function (data) {
+                //alert(data);
+                $("#slider").append(data);
+            },
+            error: function (mag) {
+                $("#slider").append("无法获得数据！");
+            }
+        });
+    }
+    function GetGoods1(menuId) {
+        $("#content_p").empty();
+        $.ajax({
+            url: "/FlowerShop/GoodsVail1?menuId=" + menuId,
+            type: 'GET',
+            dataType: 'json',
+            async: false,
+            success: function (data) {
+                $("#content_p").append(data);
+            },
+            error: function (mag) {
+                $("#content_p").append("无法获得数据！");
+            }
+        });
+        var menuli = "#Menu" + menuId;
+        //alert($(".selectmenu").length);
+        if ($(".selectmenu").length > 0) {
+            $(".selectmenu").each(function () {
+                $(this).removeClass("selectmenu");
+            });
+        }
+        
+        $(menuli).addClass("selectmenu");
+        return false;
+    }
+
+    function GetGoods2(name) {
+        $("#content_p").empty();
+        $.ajax({
+            url: "/FlowerShop/GoodsVail2?name=" + name,
+            type: 'GET',
+            dataType: 'json',
+            async: false,
+            success: function (data) {
+                $("#content_p").append(data);
+            },
+            error: function (mag) {
+                $("#content_p").append("无法获得数据！");
+            }
+        });
+    }
+
+    function getnum(_url) {
+        var url =_url; //转向网页的地址;
+        var name = "加入购物车";                        //网页名称，可为空;
+        var iWidth = 500;                          //弹出窗口的宽度;
+        var iHeight = 200;                       //弹出窗口的高度;
+        //获得窗口的垂直位置
+        var iTop = (window.screen.availHeight - 30 - iHeight) / 2;
+        //获得窗口的水平位置
+        var iLeft = (window.screen.availWidth - 10 - iWidth) / 2;
+        var params = 'width=' + iWidth
+            + ',height=' + iHeight
+            + ',top=' + iTop
+            + ',left=' + iLeft
+            + ',channelmode=yes'//是否使用剧院模式显示窗口。默认为 no
+            + ',directories=yes'//是否添加目录按钮。默认为 yes
+            + ',fullscreen=no' //是否使用全屏模式显示浏览器
+            + ',location=no'//是否显示地址字段。默认是 yes
+            + ',menubar=no'//是否显示菜单栏。默认是 yes
+            + ',resizable=no'//窗口是否可调节尺寸。默认是 yes
+            + ',scrollbars=yes'//是否显示滚动条。默认是 yes
+            + ',status=yes'//是否添加状态栏。默认是 yes
+            + ',titlebar=yes'//默认是 yes
+            + ',toolbar=no'//默认是 yes
+            ;
+        window.open(url, name, params);
+    }
+</script>
+
+<div id="templatemo_wrapper_h">
+    <div id="templatemo_header_wh">
+        <div id="templatemo_header" class="header_home">
+            <div id="site_title"><a href="#" rel="nofollow">Flower Shop</a></div>
+            <div id="templatemo_menu" class="ddsmoothmenu">
+                <ul>
+                    <li>@Html.ActionLink("首页", "index", "FlowerShop", new { @class = "selected" })</li>
+                    <li>@Html.ActionLink("店铺", "About", "FlowerShop")</li>
+                    <li>
+                        @Html.ActionLink("论坛", "faqs", "FlowerShop")
+                        <ul>
+                            <li>@Html.ActionLink("查看论坛", "showForum", "FlowerShop")</li>
+                            <li>@Html.ActionLink("发布日志", "sendForum", "FlowerShop")</li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("发现新事物", "contact", "FlowerShop")</li>
+                    <li>@Html.ActionLink("购物车", "shoppingCart", "FlowerShop")</li>
+                    <li>
+                        @Html.ActionLink("我的", "products", "FlowerShop")
+                        <ul>
+                            <li>@Html.ActionLink("订单查看", "products", "FlowerShop")</li>
+                            <li>@Html.ActionLink("完善信息", "UserImprovement", "Home")</li>
+                            <li><a href="javascript:;" onclick="upEdit('/Home/UserEdit')">修改密码</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div id="templatemo_search">
+                    
+                        <input type="text" value="Site Search" name="keyword" id="keyword" title="keyword"
+                               onfocus="clearText(this)" onblur="clearText(this)" class="txt_field" />
+                        <input type="button" name="Search" value="" alt="Search" id="searchbutton" title="Search" class="sub_btn" />
+                    
+                </div>
+                <br style="clear: left" />
+            </div>
+
+
+            <div class="slider-wrapper theme-orman">
+                <div class="ribbon"></div>
+                <div id="slider" class="nivoSlider">
+                    <img src="~/Content/FlowerShop/images/portfolio/01.jpg" alt="slider image 1" />
+                    <a href="@Url.Action("shoppingCart","FlowerShop")" rel="nofollow">
+                        <img src="~/Content/FlowerShop/images/portfolio/02.jpg" alt="slider image 2" title="This is a beautiful flower" />
+                    </a>
+                    <img src="~/Content/FlowerShop/images/portfolio/03.jpg" alt="slider image 3" />
+                    <img src="~/Content/FlowerShop/images/portfolio/04.jpg" alt="slider image 4" title="#htmlcaption" />
+                    <img src="~/Content/FlowerShop/images/portfolio/05.jpg" alt="slider image 5" title="#htmlcaption" />
+                </div>
+                <div id="htmlcaption" class="nivo-html-caption">
+                    <strong>Example</strong> caption with @Html.ActionLink("a credit link", "shoppingCart", "FlowerShop")for <em>this slider</em>.
+                </div>
+            </div>
+            <script type="text/javascript" src="~/Content/FlowerShop/js/jquery-1.6.1.min.js"></script>
+            <script type="text/javascript" src="~/Content/FlowerShop/js/jquery.nivo.slider.pack.js"></script>
+            <script type="text/javascript">
+                $(window).load(function () {
+                    $('#slider').nivoSlider({
+                        controlNav: false
+                    });
+                });
+            </script>
+        </div> <!-- END of header -->
+    </div> <!-- END of header wrapper -->
+    <div id="templatemo_main_wrapper">
+        <div id="templatemo_main">
+            <div id="sidebar" class="left">
+                <div class="sidebar_box">
+                    <span class="bottom"></span>
+                    <h3>Categories</h3>
+                    <div class="content">
+                        <ul class="sidebar_list" id="Categories_list"></ul>
+                    </div>
+                </div>
+                <div class="sidebar_box">
+                    <span class="bottom"></span>
+                    <h3>Daily Lucky Flowers</h3>
+                    <div class="content special" id="content_Lucky">
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="content" class="right">
+                <h2>Welcome to Love Flower</h2>
+                <p>欢迎来到爱尚花坊，这里有兰有秀兮菊有芳，怀佳人兮不能忘的兰花和菊花，也有接天莲叶无穷碧，映日荷花别样红的荷花，更有梅定妒，菊应羞，画阑开处冠中秋的桂花。这里是爱好花卉朋友的天堂，也是增添我们生活色彩的花园，只要您喜欢，尽情享受色彩缤纷的世界！</p>
+
+                <div id="content_p">
+
+                </div>
+                <div class="blank_box">
+                    <a href="#"><img src="~/Content/FlowerShop/images/free_shipping.jpg" alt="Free Shipping" /></a>
+                </div>
+            </div>
+            <div class="cleaner"></div>
+        </div> <!-- END of main -->
+    </div> <!-- END of main wrapper -->
+
+    <div id="templatemo_footer_wrapper">
+        <div id="templatemo_footer">
+            <p class="p1">我的花草世界--爱尚花坊 @DateTime.Now</p>
+        </div> <!-- END of footer -->
+    </div> <!-- END of footer wrapper -->
+</div>

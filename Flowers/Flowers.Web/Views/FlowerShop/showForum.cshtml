@@ -1,0 +1,254 @@
+﻿@{
+    Layout = "~/Views/Layout/_LayoutFlowerShop.cshtml";
+    ViewBag.Title = "查看论坛";
+}
+<style type="text/css">
+    .luntan {
+        width: 100%;
+        height: 250px;
+        background-color: rgb(65,88,27);
+        padding: 15px 5px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+    }
+
+    .pl_img img {
+        width: 30px;
+        height: 30px;
+        border: 1px solid;
+        border-color: aliceblue;
+        float: left;
+        margin-right: 10px;
+        margin-left: 5px;
+    }
+
+    .fbxd {
+        font-size: 18px;
+        line-height: 28px;
+        margin: 10px;
+        display: inherit;
+    }
+
+    .pinglun {
+        margin-left: 15px;
+    }
+
+        .pinglun img {
+            width: 26px;
+            height: 26px;
+            border: 1px solid;
+            border-color: aliceblue;
+            float: left;
+            margin-right: 10px;
+            margin-left: 5px;
+        }
+
+    .pl_right .p_a {
+        font-size: 14px;
+    }
+
+    .pl_right p {
+        font-size: 16px;
+        padding-left: 15px;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        getgoods();//加载论坛
+        $("[name='plbuttom']").each(function () {
+            $(this).click(function () {
+                var fid = $(this).attr("id");
+                //alert(fid);
+                $.ajax({
+                    type: "POST",
+                    url: "/FlowerShop/deleteForum?fid=" + fid,
+                    dataType: "json",
+                    beforeSend: function () {
+                    },
+                    success: function (strjson) {
+                        if (strjson.status == 1) {
+                            alert("删除成功！");
+                            location.href = "/FlowerShop/showForum";
+                        } else {
+                            alert(strjson.msg);
+                            clearform();
+                        }
+                        return false;
+                    }
+                })
+            });
+        });
+    })
+    function getgoods() {
+        $.ajax({
+            url: "/FlowerShop/addownluntan",
+            type: 'GET',
+            dataType: 'json',
+            async: false,
+            success: function (data) {
+                //alert(data);
+                $("#templdata").append(data);
+            },
+            error: function (mag) {
+                $("#templdata").append("无法获得数据！");
+            }
+        });
+    }
+</script>
+<div id="templatemo_wrapper_sp">
+    <div id="templatemo_header_wsp">
+        <div id="templatemo_header" class="header_subpage">
+            <div id="site_title"><a href="#" rel="nofollow">Flower Shop</a></div>
+            <div id="templatemo_menu" class="ddsmoothmenu">
+                <ul>
+                    <li>@Html.ActionLink("首页", "index", "FlowerShop")</li>
+                    <li>@Html.ActionLink("店铺", "About", "FlowerShop")</li>
+                    <li>
+                        @Html.ActionLink("论坛", "faqs", "FlowerShop", new { @class = "selected" })
+                        <ul>
+                            <li>@Html.ActionLink("查看论坛", "showForum", "FlowerShop")</li>
+                            <li>@Html.ActionLink("发布日志", "sendForum", "FlowerShop")</li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("发现新事物", "contact", "FlowerShop")</li>
+                    <li>@Html.ActionLink("购物车", "shoppingCart", "FlowerShop")</li>
+                    <li>
+                        @Html.ActionLink("我的", "products", "FlowerShop")
+                        <ul>
+                            <li>@Html.ActionLink("订单查看", "products", "FlowerShop")</li>
+                            <li>@Html.ActionLink("完善信息", "UserImprovement", "Home")</li>
+                            <li><a href="javascript:;" onclick="upEdit('/Home/UserEdit')">修改密码</a></li>
+                        </ul>
+                    </li>
+                </ul>
+               
+                <br style="clear: left" />
+            </div>
+
+
+        </div> <!-- END of header -->
+    </div> <!-- END of header wrapper -->
+    <div id="templatemo_main_wrapper">
+        <div id="templatemo_main">
+            <h2>show Forum</h2>
+            <div id="templdata">
+
+            </div>
+            @*<div class="luntan">
+            <div class="pl_img"><img src="~/Content/FlowerShop/images/login.png" />&nbsp;&nbsp;<h4 style="float:left;">张小凡:</h4></div>
+            <div class="cleaner"></div>
+            <p class="fbxd">&nbsp;&nbsp;&nbsp;买和交流心得；同时在这里为了使登陆时用户感觉到不同的视觉效果而使用supersized插件来实现背景图片的轮番转换,在相同的间隔时间内依次转换&nbsp;&nbsp;&nbsp;<a href="#">删除</a></p>
+            <hr />
+            <div class="pinglun">
+                <div class="pl_left"><img src="~/Content/FlowerShop/images/login.png" /></div>
+                <div class="pl_right">
+                    <p class="p_a"><span>1楼</span> 评论时间: @DateTime.Now</p>
+                    <p>
+                        里设置密码时若两次输入密码不同则
+                        <a href="#">删除</a>
+                        <input id="Button1" type="button" value="回复" class="btnRely btn-primary" />
+                    </p>
+                    <div class="reply">
+                        <ul id="pp">
+                            <li>ddddddddddddddd</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="pinglun">
+                <div class="pl_left"><img src="~/Content/FlowerShop/images/login.png" /></div>
+                <div class="pl_right">
+                    <p class="p_a"><span>2楼</span> 评论时间: @DateTime.Now</p>
+                    <p>
+                        里设置密码时若两次输入密码不同则
+                        <a href="#">删除</a>
+                        <input id="Button1" type="button" value="回复" class="btnRely btn-primary" />
+                    </p>
+                    <div class="reply">
+                        <ul id="pp">
+                            <li>ddddddddddddddd</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="pinglun">
+                <div class="pl_left"><img src="~/Content/FlowerShop/images/login.png" /></div>
+                <div class="pl_right">
+                    <p class="p_a"><span>3楼</span> 评论时间: @DateTime.Now</p>
+                    <p>
+                        里设置密码时若两次输入密码不同则
+                        <a href="#">删除</a>
+                        <input id="Button1" type="button" value="回复" class="btnRely btn-primary" />
+                    </p>
+                    <div class="reply">
+                        <ul id="pp">
+                            <li>ddddddddddddddd</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="luntan">
+            <div class="pl_img"><img src="~/Content/FlowerShop/images/login.png" />&nbsp;&nbsp;<h4 style="float:left;">张小凡:</h4></div>
+            <div class="cleaner"></div>
+            <p class="fbxd">&nbsp;&nbsp;&nbsp;买和交流心得；同时在这里为了使登陆时用户感觉到不同的视觉效果而使用supersized插件来实现背景图片的轮番转换,在相同的间隔时间内依次转换&nbsp;&nbsp;&nbsp;<a href="#">删除</a></p>
+            <hr />
+            <div class="pinglun">
+                <div class="pl_left"><img src="~/Content/FlowerShop/images/login.png" /></div>
+                <div class="pl_right">
+                    <p class="p_a"><span>1楼</span> 评论时间: @DateTime.Now</p>
+                    <p>
+                        里设置密码时若两次输入密码不同则
+                        <a href="#">删除</a>
+                        <input id="Button1" type="button" value="回复" class="btnRely btn-primary" />
+                    </p>
+                    <div class="reply">
+                        <ul id="pp">
+                            <li>ddddddddddddddd</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="pinglun">
+                <div class="pl_left"><img src="~/Content/FlowerShop/images/login.png" /></div>
+                <div class="pl_right">
+                    <p class="p_a"><span>2楼</span> 评论时间: @DateTime.Now</p>
+                    <p>
+                        里设置密码时若两次输入密码不同则
+                        <a href="#">删除</a>
+                        <input id="Button1" type="button" value="回复" class="btnRely btn-primary" />
+                    </p>
+                    <div class="reply">
+                        <ul id="pp">
+                            <li>ddddddddddddddd</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="pinglun">
+                <div class="pl_left"><img src="~/Content/FlowerShop/images/login.png" /></div>
+                <div class="pl_right">
+                    <p class="p_a"><span>3楼</span> 评论时间: @DateTime.Now</p>
+                    <p>
+                        里设置密码时若两次输入密码不同则
+                        <a href="#">删除</a>
+                        <input id="Button1" type="button" value="回复" class="btnRely btn-primary" />
+                    </p>
+                    <div class="reply">
+                        <ul id="pp">
+                            <li>ddddddddddddddd</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+        </div> <!-- END of main -->
+    </div> <!-- END of main wrapper -->
+
+    <div id="templatemo_footer_wrapper">
+        <div id="templatemo_footer">
+            <p class="p1">我的花草世界--爱尚花坊 @DateTime.Now</p>
+        </div> <!-- END of footer -->
+    </div> <!-- END of footer wrapper -->
+</div>

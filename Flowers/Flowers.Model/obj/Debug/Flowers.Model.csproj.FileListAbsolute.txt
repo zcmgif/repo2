@@ -1,0 +1,11 @@
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.Model\bin\Debug\Flowers.Model.dll.config
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.Model\bin\Debug\Flowers.Model.dll
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.Model\bin\Debug\Flowers.Model.pdb
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.Model\bin\Debug\EntityFramework.dll
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.Model\bin\Debug\EntityFramework.xml
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.Model\obj\Debug\Flowers.Model.csprojAssemblyReference.cache
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.Model\obj\Debug\Flowers.Model.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.Model\obj\Debug\Flowers.Model.csproj.CopyComplete
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.Model\obj\Debug\Flowers.Model.dll
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.Model\obj\Debug\Flowers.Model.pdb

@@ -1,0 +1,231 @@
+﻿ div{font-size:13px;
+ color:#333333;}
+.hiddenelement {
+display: none;
+}
+
+/*清除浮动*/
+.clearfix:after { content:"."; display:block; height:0; clear:both; visibility:hidden; } 
+.clearfix { display:inline-block; }
+.clearfix {display:block;} 
+.clear {clear:both;}
+.clearstatic {clear:both;line-height:1px;font-size:1px;padding:0px;border:0px;}
+
+/*上传文件控件样式表_开始*/
+.uploadcontainer {color: #666666;padding-top:10px;}
+/*按钮样式*/
+.uploadcontainer .swfuploadbutton {margin-top: 10px;margin-bottom: 10px;text-align: center;}
+/*按钮样式1*/
+.uploadcontainer .swfuploadbutton1 {text-align: center;line-height:10px;font-size:9px;min-height:10px;_height:10px;}
+/*列表样式*/
+.uploadcontainer .uploadlist {border: #e4e4e4 1px solid;padding-top: 5px;clear: both;padding-left: 5px;padding-right: 1px;}
+/*列表项样式*/
+.uploadcontainer .uploadlist .uploaditem {clear: both;line-height: 22px;padding-top: 5px;padding-bottom: 5px;}
+/*编号*/
+.uploadcontainer .uploadlist .uploaditem .rowindex {padding-left: 3px;padding-right: 6px;width:12px;float:left;font-weight:bold;}
+/*文件名*/
+.uploadcontainer .uploadlist .uploaditem .filename {width:239px;padding-right:15px;float:left;}
+/*文件大小*/
+.uploadcontainer .uploadlist .uploaditem .filesize {width:60px;float:left;}
+/*文件状态*/
+.uploadcontainer .uploadlist .uploaditem .filestatus {width:90px;float:left;}
+/*标题*/
+.uploadcontainer .uploadlist .uploaditem .title {color:#999999;width:39px;float:left;margin-top:3px;}
+/*标题1*/
+.uploadcontainer .uploadlist .uploaditem .title1 {color:#999999;width:75px;float:left;margin-top:3px;}
+/*更新文件名*/
+.uploadcontainer .uploadlist .uploaditem .filenewname {float:left;}
+/*浏览权限*/
+.uploadcontainer .uploadlist .uploaditem .viewpermission {color:#999999;float:left;}
+/*对外公开*/
+.uploadcontainer .uploadlist .uploaditem .forinternet {width:70px;float:left;}
+/*仅对学友会成员公开*/
+.uploadcontainer .uploadlist .uploaditem .onlyforgroup {width:150px;float:left;}
+/*操作区*/
+.uploadcontainer .uploadlist .uploaditem .operate {	float:left;	text-align:center;}
+/*文本框样式*/
+.uploadcontainer .uploadlist .uploaditem .input {width: 180px;height: 17px; padding-left:2px; padding-top:4px; color: #666666;font-size: 12px;margin-right:5px;}
+/*上传成功图标*/
+.uploadcontainer .uploadlist .uploaditem .uploadfinished {background: url("/images/upimg/pass.gif") no-repeat scroll left center;font-weight: normal;padding: 4px 0px 3px 18px;}
+/*上传失败图标*/
+.uploadcontainer .uploadlist .uploaditem .uploadfailed {background: url("/images/upimg/fail.png") no-repeat scroll left center;font-weight: normal;padding: 4px 0px 3px 18px;}
+/*验证中图标*/
+.uploadcontainer .uploadlist .uploaditem .validitying {background: url("/images/upimg/validitying.png") no-repeat scroll left center;font-weight: normal;padding: 4px 0px 3px 18px;}
+/*下移图标*/
+.uploadcontainer .uploadlist .uploaditem .down {background: url("/images/upimg/down.gif") no-repeat scroll left center;font-weight: normal;padding: 0px 0 5px 16px;cursor:pointer;}
+/*上移图标*/
+.uploadcontainer .uploadlist .uploaditem .up {background: url("/images/upimg/up.gif") no-repeat scroll left center;font-weight: normal;padding: 0px 0 5px 16px;cursor:pointer;}
+/*删除图标*/
+.uploadcontainer .uploadlist .uploaditem .delete {background: url("/images/upimg/delete.gif") no-repeat scroll left center;font-weight: normal;padding: 0px 0 5px 16px;cursor:pointer;}
+/*进度条背景色*/
+.uploadcontainer .progressbarbgcolor {background-color: #a68343;}
+/*进度条边框色*/
+.uploadcontainer .progressbarbordercolor {border: #999999 1px solid;}
+/*单个文件上传进度条样式*/
+.uploadcontainer .uploadlist .uploaditem .uploadschedulein {height: 6px;line-height: 6px;font-size: 0px;}
+.uploadcontainer .uploadlist .uploaditem .uploadscheduleout {width: 40px;height: 6px;float: left;line-height: 6px;margin-top: 8px;font-size: 0px;}
+/*文件上传状态*/
+.uploadcontainer .uploadstatus {margin-top:10px;line-height:20px;}
+/*文件上传总进度条样式*/
+.uploadcontainer .uploadscheduletotalin {height: 12px;line-height: 12px;font-size: 0px;}
+.uploadcontainer .uploadscheduletotalout {width: 110px;height: 12px;float: left;line-height: 12px;margin-top: 3px;font-size: 0px;}
+/*总进度*/
+.uploadcontainer .uploadstatus .title {float:left;width:52px;}
+.uploadcontainer .uploadstatus .schedule {float:left;width:200px;}
+.uploadcontainer .uploadstatus .percentage {float:left;margin-left:5px;}
+/*已上传*/
+.uploadcontainer .uploadstatus .uploaded {width:150px; float:left;}
+/*上传速度*/
+.uploadcontainer .uploadstatus .speed {width:150px;float:left;}
+
+/*剩余时间*/
+.uploadcontainer .totalschedule .timer {float:left;}
+.uploadarea {margin-left:15px;margin-right:10px;} 
+.uploadarea .uploadstep1 {background:url('http://www.sato.com.cn/images/themes/elearning/uc/images/uploadstep1.gif') no-repeat; width:697px; height:38px; margin-top:5px;}
+.uploadarea .uploadstep2 {background:url('http://www.sato.com.cn/images/themes/elearning/uc/images/uploadstep2.gif') no-repeat; width:697px; height:38px; margin-top:5px;}
+.uploadarea .uploadstep3 {background:url('http://www.sato.com.cn/images/themes/elearning/uc/images/uploadstep3.gif') no-repeat; width:697px; height:38px; margin-top:5px;}
+.uploadarea .info1 {position:absolute; padding-top:8px; padding-left:40px; color:#333; font-size:14px;}
+.uploadarea .info2 {position:absolute; padding-top:8px; padding-left:285px; color:#333; font-size:14px;}
+.uploadarea .info3 {position:absolute; padding-top:8px; padding-left:520px; color:#333; font-size:14px;}
+.uploadarea .infoselected {color:#FFF; font-weight:bold;}
+.uploadarea .buttonsection {padding-top:40px; padding-left:225px; width:450px;}
+.uploadarea .fontsection {padding-left:225px; padding-top:15px;font-family:微软雅黑;}
+.uploadarea .fontsection .tip1 {color:#999;}
+.uploadarea .fontsection .tip2 {color:#999; padding-left:35px;}
+.uploadarea .donesection {padding-top:40px; padding-left:200px; width:450px;background:url('http://www.sato.com.cn/images/themes/elearning/uc/images/yes.gif') no-repeat 105px 30px;}
+.uploadarea .donesection .desc {padding-top:15px;}
+.uploadarea .donesection .title {font-size:30px; font-family:微软雅黑; padding-top:30px;}
+.uploadarea .donesection .tip {color:#999; width:400px;}
+.uploadarea .donebottom {padding-top:30px;}
+.uploadarea .donebottom .title {padding-bottom:15px;}
+.uploadarea .donebottom .buttonsection {text-align:center; padding-top:20px;}
+.uploadarea .donebottom .buttonsection input {margin-right:20px;}
+
+.uploadarea .contentbox {width:200px;}
+.uploadarea .contentbox .title {font-weight:bold; color:#666; padding-bottom:5px; font-size14px;}
+.uploadarea .contentbox .row {padding-top:10px;}
+.separatesolid2 {clear:both;line-height:1px;font-size:1px;padding:0px;border:0px;border-bottom:#C9C9C9 1px solid;}
+.separatesolid3 {clear:both;line-height:1px;font-size:1px;padding:0px;border:0px;border-bottom:#E4E4E4 1px solid;}
+
+.uploadarea .uploadbtn {text-align:center;}
+.uploadarea .floatleft {margin-right:15px;float:left;}
+.uploadarea p.title {background-image:none;padding:0px;font-size:14px;font-weight:bold;}
+.uploadarea .boxtitle {width:187px;height:26px;line-height:26px;background:url(images/boxtitle.png) left top no-repeat;text-align:center;font-weight:bold;margin-top:5px;}
+.uploadarea .box {width:159px;border:#DADADA 1px solid;border-top:0px;padding:5px 15px 10px 10px;}
+.uploadimage {width:532px;height:184px;border:0px;margin-left:150px;background:url('/images/upimg/uploadinfo.png') left top no-repeat;}
+
+.uploadarea input.btnselectknowledge {margin:0px;padding:0px;border:0px;width:146px;height:41px;line-height:39px;*line-height:41px;text-align:center;color:#FFF;background:url('http://www.sato.com.cn/images/themes/elearning/uc/images/button01.gif') left top no-repeat;cursor:pointer;font-size:16px;padding-bottom:1px;*padding-bottom:0px; font-family:微软雅黑;}
+.uploadarea input.btnuploadok {margin:0px;padding:0px;border:0px;width:146px;height:41px;line-height:39px;*line-height:41px;text-align:center;color:#FFF;background:url('http://www.sato.com.cn/images/themes/elearning/uc/images/button02.gif') left top no-repeat;cursor:pointer;font-size:16px;padding-bottom:1px;*padding-bottom:0px; font-family:微软雅黑;}
+
+/*上传须知****Begin*/
+.UploadFileBeKnow {line-height:20px;padding:10px;background:#F8F8F8; border:#E4E4E4 1px solid; margin-top:10px; width:700px;}
+.UploadFileBeKnow .header {font-size:14px;margin-bottom:10px;color:#666;background:url('/images/upimg/help.gif') no-repeat left center;padding-left:18px;padding-top:6px;padding-bottom:2px;}
+.UploadFileBeKnow p {padding-left: 10px;font-size: 12px;background: url('/images/upimg/icons.gif') no-repeat -200px -118px;margin: 6px 0px 6px 10px; color:#333;}
+.UploadFileBeKnow Table {margin-top: 0px;margin-left: 30px;color:#333;}
+.UploadFileBeKnow td {padding-right: 0px;padding-left: 0px;padding-bottom: 5px;padding-top: 4px;}
+.UploadFileBeKnow td.r {padding-right: 5px;font-size: 12px;text-align: right;width:100px;_width:100px;*width:100px;}
+.UploadFileBeKnow td .icon {vertical-align: middle;}
+.UploadFileBeKnow .icon {padding-right: 5px;padding-left: 10px;font-size: 12px;background: url('/images/upimg/icons.gif') no-repeat 0px 0px;padding-bottom: 0px;cursor: default;padding-top: 0px;zoom: 1;}
+.UploadFileBeKnow .hot {padding-right: 10px;background-position: -34px -30px;padding-left: 10px;padding-bottom: 2px;padding-top: 2px;}
+.UploadFileBeKnow .new {padding-right: 10px;background-position: -2px -30px;padding-left: 10px;padding-bottom: 2px;padding-top: 2px;}
+.UploadFileBeKnow .xls {background-position: -105px 2px;}
+.UploadFileBeKnow .xlsx {background-position: -105px 2px;}
+.UploadFileBeKnow .ppt {background-position: -139px 3px;}
+.UploadFileBeKnow .pptx {background-position: -139px 3px;}
+.UploadFileBeKnow .doc {background-position: -72px 2px;}
+.UploadFileBeKnow .docx {background-position: -72px 2px;}
+.UploadFileBeKnow .txt {background-position: -38px 2px;}
+.UploadFileBeKnow .pdf {background-position: 0px 2px;}
+.UploadFileBeKnow .vsd {background-position: -173px 2px;}
+.UploadFileBeKnow .rtf {background-position: -140px -25px;}
+.UploadFileBeKnow .pot {background-position: -209px -27px;}
+.UploadFileBeKnow .pps {background-position: -209px 2px;}
+.UploadFileBeKnow .wps {background-position: -106px -26px;}
+.UploadFileBeKnow .et {background-position: -73px -26px;}
+.UploadFileBeKnow .dps {background-position: -174px -27px;}
+.UploadFileBeKnow .dl { background-position: -202px -70px;}
+.UploadFileBeKnow .image { background: url('/images/upimg/image.gif') no-repeat left center;}
+.UploadFileBeKnow .video { width:16px; height:16px; padding-left:5px; padding-right:0px; background: url('/images/upimg/video.gif') no-repeat left center;}
+.UploadFileBeKnow .audio { width:16px; height:16px; padding-left:5px; padding-right:0px; background: url('/images/upimg/audio.gif') no-repeat left center;}
+/*******上传须知****end********/
+/*上传文件控件样式表_结束*/
+
+/*多附件控件*/
+ul.attachmentfile {float: left;list-style: none;padding: 0;	margin-top: 3px;margin-right: 3px;margin-bottom: 3px;margin-left:0px;width: 100%;display: block;border: 0px;width: auto;}
+ul.attachmentfile li {float: left;line-height: 20px;margin: 0px;margin-right: 5px;padding-left:3px;padding-right:3px;}
+ul.attachmentfile li.edit {float: left;text-align: center;min-width:65px;}
+ul.attachmentfile li a {text-decoration: none;color: #0033CC;color: #3B5998;margin-left:-1px;font-size: 12px;height: auto;}
+ul.attachmentfile li a:hover {color: #ef6e09;text-decoration: underline;}
+ul.attachmentfile li.edit a {text-decoration: none;color: #3B5998;padding-left: 18px;background-image: url(images/attachment.gif);background-position: left center;background-repeat: no-repeat;padding-top:3px;padding-bottom:3px;}
+ul.attachmentfile li.edit a:hover {color: #ef6e09;text-decoration: underline;}
+/*多附件控件*/
+
+/*上传附件控件样式表_开始*/
+.uploadattachmentcontainer{color: #666666;}
+.uploadattachmentcontainer .containerrow{overflow:hidden;}
+.uploadattachmentcontainer .containerleft{float:left;}
+.uploadattachmentcontainer .containerright{float:left;}
+/*按钮样式*/
+.uploadattachmentcontainer .swfuploadbutton{background: url("/images/upimg/attach.png") no-repeat scroll left center;margin-left:0px;padding-left:16px;text-align: center;}
+.uploadattachmentcontainer .swfuploadbutton_image{background: url("/images/upimg/image.png") no-repeat scroll left center;margin-left:0px;padding-left:16px;text-align: center;}
+.uploadattachmentcontainer .swfuploadbutton_video{background: url("/images/upimg/video.png") no-repeat scroll left center;margin-left:0px;padding-left:16px;text-align: center;}
+/*列表样式*/
+.uploadattachmentcontainer .uploadlist{border: #e4e4e4 0px solid;clear: both;padding-left: 5px;padding-right: 1px;}
+/*列表项样式*/
+.uploadattachmentcontainer .uploadlist .uploaditem{clear: both;line-height: 18px;padding-bottom: 5px;}
+/*编号*/
+.uploadattachmentcontainer .uploadlist .uploaditem .rowindex{padding-left: 3px;width:auto;float:left;font-weight:bold;}
+/*文件名*/
+.uploadattachmentcontainer .uploadlist .uploaditem .filename{width:auto;padding-right:15px;float:left;}
+/*文件大小*/
+.uploadattachmentcontainer .uploadlist .uploaditem .filesize{width:auto;padding-right:15px;float:left;}
+/*文件状态*/
+.uploadattachmentcontainer .uploadlist .uploaditem .filestatus{width:auto;padding-right:5px;float:left;}
+/*操作区*/
+.uploadattachmentcontainer .uploadlist .uploaditem .operate{float:left;text-align:center;}
+/*上传成功图标*/
+.uploadattachmentcontainer .uploadlist .uploaditem .uploadfinished{background: url("/images/upimg/pass.gif") no-repeat scroll left center;font-weight: normal;padding: 3px 0px 3px 18px;}
+/*上传失败图标*/
+.uploadattachmentcontainer .uploadlist .uploaditem .uploadfailed{background: url("/images/upimg/fail.png") no-repeat scroll left center;font-weight: normal;padding: 3px 0px 3px 18px;}
+/*验证中图标*/
+.uploadattachmentcontainer .uploadlist .uploaditem .validitying{background: url("/images/upimg/validitying.png") no-repeat scroll left center;font-weight: normal;padding: 4px 0px 5px 18px;}
+/*删除图标*/
+.uploadattachmentcontainer .uploadlist .uploaditem .delete{background: url("/images/upimg/delete.gif") no-repeat scroll left center;font-weight: normal;padding: 3px 0 5px 16px;cursor:pointer;}
+/*进度条背景色*/
+.uploadattachmentcontainer .progressbarbgcolor{background-color: #a68343;}
+/*进度条边框色*/
+.uploadattachmentcontainer .progressbarbordercolor{border: #999999 1px solid;}
+/*单个文件上传进度条样式*/
+.uploadattachmentcontainer .uploadlist .uploaditem .uploadschedulein{height: 6px;line-height: 6px;font-size: 0px;}
+.uploadattachmentcontainer .uploadlist .uploaditem .uploadscheduleout{width: 40px;height: 6px;float: left;line-height: 6px;margin-top: 5px;font-size: 0px;}
+/*文件上传状态*/
+.uploadattachmentcontainer .uploadstatus{margin-top:10px;line-height:20px;}
+/*文件上传总进度条样式*/
+.uploadattachmentcontainer .uploadscheduletotalin{height: 12px;line-height: 12px;font-size: 0px;}
+.uploadattachmentcontainer .uploadscheduletotalout{width: 110px;height: 12px;float: left;line-height: 12px;margin-top: 3px;font-size: 0px;}
+/*总进度*/
+.uploadattachmentcontainer .uploadstatus .title{float:left;width:50px;}
+.uploadattachmentcontainer .uploadstatus .schedule{float:left;width:200px;}
+.uploadattachmentcontainer .uploadstatus .percentage{float:left;margin-left:5px;}
+/*已上传*/
+.uploadattachmentcontainer .uploadstatus .uploaded{width:150px;float:left;}
+
+/*上传速度*/
+.uploadattachmentcontainer .uploadstatus .speed{width:150px;float:left;}
+
+/*剩余时间*/
+.uploadattachmentcontainer .totalschedule .timer{float:left;}
+/*上传附件控件样式表_结束*/
+
+
+/*上传图片控件样式表_开始*/
+.uploadimagecontainer{text-align:center;}
+.uploadimagecontainer .containerrow{clear:both;overflow:hidden;}
+.uploadimagecontainer .containerimage{border-left:#e4e4e4 1px solid;border-right:#e4e4e4 1px solid;border-top:#e4e4e4 1px solid;border-bottom:#e4e4e4 1px solid;margin-bottom:2px;}
+.uploadimagecontainer .containertext{}
+/*上传图片控件样式表_结束*/
+
+
+div.formedit .editcontent .edit_upload {}
+div.formedit .editcontent .edit_upload .editarea {float:left;}
+div.formedit .editcontent .edit_upload .uplaodarea {float:right;padding-right:20px;}

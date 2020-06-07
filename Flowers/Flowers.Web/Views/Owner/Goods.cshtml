@@ -1,0 +1,189 @@
+﻿@{
+    ViewBag.Title = "Goods";
+    Layout = "~/Views/Layout/_LayoutAdminPage.cshtml";
+}
+@section Head{
+    <link href="~/css/themes/default/easyui.css" rel="stylesheet" type="text/css" />
+    <link href="/css/themes/icon.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jquery.easyui-1.3.6.min.js" type="text/javascript"></script>
+    <script src="/Scripts/easyui-lang-zh_CN.js" type="text/javascript"></script>
+}
+@*<script>
+    $(function () {
+        GetGoods();
+    })
+    function GetGoods() {
+        $.ajax({
+            url: "/Owner/GetGoodsList",
+            type: 'GET',
+            dataType: 'json',
+            async: false,
+            success: function (data) {
+                $("#shoptable").append(data);
+            },
+            error: function (mag) {
+                $("#shoptable").append("无法获得数据！");
+            }
+        });
+    }
+</script>*@
+<div id="tb" data-options="region:'center',title:'',iconCls:'icon-book'" style="padding: 10px;
+    height: auto;">
+    <!-------------------------------搜索框----------------------------------->
+    <fieldset style="border-width: 2px; border-style: solid; padding-bottom: 5px; border-color: #95B8E7">
+        <legend>信息查询</legend>
+        <form id="ffSearch" method="post">
+            <div style="margin-bottom: 5px">
+                <label for="txtName">
+                    &nbsp;&nbsp;关键字：
+                </label>
+                <input type="text" id="KeyWord" name="KeyWord" style="width: 100px" />&nbsp;&nbsp;&nbsp;
+
+                <input id="Button1" type="button" value="查询" style="cursor: pointer;" class="easyui-linkbutton1"
+                       onclick="search()" />
+            </div>
+        </form>
+    </fieldset>
+    <!-------------------------------详细信息展示表格----------------------------------->
+</div>
+<table id="dg" title="商品列表" class="easyui-datagrid" style="" url="/Owner/GetGoodsList"
+       toolbar="#toolbar" pagination="true" rownumbers="true" fitcolumns="true" singleselect="true">
+    <thead>
+        <tr>
+
+            <th field="Gname" width="50">
+               商品名称
+            </th>
+            <th field="Gprice" width="50">
+                价格
+            </th>
+            <th field="Gnumber" width="50">
+                库存量
+            </th>
+            <th field="GpNum" width="50">
+                售卖量
+            </th>
+
+        </tr>
+    </thead>
+
+</table>
+
+
+<script type="text/javascript">
+
+
+    function search() {
+        $('#dg').datagrid('load', {
+            KeyWord: '' + $("#KeyWord").val() + ''
+        });
+    }
+    function del_fun() {
+        var row = $('#dg').datagrid('getSelected');
+        if (row) {
+            $.messager.confirm('提示', '您确实要删除该数据吗?', function (r) {
+                if (r) {
+
+                    $.post('/admin/Admin/DelUser', { id: row.UserID }, function (result) {
+                        if (result.status == 1) {
+                            $('#dg').datagrid('reload');    // reload the user data
+                        } else {
+                            $.messager.show({    // show error message
+                                title: 'Error',
+                                msg: result.msg
+                            });
+                        }
+                    }, 'json');
+                }
+            });
+        }
+        else {
+            $.messager.alert("提示", "请选择你要删除的数据")
+        }
+    }
+    var url;
+
+    function SetUserRole() {
+        var row = $('#dg').datagrid('getSelected');
+        if (row) {
+            $('#dlg').dialog('open').dialog('setTitle', 'New User');
+            $('#fm').form('clear');
+            $("#UserName").val(row.Uname); $("#UserID").val(row.UId);
+            $.ajax({
+                type: "POST", dataType: "json", url: "/admin/Basic/GetUserRoleList?UserID=" + row.UserID,
+                data: $('#fm').serializeArray(), //serializeArray  serialize
+                success: function (data) {
+                    $.each(data, function (index, item) {
+                        //                        alert(item.RoleID);
+                        $("input[name='RoleID'][value='" + item.RoleID + "']").attr("checked", "checked");
+                    });
+                }
+            });
+        } else {
+            $.messager.alert("提示", "请选择你要修改的数据")
+        }
+
+    }
+    function SetUserRight() {
+        var row = $('#dg').datagrid('getSelected');
+        if (row) {
+            //            window.parent.addTabByID("用户权限设置", "/admin/right/UserMenuRight?UserID=" + row.UserID);
+            window.location = "/admin/right/UserMenuRight?UserID=" + row.UserID;
+
+        } else {
+            $.messager.alert("提示", "请选择你要修改的数据")
+        }
+    }
+    function AddUser() {
+        window.location = "/admin/Basic/UserlistAdd";
+
+    }
+    function UPDATEUser() {
+        var row = $('#dg').datagrid('getSelected');
+        if (row) {
+            window.location = "/admin/Basic/UserlistEdit?id=" + row.UserID;
+        }
+        else {
+            $.messager.alert("提示", "请选择你要修改的数据")
+        }
+    }
+
+    $(document).ready(function () {
+        $("#dg").datagrid({
+            onDblClickRow: function (row) {  //easyui封装好的时间（被单机行的索引，被单击行的值）
+                var row = $('#dg').datagrid('getSelected');
+                if (row) {
+                    window.location.href = "/admin/Basic/UserlistEdit?id=" + row.UserID + "&display=none";
+                } else {
+                    $.messager.alert("提示", "请选择你要查看的数据")
+                }
+            }
+        });
+    });
+
+
+
+
+    function saveUserRole() {
+
+        $.ajax({
+            type: "POST", dataType: "json", url: "/admin/Basic/SaveUserRole",
+            data: $('#fm').serializeArray(), //serializeArray  serialize
+            success: function (data) {
+                if (data.status == "1") {
+                    $.messager.show({ title: '提示', msg: "修改成功" });
+                    $('#dlg').dialog('close');
+                    $('#dg').datagrid('reload');
+                }
+                else {
+                    $.messager.show({ title: 'Error', msg: data.msg });
+                }
+            }
+        });
+    }
+
+</script>
+
+
+
+

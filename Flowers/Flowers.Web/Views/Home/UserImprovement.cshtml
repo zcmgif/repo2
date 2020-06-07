@@ -1,0 +1,321 @@
+﻿@model Flowers.Model.VAdress
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>爱尚花坊-完善信息</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/Login1.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/assets/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/assets/css/supersized.css" />
+
+    <script type="text/javascript" src="~/Script/js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="~/Script/js/supersized.3.2.7.min.js"></script>
+    <script type="text/javascript" src="~/Script/js/supersized-init.js"></script>
+    <script type="text/javascript" src="~/Script/js/scripts.js"></script>
+    <script type="text/javascript" src="~/Script/js/Login.js"></script>
+    <script type="text/javascript" src="~/Script/email.js"></script>
+    <style type="text/css">
+        #touImg{
+            margin-top:30px;
+        }
+        #submitPic{
+            width:100px;
+            height:33px;
+            color:#000;
+
+        }
+    </style>
+    <script>
+        
+        $(function () {
+            var id =@ViewBag.UId;
+            var Imgurl = "";
+            //三级联动
+            GetProvince(); //加载省份
+            //GetCity();
+            $("#Dprovince").change(function () {
+                GetCity();
+            });
+            $("#DCity").change(function () {
+                GetDistry();
+            });
+            //上传头像
+            var picString = "";
+            $("#picAjax").change(function (e) {
+                var file = e.delegateTarget.files[0];
+                if (file.type == 'image/jpeg' || file.type == 'image/png') {
+                    $("#uploadInfo").text("格式正确");
+                    var reader = new FileReader();
+                    reader.readAsDataURL(file);
+                    reader.onload = function (ret) {
+                        picString = reader.result;
+                        //alert(picString);
+                        //预览图片
+                        $("#selImg").attr({ "src": picString });
+                    }
+                }
+                else {
+                    $("#uploadInfo").text("请上传jpg或png格式的图片！");
+                }
+            });
+            
+            $("#submitPic").click(function () {
+                
+                if (picString != "") {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Home/SavePicture",
+                        data: { "picString": picString},
+                        dataType: "json",
+                        beforeSend: function () {
+                        },
+                        success: function (strjson) {
+                            if (strjson.status == 1) {
+                                //alert(strjson.msg);
+                                Imgurl= strjson.msg;
+                                //alert(Imgurl);
+                                $("#uploadInfo").text("上传成功");
+                              
+                            } else {
+                                alert(strjson.msg);
+                                clearform();
+                            }
+                            return false;
+                        }
+                    })
+                }
+            });
+            
+
+            //正则检验电话
+            $("#phone").blur(function () {
+                var phone = $(this).val();
+                if (!(/^1[3|4|5|8][0-9]\d{4,8}$/.test(phone))) {
+                    alert("不是正确的11位手机号或者市正确的7位座机号！")
+                    $(this).val() = "";
+                    return false;
+                    $(this).focus();
+                 
+                }
+            });
+            //检验邮箱
+            $("#email").blur(function () {
+                
+                var email = $(this).val();
+                var remail = getEamil(email);
+                if (!remail) {
+                    alert("不是正确的邮箱地址！")
+                    $(this).val() = "";
+                    return false;
+                    $(this).focus();
+                   
+                }
+            });
+            //检验银行卡号
+            $("#BankCard").blur(function () {
+                var pattern = /^([1-9]{1})(\d{14}|\d{18})$/;
+                var str = $(this).val().replace(/\s+/g, "");
+                if (!pattern.test(str)) {
+                    alert("不是正确的银行卡号！")
+                    $(this).val() = "";
+                    return false;
+                    $(this).focus();
+                    
+                }
+            });
+
+           //表单提交
+            $("#btnsubmit").live('click', function () {
+                
+                var str = "";
+                var user = $("#UserName").val();
+                var calendar = $("#calendar").val();
+                var calendar1 = calendar.substring(0, 10);
+                //alert(calendar.substring(0,10));
+                var sex;
+                if ($("#boyname").prop("checked") == true) {
+                    sex = "男";
+                }
+                else {
+                    sex = "女";
+                }
+                var bankcard = $("#BankCard").val();
+
+                var province = document.getElementById("Dprovince");
+                var provinceindex = province.selectedIndex;
+                var provincetexts = province.options[provinceindex].text;
+                str += provincetexts;
+                var city = document.getElementById("DCity");
+                var cityindex = city.selectedIndex;
+                var citytexts = city.options[cityindex].text;
+                str += citytexts;
+                var distry = document.getElementById("DDistry");
+                var distryindex = distry.selectedIndex;
+                var distrytexts = distry.options[distryindex].text;
+                str += distrytexts;
+                
+
+                var phone = $("#phone").val();
+                var email = $("#email").val();
+                if (bankcard == "") {
+                    alert("银行卡号不能为空"); $("#BankCard").focus();
+                    return false;
+                }
+                if (phone == "") {
+                    alert("电话号码不能为空"); $("#phone").focus();
+                    return false;
+                }
+                if (str == "") {
+                    alert("地址不能为空！"); $("#Dprovince").focus();
+                    return false;
+                }
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/UserImprovementVail",
+                    dataType: "json",
+                    data: { "UserName": user, "calendar1": calendar1, "sex": sex, "bankcard": bankcard, "str": str, "phone": phone, "email": email, "id": id, "Imgurl": Imgurl},
+                    beforeSend: function () {
+                    },
+                    success: function (strjson) {
+                        if (strjson.status == 1) {
+                            //location.href = "/admin";
+                            alert("完善信息成功！");
+                            location.href = "/Home/Login";
+                        } else {
+                            alert(strjson.msg);
+                        }
+                        return false;
+                    }
+                });
+                return false;
+            });
+
+
+            $("#back").click(function () {
+                location.href = "/FlowerShop/index";
+            });
+        });
+     
+        function clearform() {
+            $("#UserName").val("");
+            $("#Password").val(""); $("#VailCode").val("");
+            }
+        //加载省
+        function GetProvince() {
+            $.getJSON(
+                "/Home/GetProvincelist",
+                function (data) {
+                    $.each(data, function (i, item) {
+                        $("<option></option>").val(item["ProvinceID"]).text(item["ProvinceName"]).appendTo($("#Dprovince"));
+                    })
+                });
+            GetCity();
+        }
+        //加载城市
+        function GetCity() {
+            $("#DCity").empty();
+            $.getJSON(
+                "/Home/GetCitylist",
+                { pid: $("#Dprovince").val() },
+                function (data) {
+                    $.each(data, function (i, item) {
+                        $("<option></option>").val(item["CityID"]).text(item["CityName"]).appendTo($("#DCity"));
+
+                    })
+                });
+            GetDistry();
+        }
+        //加载镇
+        function GetDistry() {
+            $("#DDistry").empty();
+            $.getJSON(
+                "/Home/GetDistrylist",
+                { cid: $("#DCity").val() },
+                function (data) {
+                    $.each(data, function (i, item) {
+                        $("<option></option>").val(item["DistrictID"]).text(item["DistrictName"]).appendTo($("#DDistry"));
+
+                    })
+                });
+        }
+
+
+    </script>
+</head>
+<body>
+    <div class="page-container">
+            <h1>完善信息</h1>
+            <!--注册开始-->
+
+            <div id="reg_box">
+                <div class="my-group" id="touImg">
+
+                    <div class="leftImage">
+                        <img id="selImg" src="" alt="" />
+                        
+                    </div>
+                    <div class="rightImage">
+
+                        <input type="button" id="submitPic" class="customButton" value="上传" />
+                        <input type="file" id="picAjax" width="150px;" class="customButton" />
+                        <span id="uploadInfo"></span>
+                    </div>
+                    
+                </div>
+                <div class="my-group">
+                    <span class="left">姓名</span>
+                    <input type="text" id="UserName" name="UserName" data-ng-options="required:true" class="username" placeholder="请输入真实姓名" />
+                </div>
+                <div class="my-group">
+                    <span class="left">生日</span>
+                    @*<input type="text" id="Birthday" name="Birthday" class="username" placeholder="请输入用您的生日" />*@
+                    @*<div placeholder="请输入用您的生日" max="2200-01-01" id="calendar"></div>*@
+                    <input type="datetime-local" id="calendar" class="username" placeholder="请输入您的生日" />
+                </div>
+                <div class="my-group">
+                    <span class="left">性别</span>
+                    <span class="sexname">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="sex" checked id="boyname" value="男" />男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" name="sex" checked id="girlname" value="女" />女
+                    </span>
+                </div>
+                <div class="my-group">
+                    <span class="left">所在城市</span>
+                    <select id="Dprovince" name="Dprovince">
+                        <option>==请选择==</option>
+                    </select>
+                    <select id="DCity" name="DCity">
+                        <option>==请选择==</option>
+                    </select>
+                    <select id="DDistry" name="DDistry">
+                        <option>==请选择==</option>
+                    </select>
+                </div>
+                <div class="my-group">
+                    <span class="left">银行卡号</span>
+                    <input id="BankCard" name="BankCard" class="username" data-ng-options="required:true,validType:'minLength[20]'" placeholder="请输入银行卡号" />
+                </div>
+                <div class="my-group">
+                    <span class="left">手机</span>
+                    <input type="tel" name="phone" id="phone" class="username" placeholder="手机" maxlength="11" />
+                </div>
+
+                <div class="my-group">
+                    <span class="left">邮箱</span>
+                    <input type="email" name="email" id="email" class="username" placeholder="邮箱" />
+                </div>
+                <div class="form-actions">
+                    <button id="btnsubmit" type="button" value="确定">确定</button>
+                    <button id="back" type="button" value="取消">取消</button>
+                </div>
+            </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+﻿
+<link rel="stylesheet" href="/Content/js/lovey/style/css/lovey.css?__V=1387455242901"
+      type="text/css" />
+<!--OA自定义样式-->
+<link rel="stylesheet" href="/Content/custom_style/custom.css?__V=1387455242901"
+      type="text/css" />
+<link rel="stylesheet" href="/Content/custom_style/custom_oa.css?__V=1387455242901"
+      type="text/css" />
+<!-- 暂时将jquery放在head中，因为jsp标签使用了 $(document).ready -->
+<!--jquery核心js文件-->
+
+
+<script src="/Content/js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+<!--懒加载核心js文件-->
+<script type="text/javascript" src="/Content/js/lovey/js/easyloader.js?__V=1387455242901">
+</script>
+<!-- 加载公用的js -->
+<script type="text/javascript" src="/Content/js/oa/base/commfunction_jquery.js?__V=1378462010000">
+</script>
+<script type="text/javascript">
+    //判断当前页面是否被Iframe集成
+    easyloader.isIframe = (window != top);
+    //校验组件
+    easyloader.hideFormError = true;
+    //启用SNS风格，动态程序在高层页面全局设定
+    easyloader.dialogCssName = "dialog_style02";
+    easyloader.URI = "";
+    easyloader.allowClose = false; //success对话框,去除关闭按钮
+    var isIe6 = navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion.split(";")[1].replace(/[ ]/g, "") == "MSIE6.0";
+    var isShowQueryArea = false;  //查询区域默认为展开
+
+    //刷新制定tab
+    function refresh() {
+        navtab.reload(navtab.getSelectedTabItemID());
+    }
+
+</script>

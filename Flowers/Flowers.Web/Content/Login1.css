@@ -1,0 +1,63 @@
+﻿/*Common For Max*/
+@media only screen and (max-width:1900px){
+    .side_box {
+        width: 300px;
+        height: 300px;
+        text-align: center;
+        background-color: darkred;
+        line-height: 300px;
+        font-family: cursive;
+        font-size: 26px;
+        float: right;
+        margin: -450px 50px 0 100px;
+    }
+}
+
+/*Common For Max 960*/
+@media only screen and (max-width: 1199px) {
+    .side_box {
+        width: 200px;
+        height: 200px;
+        line-height: 200px;
+        font-size: 18px;
+        margin: -450px 80px 0 80px;
+    }
+
+}
+/*Common For Max 768*/
+@media only screen and (max-width: 959px) {
+    .side_box {
+        width: 150px;
+        height: 150px;
+        line-height: 150px;
+        font-size: 14px;
+        margin: -450px 30px 0 60px;
+    }
+}
+
+/*Common For Max 480*/
+@media only screen and (max-width: 773px) {
+    .side_box {
+        float:none !important;
+        text-align: center;
+        background-color:transparent !important;
+        font-size: 18px;
+        width:100% !important;
+        line-height:20px;
+        margin:20px 0 0 0;
+    }
+}
+
+
+/*Common For Max 320*/
+@media only screen and (max-width: 479px) {
+    .side_box {
+        width: 100% !important;
+        float: none !important;
+        text-align: center;
+        background-color: none;
+        font-size: 18px;
+        line-height:20px;
+        margin:20px 0 0 0;
+    }
+}

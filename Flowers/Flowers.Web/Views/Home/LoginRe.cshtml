@@ -1,0 +1,98 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>爱尚花坊-寻找密码</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/Login1.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/assets/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/assets/css/supersized.css" />
+
+    <script type="text/javascript" src="~/Script/js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="~/Script/js/supersized.3.2.7.min.js"></script>
+    <script type="text/javascript" src="~/Script/js/supersized-init.js"></script>
+    <script type="text/javascript" src="~/Script/js/scripts.js"></script>
+    <script type="text/javascript" src="~/Script/js/Login.js"></script>
+    <script>
+        $(function () {
+            $("#btnsubmit").live('click', function () {
+                var user = $("#UserName").val();
+                var Password = $("#Password").val();
+                //var VailCode = $("#VailCode").val();
+                if (user == "") {
+                    alert("用户名不能为空"); $("#UserName").focus();
+                    return false;
+                }
+                if (Password == "") {
+                    alert("密码不能为空"); $("#Password").focus();
+                    return false;
+                }
+                //if (VailCode == "") {
+                //    alert("验证码不能为空"); $("#VailCode").focus();
+                //    return false;
+                //}
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/LoginVail",
+                    dataType: "json",
+                    data: { "UserName": user, "Password": Password, "VailCode": $("#VailCode").val() },
+                    beforeSend: function () {
+                    },
+                    success: function (strjson) {
+                        if (strjson.status == 1) {
+                            //alert("管理员，登陆成功！");
+                            location.href = "/Admin/Index";
+                        } else if (strjson.status == 2) {
+                            //alert("店铺商家，登陆成功！");
+                            location.href = "/Owner/Index";
+                        }
+                        else if (strjson.status == 3) {
+                           // alert("普通用户，登陆成功！");
+                            location.href = "/FlowerShop/index";
+                        }
+                        else {
+                            alert(strjson.msg);
+                        }
+                        return false;
+                    }
+                });
+                return false;
+            });
+        });
+        function clearform() {
+            $("#UserName").val("");
+            $("#Password").val(""); $("#VailCode").val("");
+        }
+        function LoginDanDian() {
+            if ($("#cb_clause").prop("checked") == false) {
+                $("#btnsubmit").attr("disabled", true);
+            }
+            else {
+                $("#btnsubmit").attr("disabled", false);
+            }
+
+        }
+
+    </script>
+</head>
+<body>
+    <div class="page-container">
+        <h1>Login</h1>
+        <form action="/" class="ffo1" method="post">
+            <input type="text" id="UserName" name="UserName" class="username" placeholder="Username">
+            <input type="text" id="Password" name="Password" class="password" placeholder="phone">
+            <button type="submit" id="btnsubmit">确定</button>
+            <a href="javascript:;" onclick="upEdit('/Home/PwdEdit')">修改密码</a>
+        </form>
+        <div class="connect">
+
+        </div>
+    </div>
+</body>
+</html>

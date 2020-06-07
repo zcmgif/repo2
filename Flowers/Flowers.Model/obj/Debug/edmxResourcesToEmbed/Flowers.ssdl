@@ -1,0 +1,525 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FlowersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="dizhi">
+    <Key>
+      <PropertyRef Name="adressid" />
+    </Key>
+    <Property Name="adressid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="uid" Type="int" />
+    <Property Name="adress" Type="nvarchar" MaxLength="50" />
+    <Property Name="phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="newname" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="FLb">
+    <Key>
+      <PropertyRef Name="FLId" />
+    </Key>
+    <Property Name="FLId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="flname" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Forum">
+    <Key>
+      <PropertyRef Name="FId" />
+    </Key>
+    <Property Name="FId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UId" Type="int" Nullable="false" />
+    <Property Name="messageText" Type="nvarchar(max)" />
+    <Property Name="fbtime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Goods">
+    <Key>
+      <PropertyRef Name="GId" />
+    </Key>
+    <Property Name="GId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Gpicture" Type="nvarchar" MaxLength="50" />
+    <Property Name="Gname" Type="nvarchar" MaxLength="50" />
+    <Property Name="GOprice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Gprice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="GFree" Type="nvarchar" MaxLength="50" />
+    <Property Name="Gintroduce" Type="nvarchar" MaxLength="100" />
+    <Property Name="Gnumber" Type="int" />
+    <Property Name="GpNum" Type="int" />
+    <Property Name="SId" Type="int" />
+    <Property Name="MenuID" Type="int" />
+    <Property Name="bigImgUrl" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="MenuPage">
+    <Key>
+      <PropertyRef Name="MenuID" />
+    </Key>
+    <Property Name="MenuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MenuName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MenuType" Type="int" />
+    <Property Name="MenuURL" Type="nvarchar" MaxLength="500" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="RootID" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“Flowers.dbo.Ngoods”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="Ngoods">
+    <Key>
+      <PropertyRef Name="NId" />
+    </Key>
+    <Property Name="NId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nimg" Type="nvarchar" MaxLength="50" />
+    <Property Name="NJS" Type="nvarchar(max)" />
+    <Property Name="Nname" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="orderId" />
+    </Key>
+    <Property Name="orderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UId" Type="int" />
+    <Property Name="Onum" Type="float" />
+    <Property Name="Oprice" Type="float" />
+    <Property Name="state" Type="int" />
+    <Property Name="dizhi" Type="int" />
+    <Property Name="createTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Orderminxi">
+    <Key>
+      <PropertyRef Name="minxiid" />
+    </Key>
+    <Property Name="minxiid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sid" Type="int" />
+    <Property Name="snum" Type="int" />
+    <Property Name="sprice" Type="float" />
+    <Property Name="orderid" Type="int" />
+    <Property Name="isget" Type="int" />
+  </EntityType>
+  <EntityType Name="OrDetailId">
+    <Key>
+      <PropertyRef Name="orDetailId" />
+    </Key>
+    <Property Name="orDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GId" Type="int" />
+    <Property Name="price" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="num" Type="int" />
+    <Property Name="total" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="createTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PLb">
+    <Key>
+      <PropertyRef Name="PId" />
+    </Key>
+    <Property Name="PId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FId" Type="int" />
+    <Property Name="plnr" Type="nvarchar(max)" />
+    <Property Name="UId" Type="int" />
+    <Property Name="Pltime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="roleId" />
+    </Key>
+    <Property Name="roleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="roleName" Type="nvarchar" MaxLength="50" />
+    <Property Name="createTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="S_City">
+    <Key>
+      <PropertyRef Name="CityID" />
+    </Key>
+    <Property Name="CityID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ProvinceID" Type="bigint" />
+  </EntityType>
+  <EntityType Name="S_District">
+    <Key>
+      <PropertyRef Name="DistrictID" />
+    </Key>
+    <Property Name="DistrictID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DistrictName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CityID" Type="bigint" />
+  </EntityType>
+  <EntityType Name="S_Province">
+    <Key>
+      <PropertyRef Name="ProvinceID" />
+    </Key>
+    <Property Name="ProvinceID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProvinceName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Shop">
+    <Key>
+      <PropertyRef Name="SId" />
+    </Key>
+    <Property Name="SId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Sintroduce" Type="nvarchar" MaxLength="500" />
+    <Property Name="SURL" Type="nvarchar" MaxLength="50" />
+    <Property Name="UId" Type="int" />
+  </EntityType>
+  <EntityType Name="Splb">
+    <Key>
+      <PropertyRef Name="splid" />
+    </Key>
+    <Property Name="splid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="neirong" Type="nvarchar" MaxLength="500" />
+    <Property Name="uid" Type="int" />
+    <Property Name="gid" Type="int" />
+    <Property Name="pltime" Type="datetime" />
+    <Property Name="state" Type="int" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UId" />
+    </Key>
+    <Property Name="UId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Uname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="truename" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sex" Type="nvarchar" MaxLength="50" />
+    <Property Name="Pwd" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Birthday" Type="datetime" />
+    <Property Name="ImgUrl" Type="nvarchar" MaxLength="50" />
+    <Property Name="bankCard" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="roleId" Type="int" />
+    <Property Name="createTime" Type="datetime" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“Flowers.dbo.VAdress”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="VAdress">
+    <Key>
+      <PropertyRef Name="ProvinceID" />
+      <PropertyRef Name="CityID" />
+      <PropertyRef Name="DistrictID" />
+    </Key>
+    <Property Name="ProvinceID" Type="bigint" Nullable="false" />
+    <Property Name="ProvinceName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CityName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CityID" Type="bigint" Nullable="false" />
+    <Property Name="DistrictName" Type="nvarchar" MaxLength="50" />
+    <Property Name="DistrictID" Type="bigint" Nullable="false" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“Flowers.dbo.VEmpRoLe”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="VEmpRoLe">
+    <Key>
+      <PropertyRef Name="UId" />
+      <PropertyRef Name="Uname" />
+      <PropertyRef Name="Pwd" />
+      <PropertyRef Name="roleId" />
+    </Key>
+    <Property Name="UId" Type="int" Nullable="false" />
+    <Property Name="Uname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Pwd" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="roleId" Type="int" Nullable="false" />
+    <Property Name="roleName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“Flowers.dbo.VForum”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="VForum">
+    <Key>
+      <PropertyRef Name="Uname" />
+      <PropertyRef Name="FId" />
+      <PropertyRef Name="UId" />
+    </Key>
+    <Property Name="Uname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FId" Type="int" Nullable="false" />
+    <Property Name="messageText" Type="nvarchar(max)" />
+    <Property Name="fbtime" Type="datetime" />
+    <Property Name="ImgUrl" Type="nvarchar" MaxLength="50" />
+    <Property Name="UId" Type="int" Nullable="false" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“Flowers.dbo.VOderminxi”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="VOderminxi">
+    <Key>
+      <PropertyRef Name="minxiid" />
+    </Key>
+    <Property Name="minxiid" Type="int" Nullable="false" />
+    <Property Name="sid" Type="int" />
+    <Property Name="snum" Type="int" />
+    <Property Name="sprice" Type="float" />
+    <Property Name="orderid" Type="int" />
+    <Property Name="UId" Type="int" />
+    <Property Name="isget" Type="int" />
+    <Property Name="state" Type="int" />
+    <Property Name="Gname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Gpicture" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“Flowers.dbo.VOrdel”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="VOrdel">
+    <Key>
+      <PropertyRef Name="Uname" />
+      <PropertyRef Name="UId" />
+      <PropertyRef Name="Sname" />
+    </Key>
+    <Property Name="Uname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="bankCard" Type="nvarchar" MaxLength="50" />
+    <Property Name="UId" Type="int" Nullable="false" />
+    <Property Name="Expr2" Type="int" Nullable="false" />
+    <Property Name="Expr3" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Expr4" Type="int" />
+    <Property Name="Expr5" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Expr6" Type="int" />
+    <Property Name="Expr7" Type="datetime" />
+    <Property Name="Sname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Gpicture" Type="nvarchar" MaxLength="50" />
+    <Property Name="Gprice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Gintroduce" Type="nvarchar" MaxLength="100" />
+    <Property Name="Gnumber" Type="int" />
+    <Property Name="GpNum" Type="int" />
+    <Property Name="Gname" Type="nvarchar" MaxLength="50" />
+    <Property Name="SId" Type="int" Nullable="false" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“Flowers.dbo.VOrderSminxi”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="VOrderSminxi">
+    <Key>
+      <PropertyRef Name="minxiid" />
+      <PropertyRef Name="SId" />
+    </Key>
+    <Property Name="gid" Type="int" />
+    <Property Name="minxiid" Type="int" Nullable="false" />
+    <Property Name="snum" Type="int" />
+    <Property Name="sprice" Type="float" />
+    <Property Name="Gname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Gnumber" Type="int" />
+    <Property Name="SId" Type="int" Nullable="false" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“Flowers.dbo.VPLForum”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="VPLForum">
+    <Key>
+      <PropertyRef Name="FId" />
+      <PropertyRef Name="PId" />
+      <PropertyRef Name="Uname" />
+    </Key>
+    <Property Name="FId" Type="int" Nullable="false" />
+    <Property Name="PId" Type="int" Nullable="false" />
+    <Property Name="plnr" Type="nvarchar(max)" />
+    <Property Name="UId" Type="int" />
+    <Property Name="Pltime" Type="datetime" />
+    <Property Name="Uname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ImgUrl" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“Flowers.dbo.VshopCar”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="VshopCar">
+    <Key>
+      <PropertyRef Name="orDetailId" />
+      <PropertyRef Name="UId" />
+    </Key>
+    <Property Name="orDetailId" Type="int" Nullable="false" />
+    <Property Name="GId" Type="int" />
+    <Property Name="num" Type="int" />
+    <Property Name="price" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="total" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="UId" Type="int" Nullable="false" />
+    <Property Name="Gpicture" Type="nvarchar" MaxLength="50" />
+    <Property Name="Gname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Gintroduce" Type="nvarchar" MaxLength="100" />
+    <Property Name="Gnumber" Type="float" />
+    <Property Name="SId" Type="int" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“Flowers.dbo.Vsplb”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="Vsplb">
+    <Key>
+      <PropertyRef Name="Uname" />
+      <PropertyRef Name="GId" />
+    </Key>
+    <Property Name="neirong" Type="nvarchar" MaxLength="500" />
+    <Property Name="pltime" Type="datetime" />
+    <Property Name="Uname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ImgUrl" Type="nvarchar" MaxLength="50" />
+    <Property Name="GId" Type="int" Nullable="false" />
+    <Property Name="Gpicture" Type="nvarchar" MaxLength="50" />
+    <Property Name="Gname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Gprice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Gintroduce" Type="nvarchar" MaxLength="100" />
+    <Property Name="Gnumber" Type="int" />
+    <Property Name="bigImgUrl" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“Flowers.dbo.VURser”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="VURser">
+    <Key>
+      <PropertyRef Name="Uname" />
+      <PropertyRef Name="UId" />
+    </Key>
+    <Property Name="Uname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UId" Type="int" Nullable="false" />
+    <Property Name="truename" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sex" Type="nvarchar" MaxLength="50" />
+    <Property Name="roleName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“Flowers.dbo.VUShop”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="VUShop">
+    <Key>
+      <PropertyRef Name="Sname" />
+      <PropertyRef Name="Uname" />
+      <PropertyRef Name="SId" />
+    </Key>
+    <Property Name="Sname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Uname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SId" Type="int" Nullable="false" />
+    <Property Name="Sintroduce" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityContainer Name="FlowersModelStoreContainer">
+    <EntitySet Name="dizhi" EntityType="Self.dizhi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FLb" EntityType="Self.FLb" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Forum" EntityType="Self.Forum" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Goods" EntityType="Self.Goods" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MenuPage" EntityType="Self.MenuPage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Orderminxi" EntityType="Self.Orderminxi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrDetailId" EntityType="Self.OrDetailId" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PLb" EntityType="Self.PLb" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="S_City" EntityType="Self.S_City" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="S_District" EntityType="Self.S_District" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="S_Province" EntityType="Self.S_Province" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Shop" EntityType="Self.Shop" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Splb" EntityType="Self.Splb" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ngoods" EntityType="Self.Ngoods" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[Ngoods].[NId] AS [NId], 
+[Ngoods].[Nimg] AS [Nimg], 
+[Ngoods].[NJS] AS [NJS], 
+[Ngoods].[Nname] AS [Nname]
+FROM [dbo].[Ngoods] AS [Ngoods]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VAdress" EntityType="Self.VAdress" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[VAdress].[ProvinceID] AS [ProvinceID], 
+[VAdress].[ProvinceName] AS [ProvinceName], 
+[VAdress].[CityName] AS [CityName], 
+[VAdress].[CityID] AS [CityID], 
+[VAdress].[DistrictName] AS [DistrictName], 
+[VAdress].[DistrictID] AS [DistrictID]
+FROM [dbo].[VAdress] AS [VAdress]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VEmpRoLe" EntityType="Self.VEmpRoLe" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[VEmpRoLe].[UId] AS [UId], 
+[VEmpRoLe].[Uname] AS [Uname], 
+[VEmpRoLe].[Pwd] AS [Pwd], 
+[VEmpRoLe].[roleId] AS [roleId], 
+[VEmpRoLe].[roleName] AS [roleName]
+FROM [dbo].[VEmpRoLe] AS [VEmpRoLe]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VForum" EntityType="Self.VForum" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[VForum].[Uname] AS [Uname], 
+[VForum].[FId] AS [FId], 
+[VForum].[messageText] AS [messageText], 
+[VForum].[fbtime] AS [fbtime], 
+[VForum].[ImgUrl] AS [ImgUrl], 
+[VForum].[UId] AS [UId]
+FROM [dbo].[VForum] AS [VForum]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VOderminxi" EntityType="Self.VOderminxi" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[VOderminxi].[minxiid] AS [minxiid], 
+[VOderminxi].[sid] AS [sid], 
+[VOderminxi].[snum] AS [snum], 
+[VOderminxi].[sprice] AS [sprice], 
+[VOderminxi].[orderid] AS [orderid], 
+[VOderminxi].[UId] AS [UId], 
+[VOderminxi].[isget] AS [isget], 
+[VOderminxi].[state] AS [state], 
+[VOderminxi].[Gname] AS [Gname], 
+[VOderminxi].[Gpicture] AS [Gpicture]
+FROM [dbo].[VOderminxi] AS [VOderminxi]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VOrdel" EntityType="Self.VOrdel" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[VOrdel].[Uname] AS [Uname], 
+[VOrdel].[bankCard] AS [bankCard], 
+[VOrdel].[UId] AS [UId], 
+[VOrdel].[Expr2] AS [Expr2], 
+[VOrdel].[Expr3] AS [Expr3], 
+[VOrdel].[Expr4] AS [Expr4], 
+[VOrdel].[Expr5] AS [Expr5], 
+[VOrdel].[Expr6] AS [Expr6], 
+[VOrdel].[Expr7] AS [Expr7], 
+[VOrdel].[Sname] AS [Sname], 
+[VOrdel].[Gpicture] AS [Gpicture], 
+[VOrdel].[Gprice] AS [Gprice], 
+[VOrdel].[Gintroduce] AS [Gintroduce], 
+[VOrdel].[Gnumber] AS [Gnumber], 
+[VOrdel].[GpNum] AS [GpNum], 
+[VOrdel].[Gname] AS [Gname], 
+[VOrdel].[SId] AS [SId]
+FROM [dbo].[VOrdel] AS [VOrdel]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VOrderSminxi" EntityType="Self.VOrderSminxi" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[VOrderSminxi].[gid] AS [gid], 
+[VOrderSminxi].[minxiid] AS [minxiid], 
+[VOrderSminxi].[snum] AS [snum], 
+[VOrderSminxi].[sprice] AS [sprice], 
+[VOrderSminxi].[Gname] AS [Gname], 
+[VOrderSminxi].[Gnumber] AS [Gnumber], 
+[VOrderSminxi].[SId] AS [SId]
+FROM [dbo].[VOrderSminxi] AS [VOrderSminxi]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VPLForum" EntityType="Self.VPLForum" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[VPLForum].[FId] AS [FId], 
+[VPLForum].[PId] AS [PId], 
+[VPLForum].[plnr] AS [plnr], 
+[VPLForum].[UId] AS [UId], 
+[VPLForum].[Pltime] AS [Pltime], 
+[VPLForum].[Uname] AS [Uname], 
+[VPLForum].[ImgUrl] AS [ImgUrl]
+FROM [dbo].[VPLForum] AS [VPLForum]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VshopCar" EntityType="Self.VshopCar" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[VshopCar].[orDetailId] AS [orDetailId], 
+[VshopCar].[GId] AS [GId], 
+[VshopCar].[num] AS [num], 
+[VshopCar].[price] AS [price], 
+[VshopCar].[total] AS [total], 
+[VshopCar].[UId] AS [UId], 
+[VshopCar].[Gpicture] AS [Gpicture], 
+[VshopCar].[Gname] AS [Gname], 
+[VshopCar].[Gintroduce] AS [Gintroduce], 
+[VshopCar].[Gnumber] AS [Gnumber], 
+[VshopCar].[SId] AS [SId]
+FROM [dbo].[VshopCar] AS [VshopCar]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Vsplb" EntityType="Self.Vsplb" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[Vsplb].[neirong] AS [neirong], 
+[Vsplb].[pltime] AS [pltime], 
+[Vsplb].[Uname] AS [Uname], 
+[Vsplb].[ImgUrl] AS [ImgUrl], 
+[Vsplb].[GId] AS [GId], 
+[Vsplb].[Gpicture] AS [Gpicture], 
+[Vsplb].[Gname] AS [Gname], 
+[Vsplb].[Gprice] AS [Gprice], 
+[Vsplb].[Gintroduce] AS [Gintroduce], 
+[Vsplb].[Gnumber] AS [Gnumber], 
+[Vsplb].[bigImgUrl] AS [bigImgUrl]
+FROM [dbo].[Vsplb] AS [Vsplb]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VURser" EntityType="Self.VURser" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[VURser].[Uname] AS [Uname], 
+[VURser].[UId] AS [UId], 
+[VURser].[truename] AS [truename], 
+[VURser].[Sex] AS [Sex], 
+[VURser].[roleName] AS [roleName]
+FROM [dbo].[VURser] AS [VURser]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VUShop" EntityType="Self.VUShop" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[VUShop].[Sname] AS [Sname], 
+[VUShop].[Email] AS [Email], 
+[VUShop].[Uname] AS [Uname], 
+[VUShop].[SId] AS [SId], 
+[VUShop].[Sintroduce] AS [Sintroduce]
+FROM [dbo].[VUShop] AS [VUShop]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

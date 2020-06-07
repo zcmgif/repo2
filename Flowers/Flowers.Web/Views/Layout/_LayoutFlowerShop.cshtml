@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <meta name="keywords" content="free template,  ecommerce, online shopping, store" />
+    <meta name="description" content="Floral Shop is free website template for ecommerce or online shopping websites. Products, Shopping Cart, FAQs and Checkout pages are included." />
+    <link href="~/Content/FlowerShop/templatemo_style.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="~/Content/FlowerShop/css/orman.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="~/Content/FlowerShop/css/nivo-slider.css" type="text/css" media="screen" />
+
+    <link rel="stylesheet" type="text/css" href="~/Content/FlowerShop/css/ddsmoothmenu.css" />
+    <script type="text/javascript" src="~/Script/js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="~/Content/FlowerShop/js/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Content/FlowerShop/js/ddsmoothmenu.js"></script>
+    <script type="text/javascript">
+
+        ddsmoothmenu.init({
+            mainmenuid: "templatemo_menu", //menu DIV id
+            orientation: 'h', //Horizontal or vertical menu: Set to "h" or "v"
+            classname: 'ddsmoothmenu', //class added to menu's outer DIV
+            //customtheme: ["#1c5a80", "#18374a"],
+            contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
+        })
+
+        function clearText(field) {
+            if (field.defaultValue == field.value) field.value = '';
+            else if (field.value == '') field.value = field.defaultValue;
+        }
+
+        function upEdit(_url) {
+            var url = _url; //转向网页的地址;
+            var name = "修改密码";                        //网页名称，可为空;
+            var iWidth = 450;                          //弹出窗口的宽度;
+            var iHeight = 400;                       //弹出窗口的高度;
+            //获得窗口的垂直位置
+            var iTop = (window.screen.availHeight - 30 - iHeight) / 2;
+            //获得窗口的水平位置
+            var iLeft = (window.screen.availWidth - 10 - iWidth) / 2;
+            var params = 'width=' + iWidth
+                + ',height=' + iHeight
+                + ',top=' + iTop
+                + ',left=' + iLeft
+                + ',channelmode=yes'//是否使用剧院模式显示窗口。默认为 no
+                + ',directories=yes'//是否添加目录按钮。默认为 yes
+                + ',fullscreen=no' //是否使用全屏模式显示浏览器
+                + ',location=no'//是否显示地址字段。默认是 yes
+                + ',menubar=no'//是否显示菜单栏。默认是 yes
+                + ',resizable=no'//窗口是否可调节尺寸。默认是 yes
+                + ',scrollbars=yes'//是否显示滚动条。默认是 yes
+                + ',status=yes'//是否添加状态栏。默认是 yes
+                + ',titlebar=yes'//默认是 yes
+                + ',toolbar=no'//默认是 yes
+                ;
+            window.open(url, name, params);
+        }
+
+    </script>
+    <link rel="stylesheet" href="~/Content/FlowerShop/css/slimbox2.css" type="text/css" media="screen" />
+    <script type="text/JavaScript" src="~/Content/FlowerShop/js/slimbox2.js"></script>
+    <style type="text/css">
+        .Login-register {
+            width: 100px;
+            position: fixed;
+            right: 30px;
+            top: 100px;
+        }
+        .Login-register a {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 16px;
+            color: darkorange;
+        }
+        .selectmenu{
+            background-color: #47621d;
+            border-radius:6px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="Login-register">
+        <a href=@Url.Action("Login","Home")><img style="width:91px;height:135px;" src="~/Content/Home/touImg/@ViewBag.Imgurl" alt="头像加载" /></a><br />
+        @*<img src="" alt="头像加载" />*@
+        <a href=@Url.Action("UserImprovement","Home")>@ViewBag.uname</a>
+    </div>
+    @RenderBody()
+</body>
+</html>

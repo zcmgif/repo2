@@ -1,0 +1,169 @@
+﻿@{
+    //Layout = "~/Views/Layout/_LayoutFlowerShop.cshtml";
+    ViewBag.Title = "发现新事物";
+}
+<link href="~/Content/FlowerShop/templatemo_style.css" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" href="~/Content/FlowerShop/css/orman.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="~/Content/FlowerShop/css/nivo-slider.css" type="text/css" media="screen" />
+
+<link rel="stylesheet" type="text/css" href="~/Content/FlowerShop/css/ddsmoothmenu.css" />
+<script type="text/javascript" src="~/Script/js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="~/Content/FlowerShop/js/jquery.min.js"></script>
+<script type="text/javascript" src="~/Content/FlowerShop/js/ddsmoothmenu.js"></script>
+<script type="text/javascript" src="~/Script/js/jquery-1.8.2.min.js"></script>
+<style type="text/css">
+    .Friendship {
+        text-align: left;
+        font-size: 16px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #acb80be0;
+    }
+
+    .new_img img {
+        width: 300px;
+        height: 300px;
+    }
+
+    #templatemo_main_wrapper {
+        min-height: 550px;
+    }
+
+    .acimg {
+        width: 250px;
+        height: 250px;
+      
+        margin-bottom: 75px;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        var Imgurl = "";
+       
+        var uid =@ViewBag.UId;
+        var picString = "";
+        $("#picAjax").change(function (e) {
+            var file = e.delegateTarget.files[0];
+            if (file.type == 'image/jpeg' || file.type == 'image/png') {
+                $("#uploadInfo").text("格式正确");
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function (ret) {
+                    picString = reader.result;
+                    //alert(picString);
+                    //预览图片
+                    $("#selImg").attr({ "src": picString });
+                }
+            }
+            else {
+                $("#uploadInfo").text("请上传jpg或png格式的图片！");
+            }
+        });
+
+        $("#submitPic").click(function () {
+
+            if (picString != "") {
+                $.ajax({
+                    type: "POST",
+                    url: "/Owner/SavePicture",
+                    data: { "picString": picString },
+                    dataType: "json",
+                    beforeSend: function () {
+                    },
+                    success: function (strjson) {
+                        if (strjson.status == 1) {
+                            $("#uploadInfo").text("上传成功");
+                            Imgurl = strjson.msg;
+                        } else {
+                            alert(strjson.msg);
+                            clearform();
+                        }
+                        return false;
+                    }
+                })
+            }
+        });
+
+
+        $("#submit").click(function () {
+            if (window.confirm("是否上传商品？？")) {
+                var input_field = $("#input_field").val();
+                var messagetext = $("#message").val();
+                var price = $("#input_price").val();
+                var num = $("#input_num").val();
+                $.ajax({
+                    type: "POST",
+                    url: "/Owner/AddnewGoods",
+                    dataType: "json",
+                    data: { "Imgurl": Imgurl, "input_field": input_field, "messagetext": messagetext, "price": price, "num": num, "uid": uid },
+                    beforeSend: function () {
+                    },
+                    success: function (strjson) {
+                        if (strjson.status == 1) {
+                            alert("添加成功！");
+                            location.href = "/Owner/Index";
+                        } else {
+                            alert(strjson.msg);
+                            clearform();
+                        }
+                        return false;
+                    }
+                })
+            } else {
+                return false;
+            }
+        });
+    })
+    
+   
+</script>
+<div id="templatemo_wrapper_sp" style="background:#ebf3fa;color:#000;">
+   
+    <div id="templatemo_main_wrapper">
+        <div id="templatemo_main">
+  
+
+            <div id="content" class="right">
+               
+                <div class="cleaner h20"></div>
+                <div id="contact_form">
+                    <div class="col new_img">
+
+                        <div class="acimg">
+                            <img id="selImg" src="" alt="" /><br />
+                        </div>
+
+                        <input type="button" id="submitPic" class="customButton" value="上传" />
+                        <input type="file" id="picAjax" width="150px;" class="customButton" />
+                        <span id="uploadInfo"></span>
+                        <br />
+                        <label for="name">商品的名称:</label>
+                        <input name="name" type="text" class="input_field" id="name" /><br />
+                        <label for="name">商品的价格:</label>
+                        <input name="name" type="text" class="input_price" id="name" /><br />
+                        <label for="name">商品的数量:</label>
+                        <input name="name" type="text" class="input_num" id="name" /><br />
+                        <div class="cleaner h10"></div>
+                    </div>
+                    <div class="col col23 no_margin_right">
+                        <label for="message">简介:</label>
+                        <textarea id="message" name="message" rows="0" cols="0" class="required" style="width:554px;height:295px;"></textarea>
+                        <div class="cleaner h10"></div>
+                        <input type="button" class="submit_btn left" name="submit" id="submit" value="提交" />
+                        <input type="reset" class="submit_btn submit_right" name="reset" id="reset" value="重写" />
+                    </div>
+
+
+                </div>
+                <div class="cleaner h40"></div>
+                @*<div class="blank_box">
+                    <a href="javascript:;"><img src="~/Content/FlowerShop/images/free_shipping.jpg" alt="Free Shipping" /></a>
+                </div>*@
+                <div class="cleaner"></div>
+            </div>
+            <div class="cleaner"></div>
+        </div> <!-- END of main -->
+    </div> <!-- END of main wrapper -->
+
+    
+</div>

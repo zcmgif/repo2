@@ -1,0 +1,57 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>加入购物车</title>
+    
+    <script type="text/javascript" src="~/Script/js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="~/Content/FlowerShop/js/jquery.min.js"></script>
+    <style>
+        .addcar1 {
+            text-align: center;
+            line-height: 50px;
+            padding-top: 35px;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            var gid =@ViewBag.gid;
+            var uid=@ViewBag.UId;
+            $("#addcar").click(function () {
+                var num = $("#num").val();
+                $.ajax({
+                    type: "POST",
+                    url: "/FlowerShop/AddShopCar1",
+                    data: { "gid": gid, "uid": uid, "num": num },
+                    dataType: "json",
+                    beforeSend: function () {
+                    },
+                    success: function (strjson) {
+                        if (strjson.status == 1) {
+                            alert("加入成功，请到购物车中查看！");
+                            //location.href = "/FlowerShop/index";
+                            window.close();
+
+                        } else {
+                            alert(strjson.msg);
+                            clearform();
+                        }
+                        return false;
+                    }
+                })
+            });
+        })
+    </script>
+</head>
+<body>
+    <div class="addcar1">
+       数量：<input type="text" id="num" /><br />
+        <input type="button"  id="addcar" value="加入购物车"/>
+    </div>
+</body>
+</html>

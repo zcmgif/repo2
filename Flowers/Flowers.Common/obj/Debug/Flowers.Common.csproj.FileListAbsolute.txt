@@ -1,0 +1,6 @@
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.Common\obj\Debug\Flowers.Common.csprojAssemblyReference.cache
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.Common\obj\Debug\Flowers.Common.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.Common\bin\Debug\Flowers.Common.dll
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.Common\bin\Debug\Flowers.Common.pdb
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.Common\obj\Debug\Flowers.Common.dll
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.Common\obj\Debug\Flowers.Common.pdb

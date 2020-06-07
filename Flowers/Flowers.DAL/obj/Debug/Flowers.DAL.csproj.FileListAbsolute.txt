@@ -1,0 +1,15 @@
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.DAL\bin\Debug\Flowers.DAL.dll
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.DAL\bin\Debug\Flowers.DAL.pdb
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.DAL\bin\Debug\Flowers.Common.dll
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.DAL\bin\Debug\Flowers.Model.dll
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.DAL\bin\Debug\EntityFramework.dll
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.DAL\bin\Debug\Flowers.Common.pdb
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.DAL\bin\Debug\Flowers.Model.pdb
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.DAL\bin\Debug\Flowers.Model.dll.config
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.DAL\bin\Debug\EntityFramework.xml
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.DAL\bin\Debug\zh-Hans\EntityFramework.resources.dll
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.DAL\obj\Debug\Flowers.DAL.csprojAssemblyReference.cache
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.DAL\obj\Debug\Flowers.DAL.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.DAL\obj\Debug\Flowers.DAL.csproj.CopyComplete
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.DAL\obj\Debug\Flowers.DAL.dll
+C:\Users\Administrator\Desktop\Graduation\Flowers\Flowers.DAL\obj\Debug\Flowers.DAL.pdb

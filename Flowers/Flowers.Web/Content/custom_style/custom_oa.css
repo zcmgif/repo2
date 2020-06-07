@@ -1,0 +1,84 @@
+﻿/* --------------
+
+	   custom_oa.css:OA产品个性化样式
+	   可以修改
+
+ ------------ */
+
+
+/* --------------
+        以下为个性化样式，可以修改
+ ------------ */
+
+.mod_sign{
+    height:124px;
+}
+.sign_left{
+    height:124px;
+}
+.sign_right{  
+    height: 124px; 
+}
+.mod_sign textarea{
+    height:122px; 
+}
+
+ .announcement{
+        margin-left: 50px;
+        margin-right: 50px;
+ }
+
+ .announcement_title {
+     text-align:center;
+     color:#5c5b59;
+     font-size:18px;
+     font-weight:bold;
+ }
+
+ .publish_info {
+     line-height:22px;
+     text-align:center;
+     margin-top:20px;
+     border-bottom:#cccccc 1px dashed;
+     padding-bottom:20px;
+ }
+
+ .publish_info span {
+     color:#2365a8;
+     padding-right:2px;
+     padding-left:15px;
+ }
+
+ .announcement_content{
+     padding-top: 20px;
+     border-bottom:#cccccc 1px dashed;
+     padding-bottom: 30px;
+ }
+
+ .announcement_attachment{
+     padding-top: 20px;
+     text-align: left;
+     font-weight: bolder;
+ }
+
+#page_tree .l-layout-collapse-left{
+    border:0;
+    background:#f7f7f7 url("images/common/tree_bg_fix.gif") repeat;
+    overflow: hidden;
+}
+#page_tree .l-layout-left .l-layout-content{
+    overflow: auto;
+}
+
+
+
+.chose_div .list li{
+width:173px !important;
+}
+
+.shortcut li a {
+height: 22px !important;
+width: 22px !important;
+cursor: pointer !important;
+margin-top: 0px !important;
+}

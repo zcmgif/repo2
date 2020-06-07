@@ -1,0 +1,228 @@
+﻿@{
+    Layout = "~/Views/Layout/_LayoutFlowerShop.cshtml";
+    ViewBag.Title = "购物车";
+}
+<style>
+    #jiesuan {
+        cursor: pointer;
+    }
+    #templatemo_main_wrapper
+    {
+        min-height:550px;
+    }
+</style>
+<script type="text/javascript">
+    $(function () { 
+        var uid;
+        var count = 0;
+        var str;
+        uid =@ViewBag.UId;
+        GetGoods(uid);//加载商品
+        $("[name='check']").each(function (i) {
+            $(this).click(function () {
+                var total = $(this).parents('tr').find('td:eq(5)').find('label').text();
+                var gid = $(this).attr("class");
+                if (this.checked == true) {
+                    count += parseFloat(total)
+                    str += ","+gid;
+                }
+                else {
+                    count -= parseFloat(total);
+                    str.replace(gid,"");
+                }
+                $("#zj").text(count.toFixed(2));
+            });
+        });
+        $('input[type="text"]').change(function () {
+            var Gid = $(this).attr("id").replace(/[^0-9]/ig,"");
+            var num=$(this).val();
+            var price = $(this).parents('tr').find('td:eq(4)').find('label').text();
+            var total = parseInt(num) * parseFloat(price);
+            $(this).parents('tr').find('td:eq(5)').find('label').text(total.toFixed(2));
+            $.ajax({
+                type: "POST",
+                url: "/FlowerShop/UpdateCarVail",
+                dataType: "json",
+                data: { "num": num, "total": total, "Gid": Gid },
+                beforeSend: function () {
+                },
+                success: function (strjson) {
+                    if (strjson.status == 1) {
+                        //alert("修改成功！");
+                    } else {
+                        alert(strjson.msg);
+                        clearform();
+                    }
+                    return false;
+                }
+            })
+        });
+        $('[name="delecar"]').click(function () {
+            var gid = $(this).parents('tr').find('td:eq(0)').find('input').attr("id");
+            $.ajax({
+                type: "POST",
+                url: "/FlowerShop/DeleteCarVail",
+                dataType: "json",
+                data: { "uid": uid, "gid": gid},
+                beforeSend: function () {
+                },
+                success: function (strjson) {
+                    if (strjson.status == 1) {
+                        location.href = "/FlowerShop/shoppingCart" ;
+                    } else {
+                        alert(strjson.msg);
+                        clearform();
+                    }
+                    return false;
+                }
+            })
+        });
+        $("#allcheck").click(function () {
+            var check = $("[name='check']");
+            for (var i = 0; i < check.length; i++)
+            {
+                if (check[i].checked == false) {
+                    check[i].checked = true;
+                    var total = $(check[i]).parents('tr').find('td:eq(5)').find('label').text();
+                    count += parseFloat(total);
+                }
+                else {
+                    return;
+                }
+            }
+            $("#zj").text(count.toFixed(2));
+        });
+        $("#delecheck").click(function () {
+            var check = $("[name='check']");
+            for (var i = 0; i < check.length; i++) {
+                if (check[i].type == "checkbox") {
+                    check[i].checked = false;
+                }
+                else {
+                    check[i].checked = false;
+                }
+            }
+            $("#zj").text(0);
+        });
+        $("#fancheck").click(function () {
+            var check = $("[name='check']");
+            for (var i = 0; i < check.length; i++) {
+                var total = $(check[i]).parents('tr').find('td:eq(5)').find('label').text();
+                if (check[i].checked == false) {
+                    check[i].checked = true;
+                    count += parseFloat(total);
+                }
+                else {
+                    check[i].checked = false;
+                    count -= parseFloat(total);
+                }
+            }
+            $("#zj").text(count.toFixed(0));
+        });
+        $("#jiesuan").live('click', function () {
+            var zj = $("#zj").text();
+            var len = $("input:checkbox:checked").length;
+            if (len <= 0) {
+                alert("还未选择任何商品，请选择商品！");
+                return false;
+            }
+            else if (window.confirm("共选择了" + len + "个商品.提交订单吗？共计" + zj + "元")) {
+
+                $.ajax({
+                    type: "POST",
+                    url: "/FlowerShop/AddOrderVail",
+                    dataType: "json",
+                    data: { "uid": uid, "len": len, "zj": zj, "str": str },
+                    beforeSend: function () {
+                    },
+                    success: function (strjson) {
+                        if (strjson.status == 1) {
+                            alert("添加订单成功，请尽快付账！");
+                            var orderid = parseInt(strjson.msg);
+                            //alert(orderid);
+                            location.href = "/FlowerShop/checkout?orderid=" + orderid;
+                        } else {
+                            alert(strjson.msg);
+                            clearform();
+                        }
+                        return false;
+                    }
+                })
+            }
+            else {
+                return false;
+            }
+        });
+    })
+
+    function GetGoods(uid) {
+        $.ajax({
+            url: "/FlowerShop/AddCarVail?uid=" + uid,
+            type: 'GET',
+            dataType: 'json',
+            async: false,
+            success: function (data) {
+                //alert(data);
+                $("#shoptable").append(data);
+            },
+            error: function (mag) {
+                $("#shoptable").append("无法获得数据！");
+            }
+        });
+    }
+</script>
+<div id="templatemo_wrapper_sp">
+    <div id="templatemo_header_wsp">
+        <div id="templatemo_header" class="header_subpage">
+            <div id="site_title"><a href="#" rel="nofollow">Flower Shop</a></div>
+            <div id="templatemo_menu" class="ddsmoothmenu">
+                <ul>
+                    <li>@Html.ActionLink("首页", "index", "FlowerShop")</li>
+                    <li>@Html.ActionLink("店铺", "About", "FlowerShop")</li>
+                    <li>
+                        @Html.ActionLink("论坛", "faqs", "FlowerShop")
+                        <ul>
+                            <li>@Html.ActionLink("查看论坛", "showForum", "FlowerShop")</li>
+                            <li>@Html.ActionLink("发布日志", "sendForum", "FlowerShop")</li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("发现新事物", "contact", "FlowerShop")</li>
+                    <li>@Html.ActionLink("购物车", "shoppingCart", "FlowerShop", new { @class = "selected" })</li>
+                    <li>
+                        @Html.ActionLink("我的", "products", "FlowerShop")
+                        <ul>
+                            <li>@Html.ActionLink("订单查看", "products", "FlowerShop")</li>
+                            <li>@Html.ActionLink("完善信息", "UserImprovement", "Home")</li>
+                            <li><a href="javascript:;" onclick="upEdit('/Home/UserEdit')">修改密码</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <br style="clear: left" />
+            </div>
+
+
+        </div> <!-- END of header -->
+    </div> <!-- END of header wrapper -->
+    <div id="templatemo_main_wrapper">
+        <div id="templatemo_main">
+            <h2>Shopping Cart</h2>
+            <form id="table_form" method="post">
+                <table id="shoptable" width="100%" border="0" cellpadding="5" cellspacing="0">
+
+
+                </table>
+                <div class="cleaner h20"></div>
+                <div class="right"><input id="jiesuan" type="button" class="button" value="结算" /></div>
+            </form>
+            <div class="cleaner h20"></div>
+            
+        </div> <!-- END of main -->
+    </div> <!-- END of main wrapper -->
+
+    <div id="templatemo_footer_wrapper">
+        <div id="templatemo_footer">
+            <p class="p1">我的花草世界--爱尚花坊 @DateTime.Now</p>
+        </div> <!-- END of footer -->
+    </div> <!-- END of footer wrapper -->
+</div>
